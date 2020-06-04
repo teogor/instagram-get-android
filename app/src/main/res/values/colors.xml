@@ -45,7 +45,7 @@
     <color name="colorProfileTab2">#5037fc</color>
 
     <color name="colorSelected">#3217EB</color>
-    <color name="colorSelectedBackground">#344D35FC</color>
+    <color name="colorSelectedBackground">#ADE91E63</color>
     <color name="colorUnselected">#5037fc</color>
 
     <color name="colorLinkImage">#3217EB</color>
