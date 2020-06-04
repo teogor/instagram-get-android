@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dolphpire.instamanage.home.HomeActivity;
 import com.dolphpire.instamanage.login.LoginActivity;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
@@ -23,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
         initOkManager();
         initInsFiledManger();
 
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();
 
