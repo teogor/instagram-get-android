@@ -37,6 +37,8 @@ public class HomeFragment extends Fragment {
     TextView btnFollowers;
     @BindView(R.id.btnCoins)
     ImageView btnCoins;
+    @BindView(R.id.title_toolbar)
+    TextView title_toolbar;
 
     public HomeFragment() {
 
@@ -87,6 +89,7 @@ public class HomeFragment extends Fragment {
                 showFragment(getLikesFragment);
                 btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
                 btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
+                title_toolbar.setText("Get Likes");
             }
         });
 
@@ -96,6 +99,7 @@ public class HomeFragment extends Fragment {
                 showFragment(getFollowersFragment);
                 btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
                 btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
+                title_toolbar.setText("Get Followers");
             }
         });
 
@@ -105,6 +109,7 @@ public class HomeFragment extends Fragment {
                 showFragment(getCoinsFragment);
                 btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
                 btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
+                title_toolbar.setText("Get Coins");
             }
         });
 

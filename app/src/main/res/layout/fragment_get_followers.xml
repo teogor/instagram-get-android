@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    android:paddingTop="64dp">
 
     <RelativeLayout
-        android:id="@+id/rlLoading"
+        android:id="@+id/rlBottomControls"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg_login_holder"
+        android:layout_height="110dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_get_followers_holder"
+        android:elevation="20dp"
         android:layout_marginStart="20dp"
-        android:elevation="10dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textSize="14sp"
+                android:theme="@style/RadioButton" />
+
+        </LinearLayout>
+
     </RelativeLayout>
+
 </RelativeLayout>
