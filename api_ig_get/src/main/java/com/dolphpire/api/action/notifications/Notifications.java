@@ -8,8 +8,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowNotificationsCallback;
 import com.dolphpire.api.links.EndPoints;
 import com.dolphpire.api.models.ZeoFlowNotification;
@@ -26,8 +26,8 @@ import java.util.Map;
 public class Notifications {
 
     private ZFlowNotificationsCallback.OnCompleteListener<ZeoFlowNotification> onCompleteListener;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     public Notifications() {
 
@@ -104,12 +104,12 @@ public class Notifications {
         return this;
     }
 
-    public Notifications addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public Notifications addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public Notifications addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public Notifications addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

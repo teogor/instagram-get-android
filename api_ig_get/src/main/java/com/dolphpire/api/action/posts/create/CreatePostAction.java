@@ -6,8 +6,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
 import com.dolphpire.api.links.EndPoints;
 
@@ -27,8 +27,8 @@ public class CreatePostAction {
     private String color_2;
     private String images_url;
     private ZFlowOnCompleteCallback.OnComplete onCompleteListener;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     public CreatePostAction() {
 
@@ -119,12 +119,12 @@ public class CreatePostAction {
         return this;
     }
 
-    public CreatePostAction addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public CreatePostAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public CreatePostAction addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public CreatePostAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

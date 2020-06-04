@@ -8,9 +8,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.ZFlowDiscoverSearchCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.links.EndPoints;
 import com.dolphpire.api.models.ZeoFlowDiscoverModel;
 
@@ -28,8 +28,8 @@ public class SearchHistoryGet {
     //class model
 
     private ZFlowDiscoverSearchCallback.OnCompleteListener<ZeoFlowDiscoverModel> onCompleteListener;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     SearchHistoryGet() {
 
@@ -107,12 +107,12 @@ public class SearchHistoryGet {
         return this;
     }
 
-    public SearchHistoryGet addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public SearchHistoryGet addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public SearchHistoryGet addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public SearchHistoryGet addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

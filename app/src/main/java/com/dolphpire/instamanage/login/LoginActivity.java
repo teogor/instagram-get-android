@@ -164,4 +164,17 @@ public class LoginActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
 }

@@ -8,8 +8,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowTimelineCallback;
 import com.dolphpire.api.links.EndPoints;
 import com.dolphpire.api.models.ZeoFlowPost;
@@ -27,8 +27,8 @@ public class DiscoverPostsAction {
 
     //class model
     private ZFlowTimelineCallback.OnCompleteListener<ZeoFlowPost> onCompleteListener;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     public DiscoverPostsAction() {
 
@@ -110,12 +110,12 @@ public class DiscoverPostsAction {
         return this;
     }
 
-    public DiscoverPostsAction addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public DiscoverPostsAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public DiscoverPostsAction addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public DiscoverPostsAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

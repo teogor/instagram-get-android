@@ -1,6 +1,6 @@
 package com.dolphpire.api.interfaces;
 
-public interface ZFlowOnFoundCallback<T> {
+public interface OnFoundCallback<T> {
 
     interface OnFound {
         void onFound(boolean found);

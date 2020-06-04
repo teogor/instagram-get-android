@@ -8,8 +8,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.links.EndPoints;
 import com.dolphpire.api.models.ZeoFlowPresenter;
 import com.dolphpire.api.interfaces.ZFlowPresenterCallback;
@@ -30,8 +30,8 @@ public class GetAutocompleteAction {
     private String word;
     private String type;
     private ZFlowPresenterCallback.OnCompleteListener<ZeoFlowPresenter> onCompleteListener;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
     private StringRequest strReq;
 
     GetAutocompleteAction(int type) {
@@ -119,12 +119,12 @@ public class GetAutocompleteAction {
         return this;
     }
 
-    public GetAutocompleteAction addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public GetAutocompleteAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public GetAutocompleteAction addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public GetAutocompleteAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

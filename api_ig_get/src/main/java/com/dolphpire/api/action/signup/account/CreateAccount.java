@@ -6,8 +6,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
 import com.dolphpire.api.links.EndPoints;
 
@@ -28,8 +28,8 @@ public class CreateAccount {
     private String country;
     private String dateOfBirthday;
     private ZFlowOnCompleteCallback.OnComplete onComplete;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     CreateAccount() {
 
@@ -128,12 +128,12 @@ public class CreateAccount {
         return this;
     }
 
-    public CreateAccount addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public CreateAccount addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public CreateAccount addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public CreateAccount addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

@@ -10,8 +10,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowLoginListener;
 import com.dolphpire.api.links.EndPoints;
 import com.dolphpire.api.models.ZeoFlowUser;
@@ -31,8 +31,8 @@ public class Login {
     private String password;
     private ZFlowLoginListener.OnLoggedIn<ZeoFlowUser> onLoggedIn;
     private ZFlowLoginListener.OnLoginFailure onLoginFailure;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     public Login() {
 
@@ -142,12 +142,12 @@ public class Login {
         return this;
     }
 
-    public Login addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public Login addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public Login addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public Login addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

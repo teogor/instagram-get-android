@@ -8,8 +8,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowPostsCallback;
 import com.dolphpire.api.links.EndPoints;
 import com.dolphpire.api.models.ZeoFlowPost;
@@ -30,8 +30,8 @@ public class HashtagPostsAction {
     private String hashtag;
     private String type;
     private ZFlowPostsCallback.OnCompleteListener<ZeoFlowPost> onCompleteListener;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     public HashtagPostsAction(String hashtag, int type) {
         this.hashtag = String.valueOf(hashtag);
@@ -117,12 +117,12 @@ public class HashtagPostsAction {
         return this;
     }
 
-    public HashtagPostsAction addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public HashtagPostsAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public HashtagPostsAction addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public HashtagPostsAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

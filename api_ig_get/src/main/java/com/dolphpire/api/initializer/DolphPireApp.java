@@ -55,7 +55,7 @@ public class DolphPireApp {
             .getSimpleName();
     @GuardedBy("LOCK")
     static final Map<String, DolphPireApp> INSTANCES = new ArrayMap<>();
-    private static final String LOG_TAG = "ZeoFlowApp";
+    private static final String LOG_TAG = "DolphPireApp";
     private static final @NonNull
     String DEFAULT_APP_NAME = "[DEFAULT]";
     private static final Object LOCK = new Object();
@@ -95,10 +95,10 @@ public class DolphPireApp {
             DolphPireApp defaultApp = INSTANCES.get(DEFAULT_APP_NAME);
             if (defaultApp == null) {
                 throw new IllegalStateException(
-                        "Default ZeoFlowApp is not initialized in this "
+                        "Default DolphPireApp is not initialized in this "
                                 + "process "
                                 + ". Make sure to call "
-                                + "ZeoFlowApp.initializeApp(Context) first.");
+                                + "DolphPireApp.initializeApp(Context) first.");
             }
             return defaultApp;
         }
@@ -109,16 +109,16 @@ public class DolphPireApp {
             if (getInstance().getApplicationContext().getPackageName().equals(getInstance().getJsonPackage())) {
                 return new DolphPireAPI();
             }
-            throw new IllegalStateException("The package is different than the one from the zeoflow-services.json");
+            throw new IllegalStateException("The package is different than the one from the dolphpire-services.json");
         }
     }
 
     @NonNull
     public static DolphPireApp getInstance(@NonNull String name) {
         synchronized (LOCK) {
-            DolphPireApp zeoflowApp = INSTANCES.get(normalize(name));
-            if (zeoflowApp != null) {
-                return zeoflowApp;
+            DolphPireApp dolphpireApp = INSTANCES.get(normalize(name));
+            if (dolphpireApp != null) {
+                return dolphpireApp;
             }
 
             List<String> availableAppNames = getAllAppNames();
@@ -131,7 +131,7 @@ public class DolphPireApp {
             }
             String errorMessage =
                     String.format(
-                            "ZeoFlowApp with name %s doesn't exist. %s", name, availableAppNamesMessage);
+                            "DolphPireApp with name %s doesn't exist. %s", name, availableAppNamesMessage);
             throw new IllegalStateException(errorMessage);
         }
     }
@@ -147,16 +147,16 @@ public class DolphPireApp {
             applicationContext = context.getApplicationContext();
         }
 
-        DolphPireApp zeoflowApp;
+        DolphPireApp dolphpireApp;
         synchronized (LOCK) {
-            Preconditions.checkState(!INSTANCES.containsKey(normalizedName), "ZeoFlowApp name " + normalizedName + " already exists!");
+            Preconditions.checkState(!INSTANCES.containsKey(normalizedName), "DolphPireApp name " + normalizedName + " already exists!");
             Preconditions.checkNotNull(applicationContext, "Application context cannot be null.");
-            zeoflowApp = new DolphPireApp(applicationContext, normalizedName);
-            INSTANCES.put(normalizedName, zeoflowApp);
+            dolphpireApp = new DolphPireApp(applicationContext, normalizedName);
+            INSTANCES.put(normalizedName, dolphpireApp);
         }
-        INSTANCES.put(normalizedName, zeoflowApp);
+        INSTANCES.put(normalizedName, dolphpireApp);
         getInstance().mZFlowSyncUser = new ZFlowSyncUser();
-        return zeoflowApp;
+        return dolphpireApp;
     }
 
     @Nullable
@@ -169,8 +169,8 @@ public class DolphPireApp {
             if (zeoflowOptions == null) {
                 Log.w(
                         LOG_TAG,
-                        "Default ZeoFlowApp failed to initialize because no default "
-                                + "options were found. This usually means that com.zeoflow.sdk:zeoflow-services was "
+                        "Default DolphPireApp failed to initialize because no default "
+                                + "options were found. This usually means that com.dolphpire.sdk:dolphpire-services was "
                                 + "not applied to your gradle project.");
                 return null;
             }
@@ -185,7 +185,7 @@ public class DolphPireApp {
         mDolphPireInstance = new DolphPireInstance();
 
         try {
-            InputStream is = mContext.getAssets().open("zeoflow-services.json");
+            InputStream is = mContext.getAssets().open("dolphpire-services.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -223,21 +223,21 @@ public class DolphPireApp {
             applicationContext = context.getApplicationContext();
         }
 
-        DolphPireApp zeoflowApp;
+        DolphPireApp dolphpireApp;
         synchronized (LOCK) {
-            Preconditions.checkState(!INSTANCES.containsKey(normalizedName), "ZeoFlowApp name " + normalizedName + " already exists!");
+            Preconditions.checkState(!INSTANCES.containsKey(normalizedName), "DolphPireApp name " + normalizedName + " already exists!");
             Preconditions.checkNotNull(applicationContext, "Application context cannot be null.");
-            zeoflowApp = new DolphPireApp(applicationContext, normalizedName, options);
-            INSTANCES.put(normalizedName, zeoflowApp);
+            dolphpireApp = new DolphPireApp(applicationContext, normalizedName, options);
+            INSTANCES.put(normalizedName, dolphpireApp);
         }
 
-        zeoflowApp.initializeAllApis();
-        return zeoflowApp;
+        dolphpireApp.initializeAllApis();
+        return dolphpireApp;
     }
 
     @SuppressLint("RestrictedApi")
     private static void checkNotDeleted() {
-        Preconditions.checkState(!deleted.get(), "ZeoFlowApp was deleted");
+        Preconditions.checkState(!deleted.get(), "DolphPireApp was deleted");
     }
 
     @VisibleForTesting
