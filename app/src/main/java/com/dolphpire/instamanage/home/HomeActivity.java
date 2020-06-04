@@ -5,6 +5,7 @@ import androidx.annotation.ColorRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,7 @@ import com.dolphpire.instamanage.home.drawer.DrawerAdapter;
 import com.dolphpire.instamanage.home.drawer.DrawerItem;
 import com.dolphpire.instamanage.home.drawer.SimpleItem;
 import com.dolphpire.instamanage.home.drawer.SpaceItem;
+import com.dolphpire.instamanage.homeFragment.HomeFragment;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
@@ -66,7 +68,14 @@ public class HomeActivity extends AppCompatActivity {
 
                 slidingRootNav.closeMenu(true);
 
-                
+                Fragment selectedScreen;
+                if(position == POS_HOME) {
+
+                    selectedScreen = new HomeFragment();
+                    showFragment(selectedScreen);
+
+                }
+
             }
         });
 
@@ -75,6 +84,12 @@ public class HomeActivity extends AppCompatActivity {
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
 
+    }
+
+    private void showFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, fragment)
+                .commit();
     }
 
     private DrawerItem createItemFor(int position) {
