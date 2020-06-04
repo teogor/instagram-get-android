@@ -144,4 +144,9 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
+    <style name="RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:textColor">@color/colorSelected</item>
+        <item name="buttonTint">@color/colorSelected</item>
+    </style>
+
 </resources>
