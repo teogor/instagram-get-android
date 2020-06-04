@@ -1,21 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    android:paddingTop="54dp">
 
-    <RelativeLayout
-        android:id="@+id/rlLoading"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_login_holder"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/llCoins"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_get_coins_holder"
+        android:backgroundTint="#3E6B73"
         android:elevation="10dp">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llCoins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/rlBottomControls"
+        android:layout_marginBottom="-10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:focusable="false"
+            android:fontFamily="@font/open_sans_bold"
+            android:gravity="center"
+            android:text="4 coins"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlBottomControls"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_get_coins_holder"
+        android:elevation="20dp"
+        android:layout_margin="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/llAuto">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_get_coins_btn"
+                android:elevation="7dp"
+                android:layout_margin="10dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="Skip"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_get_coins_btn"
+                android:elevation="7dp"
+                android:layout_margin="10dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="Follow"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llAuto"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_get_coins_btn"
+            android:elevation="7dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:text="Auto Follow and Like"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
     </RelativeLayout>
+
 </RelativeLayout>
