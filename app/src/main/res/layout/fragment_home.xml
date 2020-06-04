@@ -32,4 +32,62 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/colorBackground"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:elevation="20dp">
+
+        <TextView
+            android:id="@+id/txtFeedType"
+            fontPath="fonts/bold.ttf"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:focusable="false"
+            android:fontFamily="@font/open_sans_semibold"
+            android:gravity="center"
+            android:text="Likes"
+            android:textColor="@color/colorTextLvl1"
+            android:textSize="16sp"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:id="@+id/txtAboutType"
+            fontPath="fonts/bold.ttf"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:focusable="false"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:text="Followers"
+            android:textColor="@color/colorTextLvl3"
+            android:textSize="16sp"
+            tools:ignore="MissingPrefix" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgFeedGo"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_circle"
+        android:backgroundTint="#FFC107"
+        android:elevation="30dp"
+        android:padding="16dp"
+        android:layout_marginBottom="4dp"
+        android:src="@drawable/ic_launcher_background"
+        android:tint="@color/colorBackground" />
+
 </RelativeLayout>
