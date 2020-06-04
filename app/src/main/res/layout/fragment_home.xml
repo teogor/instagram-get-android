@@ -7,14 +7,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPosts"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:overScrollMode="never"
-        android:paddingTop="56dp" />
-
     <RelativeLayout
         android:id="@+id/rlToolbar"
         android:layout_width="match_parent"
@@ -30,6 +22,21 @@
         android:background="@drawable/background_toolbar"
         android:elevation="10dp">
 
+        <TextView
+            android:id="@+id/title_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:clickable="false"
+            android:focusable="false"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Home"
+            android:textAlignment="center"
+            android:textColor="@color/colorTextLvl1"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="MissingPrefix" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -44,7 +51,6 @@
 
         <TextView
             android:id="@+id/txtFeedType"
-            fontPath="fonts/bold.ttf"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -53,14 +59,13 @@
             android:focusable="false"
             android:fontFamily="@font/open_sans_semibold"
             android:gravity="center"
-            android:text="Likes"
+            android:text="+ Likes"
             android:textColor="@color/colorTextLvl1"
             android:textSize="16sp"
             tools:ignore="MissingPrefix" />
 
         <TextView
             android:id="@+id/txtAboutType"
-            fontPath="fonts/bold.ttf"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -69,7 +74,7 @@
             android:focusable="false"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:text="Followers"
+            android:text="+ Followers"
             android:textColor="@color/colorTextLvl3"
             android:textSize="16sp"
             tools:ignore="MissingPrefix" />
@@ -83,7 +88,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@drawable/bg_circle"
-        android:backgroundTint="#FFC107"
+        android:backgroundTint="#00BCD4"
         android:elevation="30dp"
         android:padding="16dp"
         android:layout_marginBottom="4dp"

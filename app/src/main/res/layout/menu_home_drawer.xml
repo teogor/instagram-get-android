@@ -49,10 +49,10 @@
 
                     <TextView
                         android:id="@+id/textView_drawer"
-                        fontPath="fonts/bold.ttf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="viewStart"
+                        android:fontFamily="@font/open_sans"
                         android:textColor="@color/colorTextLvl1"
                         android:textSize="17sp"
                         tools:ignore="MissingPrefix" />
