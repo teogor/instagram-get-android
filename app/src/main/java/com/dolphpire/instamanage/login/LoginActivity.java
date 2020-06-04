@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dolphpire.api.initializer.DolphPireApp;
@@ -71,6 +72,45 @@ public class LoginActivity extends AppCompatActivity {
 
         hideKeyboard(LoginActivity.this);
         rlLoading.setVisibility(View.VISIBLE);
+        DolphPireApp.initializeApi()
+                .login()
+                .withLoginKey(Objects.requireNonNull(tietInputLogIn.getText()).toString())
+                .withPassword(Objects.requireNonNull(tietInputPassword.getText()).toString())
+                .set()
+                .addOnLoggedInListener(new ZFlowLoginListener.OnLoggedIn<ZeoFlowUser>() {
+                    @Override
+                    public void onLoggedIn(ZeoFlowUser userData) {
+
+                    }
+                })
+                .addOnFailureListener(new ZFlowLoginListener.OnLoginFailure() {
+                    @Override
+                    public void onAccountClosed(@NonNull String error) {
+
+                    }
+
+                    @Override
+                    public void onEmailNotVerified(@NonNull String error) {
+
+                    }
+
+                    @Override
+                    public void onTwoStepsAuth(@NonNull String error) {
+
+                    }
+
+                    @Override
+                    public void onBadLogKey(@NonNull String error) {
+
+                    }
+
+                    @Override
+                    public void onBadPassword(@NonNull String error) {
+
+                    }
+                })
+                .execute();
+
         rlLoading.setVisibility(View.GONE);
 
     }
