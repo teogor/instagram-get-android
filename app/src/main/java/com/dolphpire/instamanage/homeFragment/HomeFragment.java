@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -80,11 +81,32 @@ public class HomeFragment extends Fragment {
         GetLikesFragment getLikesFragment = new GetLikesFragment();
         GetFollowersFragment getFollowersFragment = new GetFollowersFragment();
 
-        btnLikes.setOnClickListener(v -> showFragment(getLikesFragment));
+        btnLikes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFragment(getLikesFragment);
+                btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
+                btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
+            }
+        });
 
-        btnFollowers.setOnClickListener(v -> showFragment(getFollowersFragment));
+        btnFollowers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFragment(getFollowersFragment);
+                btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
+                btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
+            }
+        });
 
-        btnCoins.setOnClickListener(v -> showFragment(getCoinsFragment));
+        btnCoins.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFragment(getCoinsFragment);
+                btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
+                btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
+            }
+        });
 
         showFragment(getCoinsFragment);
 
