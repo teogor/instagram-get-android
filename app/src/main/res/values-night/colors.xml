@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <color name="colorBackground">#000000</color>
+    <color name="colorBackgroundLvl2">#111111</color>
+    <color name="colorBackgroundLvl3">#1F1F1F</color>
+    <color name="colorBackgroundT">#80000000</color>
+    <color name="colorAccent">#ffffff</color>
+    <color name="colorTextLvl1">#ffffff</color>
+    <color name="colorTextLvl2">#F0F0F0</color>
+    <color name="colorTextLvl3">#CFCFCF</color>
+    <color name="colorTextLvl4">#B8B8B8</color>
+    <color name="colorRipple">#474747</color>
+    <color name="colorTransparentAccent">#B3FFFFFF</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#ffffff</color>
+
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorToolbar">#eb000000</color>
+    <color name="colorToolbarPressed">#ebf1f1f1</color>
+    <color name="appTextColorD">#212121</color>
+    <color name="appTextColorL">#FFFFFF</color>
+    <color name="colorPlaceHolder">#ededed</color>
+    <color name="showTipProfileCard">#0e0e0e</color>
+    <color name="showTipProfileText">#ffffff</color>
+    <color name="onlineUser">#43e97b</color>
+    <color name="offlineUser">#fa5056</color>
+    <color name="verifiedGradientStart">#009efd</color>
+    <color name="snackbarColor">#f6faff</color>
+
+    <color name="colorLayer0">#1AF1F1F1</color>
+    <color name="colorLayer1">#ffffff</color>
+
+    <color name="primaryTextColor">#404040</color>
+    <color name="text_lvl1">#212121</color>
+    <color name="text_lvl2">#383838</color>
+    <color name="text_lvl3">#666666</color>
+    <color name="text_lvl4">#464646</color>
+    <color name="text_lvl5">#949494</color>
+    <color name="hintTxtColor">#A7A7A7</color>
+    <color name="txtColorRegister">#383838</color>
+
+    <color name="colorProfileTab1">#3217EB</color>
+    <color name="colorProfileTab2">#5037fc</color>
+
+    <color name="colorSelected">#2575fc</color>
+    <color name="colorSelectedBackground">#4A3116FA</color>
+    <color name="colorUnselected">#0947AF</color>
+
+    <color name="colorLinkImage">#3217EB</color>
+
+    <color name="loginAccentColor">#6F6F6F</color>
+
+    <color name="loginGradientStart">#E91E63</color>
+    <color name="loginGradientEnd">#F44336</color>
+
+    <color name="registerPrimaryColor">#8DDAD5</color>
+    <color name="registerPrimaryDarkColor">#8DDAD5</color>
+    <color name="registerOldAccentColor">#8E8E8E</color>
+    <color name="registerAccentColor">#f5f5f5</color>
+    <color name="registerGradientStart">#00CDAC</color>
+    <color name="registerGradientEnd">#8DDAD5</color>
+    <color name="registerInputColor">#FFFFFF</color>
+    <color name="registerInputErrorColor">#f94b76</color>
+    <color name="registerTxtColor">#6467af</color>
+    <color name="registerDialogBackground">#FFF</color>
+    <color name="abortRegisterRedColorDialog">#f44336</color>
+
+    <color name="colorLikeTint">#96e6a1</color>
+    <color name="colorUnlikeTint">#f68084</color>
+    <color name="colorCommentTint">#8fd3f4</color>
+    <color name="colorTagTint">#764ba2</color>
+    <color name="colorUserTint">#37ecba</color>
+
+    <color name="colorNotifyMessageSet">#2196F3</color>
+    <color name="colorNotifyPostsSet">#8BC34A</color>
+    <color name="colorNotifyUsersSet">#416F6F</color>
+    <color name="colorNotifyLiveSet">#FF8F07</color>
+    <color name="colorNotifySecurity">#E91E9F</color>
+    <color name="colorNotifyZeoFlowSet">#F43636</color>
+
+    <color name="colorNotifyComment">#212121</color>
+    <color name="colorNotifyFollow">#212121</color>
+    <color name="colorNotifyLike">#212121</color>
+    <color name="colorNotifyTag">#212121</color>
+    <color name="colorNotifyUnlike">#212121</color>
+
+    <!-- notification colors -->
+    <color name="colorNotifyPost">#FF5722</color>
+    <color name="colorNotifyUpdate">#FF9800</color>
+    <color name="colorNotifyMessage">#00BCD4</color>
+    <color name="colorNotifyLogin">#f44336</color>
+    <color name="colorNotifyFollower">#00BCD4</color>
+
+    <color name="colorDeleteComment">#F44336</color>
+
+</resources>

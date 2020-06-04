@@ -1,0 +1,4 @@
+include ':api_ig_get'
+include ':api_instagram'
+include ':app'
+rootProject.name = "InstaManage"
