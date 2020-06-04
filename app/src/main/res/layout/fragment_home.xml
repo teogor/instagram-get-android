@@ -7,6 +7,13 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/btmMenu"/>
+
     <RelativeLayout
         android:id="@+id/rlToolbar"
         android:layout_width="match_parent"
@@ -26,20 +33,37 @@
             android:id="@+id/title_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_marginStart="46dp"
             android:clickable="false"
             android:focusable="false"
             android:fontFamily="@font/open_sans_semibold"
-            android:text="Home"
-            android:textAlignment="center"
+            android:text="Get Coins"
+            android:textAlignment="textStart"
             android:textColor="@color/colorTextLvl1"
             android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="MissingPrefix"
+            android:layout_toStartOf="@+id/txt_coins"/>
+
+        <TextView
+            android:id="@+id/txt_coins"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="14.3k"
+            android:textColor="#FF9800"
+            android:textSize="16sp"
             android:textStyle="bold"
             tools:ignore="MissingPrefix" />
 
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/btmMenu"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
@@ -50,22 +74,22 @@
         android:elevation="20dp">
 
         <TextView
-            android:id="@+id/txtFeedType"
+            android:id="@+id/btnLikes"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:clickable="false"
             android:focusable="false"
-            android:fontFamily="@font/open_sans_semibold"
+            android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:text="+ Likes"
-            android:textColor="@color/colorTextLvl1"
+            android:textColor="@color/colorTextLvl3"
             android:textSize="16sp"
             tools:ignore="MissingPrefix" />
 
         <TextView
-            android:id="@+id/txtAboutType"
+            android:id="@+id/btnFollowers"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -82,13 +106,13 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imgFeedGo"
+        android:id="@+id/btnCoins"
         android:layout_width="54dp"
         android:layout_height="54dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@drawable/bg_circle"
-        android:backgroundTint="#00BCD4"
+        android:backgroundTint="#FF9800"
         android:elevation="30dp"
         android:padding="16dp"
         android:layout_marginBottom="4dp"
