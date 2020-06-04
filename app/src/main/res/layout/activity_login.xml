@@ -74,7 +74,8 @@
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/appTextColorD"
                 android:background="@drawable/background_custom_layer_10"
-                android:backgroundTint="#E6FFFFFF"/>
+                android:backgroundTint="#E6FFFFFF"
+                android:elevation="16dp"/>
 
             <Button
                 android:id="@+id/btnSignUp"
