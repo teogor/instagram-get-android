@@ -17,117 +17,123 @@
         android:layout_marginStart="20dp"
         android:elevation="10dp">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="30dp"
-            android:paddingEnd="20dp"
-            android:paddingStart="20dp">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilInputEmail"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:hintTextAppearance="@style/LogInHintStyle"
-                style="@style/LogInInputStyle">
+                android:orientation="vertical"
+                android:paddingTop="30dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietInputEmail"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilInputEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/appTextColorL"
-                    android:hint="Email" />
+                    app:hintTextAppearance="@style/LogInHintStyle"
+                    style="@style/LogInInputStyle">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tietInputEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/appTextColorL"
+                        android:hint="Email" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilInputUsername"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintTextAppearance="@style/LogInHintStyle"
-                style="@style/LogInInputStyle">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietInputUsername"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilInputUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:inputType="text"
-                    android:textColor="@color/appTextColorL"
-                    android:hint="Username" />
+                    app:hintTextAppearance="@style/LogInHintStyle"
+                    style="@style/LogInInputStyle">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tietInputUsername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="text"
+                        android:textColor="@color/appTextColorL"
+                        android:hint="Username" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilInputPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintTextAppearance="@style/LogInHintStyle"
-                style="@style/LogInInputStyle">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietInputPassword"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilInputPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:inputType="textPassword"
-                    android:textColor="@color/appTextColorL"
-                    android:hint="Password" />
+                    app:hintTextAppearance="@style/LogInHintStyle"
+                    style="@style/LogInInputStyle">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tietInputPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="textPassword"
+                        android:textColor="@color/appTextColorL"
+                        android:hint="Password" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilInputPasswordC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintTextAppearance="@style/LogInHintStyle"
-                style="@style/LogInInputStyle">
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietInputPasswordC"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilInputPasswordC"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:inputType="textPassword"
+                    app:hintTextAppearance="@style/LogInHintStyle"
+                    style="@style/LogInInputStyle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tietInputPasswordC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:inputType="textPassword"
+                        android:textColor="@color/appTextColorL"
+                        android:hint="Confirm Password" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btnSignUp"
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:paddingEnd="15dp"
+                    android:paddingStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:text="Sign Up"
+                    android:textAllCaps="false"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/appTextColorD"
+                    android:background="@drawable/background_custom_layer_10"
+                    android:backgroundTint="#E6FFFFFF"/>
+
+                <Button
+                    android:id="@+id/btnLogIn"
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="-5dp"
+                    android:background="#00ffffff"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:text="Login"
+                    android:textAllCaps="false"
                     android:textColor="@color/appTextColorL"
-                    android:hint="Confirm Password" />
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/btnSignUp"
-                android:layout_width="140dp"
-                android:layout_height="40dp"
-                android:paddingEnd="15dp"
-                android:paddingStart="15dp"
-                android:layout_marginTop="10dp"
-                android:textSize="16sp"
-                android:text="Sign Up"
-                android:textAllCaps="false"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/appTextColorD"
-                android:background="@drawable/background_custom_layer_10"
-                android:backgroundTint="#E6FFFFFF"/>
-
-            <Button
-                android:id="@+id/btnLogIn"
-                android:layout_width="140dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="-5dp"
-                android:background="#00ffffff"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:text="Login"
-                android:textAllCaps="false"
-                android:textColor="@color/appTextColorL"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
+        </ScrollView>
 
     </RelativeLayout>
 
