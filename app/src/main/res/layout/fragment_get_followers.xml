@@ -15,20 +15,33 @@
         android:elevation="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp">
+        android:layout_marginEnd="20dp"
+        android:paddingTop="10dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp">
 
             <RadioButton
-                android:id="@+id/radioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:textSize="14sp"
+                android:text=""
                 android:theme="@style/RadioButton" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="4 coins"
+                android:textColor="#000000"
+                android:textSize="18sp" />
 
         </LinearLayout>
 
