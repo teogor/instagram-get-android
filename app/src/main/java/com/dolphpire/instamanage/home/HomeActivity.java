@@ -32,7 +32,9 @@ public class HomeActivity extends AppCompatActivity {
         setDrawer(savedInstanceState);
     }
 
-    private int POS_FEED = 0;
+    private int POS_HOME = 0;
+    private int POS_ACCOUNTS = 1;
+    private int POS_LOG_OUT = 3;
     private String[] screenTitles;
     private Drawable[] screenIcons;
     private SlidingRootNav slidingRootNav;
@@ -54,7 +56,10 @@ public class HomeActivity extends AppCompatActivity {
         screenTitles = loadScreenTitles();
 
         adapter = new DrawerAdapter(Arrays.asList(
-                createItemFor(POS_FEED).setChecked(true)));
+                createItemFor(POS_HOME).setChecked(true),
+                createItemFor(POS_ACCOUNTS),
+                new SpaceItem(14),
+                createItemFor(POS_LOG_OUT)));
 
         adapter.setListener(new DrawerAdapter.OnItemSelectedListener() {
             @Override

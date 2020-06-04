@@ -3,9 +3,15 @@
 
     <string-array name="ld_activityScreenTitles">
         <item>Home</item>
+        <item>Accounts</item>
+        <item />
+        <item>Log Out</item>
     </string-array>
 
     <array name="ld_activityScreenIcons">
+        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/ic_launcher_background</item>
+        <item />
         <item>@drawable/ic_launcher_background</item>
     </array>
 
