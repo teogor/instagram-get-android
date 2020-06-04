@@ -61,7 +61,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
         }
     }
 
-    void setSelected(int position) {
+    public void setSelected(int position) {
         DrawerItem newChecked = items.get(position);
         if (!newChecked.isSelectable()) {
             return;

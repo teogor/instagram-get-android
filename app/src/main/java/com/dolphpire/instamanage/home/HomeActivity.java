@@ -83,6 +83,7 @@ public class HomeActivity extends AppCompatActivity {
         list.setNestedScrollingEnabled(false);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
+        adapter.setSelected(0);
 
     }
 
