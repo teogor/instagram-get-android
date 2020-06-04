@@ -44,11 +44,11 @@ public class SimpleItem extends DrawerItem<SimpleItem.ViewHolder> {
         holder.title.setText(title);
         holder.icon.setImageDrawable(icon);
 
-        holder.title.setTextColor(isChecked ? selectedItemTextTint : normalItemTextTint);
-        holder.title.setTextSize(isChecked ? selectedTextSize : textSize);
-        holder.icon.setColorFilter(isChecked ? selectedItemIconTint : normalItemIconTint);
-        holder.icon.getLayoutParams().height = isChecked ? selectedIconSize : iconSize;
-        holder.icon.getLayoutParams().width = isChecked ? selectedIconSize : iconSize;
+//        holder.title.setTextColor(isChecked ? selectedItemTextTint : normalItemTextTint);
+//        holder.title.setTextSize(isChecked ? selectedTextSize : textSize);
+//        holder.icon.setColorFilter(isChecked ? selectedItemIconTint : normalItemIconTint);
+//        holder.icon.getLayoutParams().height = isChecked ? selectedIconSize : iconSize;
+//        holder.icon.getLayoutParams().width = isChecked ? selectedIconSize : iconSize;
         holder.llItemBackground.setBackgroundResource(getBackground(isChecked));
     }
 
