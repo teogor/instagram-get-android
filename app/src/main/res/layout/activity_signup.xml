@@ -26,20 +26,38 @@
             android:paddingStart="20dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilInputLogIn"
+                android:id="@+id/tilInputEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:hintTextAppearance="@style/LogInHintStyle"
                 style="@style/LogInInputStyle">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tietInputLogIn"
+                    android:id="@+id/tietInputEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/appTextColorL"
+                    android:hint="Email" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilInputUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintTextAppearance="@style/LogInHintStyle"
+                style="@style/LogInInputStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tietInputUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:inputType="text"
                     android:textColor="@color/appTextColorL"
-                    android:hint="Email or username" />
+                    android:hint="Username" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

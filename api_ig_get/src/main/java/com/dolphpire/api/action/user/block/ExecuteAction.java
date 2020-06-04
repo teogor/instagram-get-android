@@ -5,8 +5,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.links.EndPoints;
 import com.dolphpire.api.interfaces.ZFlowBlockCallback;
 
@@ -22,8 +22,8 @@ public class ExecuteAction {
     private String user_id;
     private String action;
     private ZFlowBlockCallback.BlockUser mBlockUser;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     ExecuteAction(int user_id, int action) {
         this.user_id = String.valueOf(user_id);
@@ -95,12 +95,12 @@ public class ExecuteAction {
         return this;
     }
 
-    public ExecuteAction addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public ExecuteAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public ExecuteAction addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public ExecuteAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

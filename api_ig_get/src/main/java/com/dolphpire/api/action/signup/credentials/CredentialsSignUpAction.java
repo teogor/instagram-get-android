@@ -5,9 +5,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.ZFlowCredentialsCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.links.EndPoints;
 
 import org.json.JSONException;
@@ -24,8 +24,8 @@ public class CredentialsSignUpAction {
     private String email;
     private ZFlowCredentialsCallback.OnCredentialsCompleted onCompleteListener;
     private ZFlowCredentialsCallback.OnCredentialsError onCredentialsError;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     CredentialsSignUpAction() {
 
@@ -124,12 +124,12 @@ public class CredentialsSignUpAction {
         return this;
     }
 
-    public CredentialsSignUpAction addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public CredentialsSignUpAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public CredentialsSignUpAction addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public CredentialsSignUpAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

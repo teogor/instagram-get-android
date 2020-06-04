@@ -5,9 +5,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
-import com.dolphpire.api.interfaces.ZFlowOnFoundCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
+import com.dolphpire.api.interfaces.OnFoundCallback;
 import com.dolphpire.api.links.EndPoints;
 
 import org.json.JSONException;
@@ -19,15 +19,13 @@ import java.util.Map;
 public class CheckCredentialsAction {
 
     //class model
-    private String data;
-    private String type;
-    private ZFlowOnFoundCallback.OnFound onFound;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private String credential;
+    private OnFoundCallback.OnFound onFound;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
-    CheckCredentialsAction(String data, int type) {
-        this.data = String.valueOf(data);
-        this.type = String.valueOf(type);
+    CheckCredentialsAction(String credential) {
+        this.credential = String.valueOf(credential);
     }
 
     public void execute() {
@@ -79,13 +77,10 @@ public class CheckCredentialsAction {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("api_key", DolphPireApp.getInstance().getApiKey());
-                params.put("package_name", DolphPireApp.getInstance().getPackage());
+                params.put("secret_key", DolphPireApp.getInstance().getPackage());
                 params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUserID()));
 
-                params.put("username", !type.equals("0") ? "null" : data);
-                params.put("email", !type.equals("1") ? "null" : data);
-                params.put("phone", !type.equals("2") ? "null" : data);
-                params.put("type", type);
+                params.put("credential", !credential.equals("0") ? "null" : credential);
                 return params;
             }
         };
@@ -95,17 +90,17 @@ public class CheckCredentialsAction {
 
     }
 
-    public CheckCredentialsAction addOnFoundListener(ZFlowOnFoundCallback.OnFound onFound) {
+    public CheckCredentialsAction addOnFoundListener(OnFoundCallback.OnFound onFound) {
         this.onFound = onFound;
         return this;
     }
 
-    public CheckCredentialsAction addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public CheckCredentialsAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public CheckCredentialsAction addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public CheckCredentialsAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

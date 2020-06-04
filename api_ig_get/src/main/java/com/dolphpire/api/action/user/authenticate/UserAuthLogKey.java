@@ -5,8 +5,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
 import com.dolphpire.api.links.EndPoints;
 
@@ -22,8 +22,8 @@ public class UserAuthLogKey {
 
     private String logKey;
     private ZFlowOnCompleteCallback.OnComplete onComplete;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     UserAuthLogKey(String logKey) {
         this.logKey = logKey;
@@ -87,12 +87,12 @@ public class UserAuthLogKey {
         return this;
     }
 
-    public UserAuthLogKey addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public UserAuthLogKey addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public UserAuthLogKey addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public UserAuthLogKey addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

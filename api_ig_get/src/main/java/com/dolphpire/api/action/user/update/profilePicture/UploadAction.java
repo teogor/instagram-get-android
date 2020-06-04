@@ -5,8 +5,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
 import com.dolphpire.api.links.EndPoints;
 
@@ -21,8 +21,8 @@ public class UploadAction {
     //class model
     private String image_id;
     private ZFlowOnCompleteCallback.OnComplete onComplete;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     UploadAction(String image_id) {
         this.image_id = String.valueOf(image_id);
@@ -92,12 +92,12 @@ public class UploadAction {
         return this;
     }
 
-    public UploadAction addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public UploadAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public UploadAction addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public UploadAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

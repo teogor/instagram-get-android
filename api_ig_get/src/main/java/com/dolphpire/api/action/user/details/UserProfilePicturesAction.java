@@ -8,8 +8,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowProfileImagesCallback;
 import com.dolphpire.api.links.EndPoints;
 import com.dolphpire.api.models.ZeoFlowProfileImage;
@@ -29,8 +29,8 @@ public class UserProfilePicturesAction {
 
     private String user_id;
     private ZFlowProfileImagesCallback.OnCompleteListener<ZeoFlowProfileImage> onCompleteListener;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     UserProfilePicturesAction(int user_id) {
         this.user_id = String.valueOf(user_id);
@@ -110,12 +110,12 @@ public class UserProfilePicturesAction {
         return this;
     }
 
-    public UserProfilePicturesAction addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public UserProfilePicturesAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public UserProfilePicturesAction addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public UserProfilePicturesAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

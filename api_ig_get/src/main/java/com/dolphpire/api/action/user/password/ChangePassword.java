@@ -7,8 +7,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ZFlowPasswordCallback;
 import com.dolphpire.api.links.EndPoints;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,8 +23,8 @@ public class ChangePassword {
     private String password;
     private String newPassword;
     private ZFlowPasswordCallback.OnChangePassword onChangePassword;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     ChangePassword() {
 
@@ -106,12 +106,12 @@ public class ChangePassword {
         return this;
     }
 
-    public ChangePassword addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public ChangePassword addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public ChangePassword addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public ChangePassword addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

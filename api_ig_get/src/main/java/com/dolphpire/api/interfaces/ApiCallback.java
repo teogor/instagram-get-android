@@ -1,6 +1,6 @@
 package com.dolphpire.api.interfaces;
 
-public interface ZFlowApiCallback<T> {
+public interface ApiCallback<T> {
 
     interface ApiKeyError {
         void badApi();

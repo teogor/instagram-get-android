@@ -5,8 +5,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
 import com.dolphpire.api.links.EndPoints;
 
@@ -19,8 +19,8 @@ import java.util.Map;
 public class SearchHistoryDelete {
 
     private ZFlowOnCompleteCallback.OnComplete onCompleteListener;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     SearchHistoryDelete() {
 
@@ -86,12 +86,12 @@ public class SearchHistoryDelete {
         return this;
     }
 
-    public SearchHistoryDelete addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public SearchHistoryDelete addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public SearchHistoryDelete addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public SearchHistoryDelete addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

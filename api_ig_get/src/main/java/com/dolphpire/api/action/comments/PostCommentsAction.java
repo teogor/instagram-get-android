@@ -8,9 +8,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.ZFlowCommentsCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.links.EndPoints;
 import com.dolphpire.api.models.ZeoFlowComment;
 
@@ -29,8 +29,8 @@ public class PostCommentsAction {
 
     private String post_id;
     private ZFlowCommentsCallback.OnCompleteListener<ZeoFlowComment> onCompleteListener;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     public PostCommentsAction(int post_id) {
         this.post_id = String.valueOf(post_id);
@@ -115,12 +115,12 @@ public class PostCommentsAction {
         return this;
     }
 
-    public PostCommentsAction addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public PostCommentsAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public PostCommentsAction addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public PostCommentsAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

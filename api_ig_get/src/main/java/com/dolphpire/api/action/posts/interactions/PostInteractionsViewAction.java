@@ -8,8 +8,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.links.EndPoints;
 import com.dolphpire.api.interfaces.ZFlowQUsersCallback;
 import com.dolphpire.api.models.ZeoFlowQuickUser;
@@ -30,8 +30,8 @@ public class PostInteractionsViewAction {
     private String id;
     private String type;
     private ZFlowQUsersCallback.OnCompleteListener<ZeoFlowQuickUser> onCompleteListener;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     PostInteractionsViewAction(int id, int type) {
         this.id = String.valueOf(id);
@@ -117,12 +117,12 @@ public class PostInteractionsViewAction {
         return this;
     }
 
-    public PostInteractionsViewAction addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public PostInteractionsViewAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public PostInteractionsViewAction addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public PostInteractionsViewAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

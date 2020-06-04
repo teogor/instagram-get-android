@@ -5,8 +5,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowHashtagSizeCallback;
 import com.dolphpire.api.links.EndPoints;
 
@@ -22,8 +22,8 @@ public class HashtagLengthAction {
 
     private String hashtag;
     private ZFlowHashtagSizeCallback.OnCompleteListener onCompleteListener;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     public HashtagLengthAction(String hashtag) {
         this.hashtag = String.valueOf(hashtag);
@@ -91,12 +91,12 @@ public class HashtagLengthAction {
         return this;
     }
 
-    public HashtagLengthAction addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public HashtagLengthAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public HashtagLengthAction addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public HashtagLengthAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

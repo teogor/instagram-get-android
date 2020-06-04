@@ -8,8 +8,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowApiCallback;
-import com.dolphpire.api.interfaces.ZFlowFailureCallback;
+import com.dolphpire.api.interfaces.ApiCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowPostsCallback;
 import com.dolphpire.api.links.EndPoints;
 import com.dolphpire.api.models.ZeoFlowPost;
@@ -30,8 +30,8 @@ public class UserPostsGetAction {
     private String user_id;
     private String type;
     private ZFlowPostsCallback.OnCompleteListener<ZeoFlowPost> onCompleteListener;
-    private ZFlowFailureCallback.OnFailureListener onFailureListener;
-    private ZFlowApiCallback.ApiKeyError mApiKeyError;
+    private FailureCallback.OnFailureListener onFailureListener;
+    private ApiCallback.ApiKeyError mApiKeyError;
 
     UserPostsGetAction(int user_id, int type) {
         this.user_id = String.valueOf(user_id);
@@ -117,12 +117,12 @@ public class UserPostsGetAction {
         return this;
     }
 
-    public UserPostsGetAction addOnFailureListener(ZFlowFailureCallback.OnFailureListener onFailureListener) {
+    public UserPostsGetAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public UserPostsGetAction addOnFailedListener(ZFlowApiCallback.ApiKeyError mApiKeyError) {
+    public UserPostsGetAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
         this.mApiKeyError = mApiKeyError;
         return this;
     }
