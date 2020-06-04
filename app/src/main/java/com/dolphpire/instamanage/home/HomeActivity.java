@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -33,7 +32,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private int POS_HOME = 0;
-    private int POS_ACCOUNTS = 1;
+    private int POS_ACCOUNT = 1;
     private int POS_LOG_OUT = 3;
     private String[] screenTitles;
     private Drawable[] screenIcons;
@@ -57,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
 
         adapter = new DrawerAdapter(Arrays.asList(
                 createItemFor(POS_HOME).setChecked(true),
-                createItemFor(POS_ACCOUNTS),
+                createItemFor(POS_ACCOUNT),
                 new SpaceItem(14),
                 createItemFor(POS_LOG_OUT)));
 
