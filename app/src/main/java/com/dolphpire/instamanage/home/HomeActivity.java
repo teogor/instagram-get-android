@@ -64,6 +64,9 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(int position) {
 
+                slidingRootNav.closeMenu(true);
+
+                
             }
         });
 
