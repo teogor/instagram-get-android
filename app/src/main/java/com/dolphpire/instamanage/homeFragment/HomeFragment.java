@@ -16,6 +16,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dolphpire.instamanage.R;
+import com.dolphpire.instamanage.getcoinsfragment.GetCoinsFragment;
+import com.dolphpire.instamanage.getfollowersfragment.GetFollowersFragment;
+import com.dolphpire.instamanage.getlikesfragment.GetLikesFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,26 +76,17 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        btnLikes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        GetCoinsFragment getCoinsFragment = new GetCoinsFragment();
+        GetLikesFragment getLikesFragment = new GetLikesFragment();
+        GetFollowersFragment getFollowersFragment = new GetFollowersFragment();
 
-            }
-        });
+        btnLikes.setOnClickListener(v -> showFragment(getLikesFragment));
 
-        btnFollowers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnFollowers.setOnClickListener(v -> showFragment(getFollowersFragment));
 
-            }
-        });
+        btnCoins.setOnClickListener(v -> showFragment(getCoinsFragment));
 
-        btnCoins.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        showFragment(getCoinsFragment);
 
     }
 
