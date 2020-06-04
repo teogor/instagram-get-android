@@ -5,13 +5,12 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dolphpire.insapi.manager.IGCommonFieldsManager;
 import com.dolphpire.instamanage.home.HomeActivity;
-import com.dolphpire.instamanage.login.LoginActivity;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
-import com.dolphpire.insapi.manager.IGCommonFieldsManager;
 import com.joy.libok.OkHttpManager;
 import com.joy.libok.configdata.OKConfigData;
 
