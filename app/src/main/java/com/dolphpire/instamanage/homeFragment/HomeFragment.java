@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment {
         imvIGUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DialogIGAccounts().show();
+                new DialogIGAccounts(mContext).show();
             }
         });
 
