@@ -56,7 +56,7 @@
             android:clickable="false"
             android:focusable="false"
             android:fontFamily="@font/open_sans_semibold"
-            android:text="14.3k"
+            android:text="0"
             android:textColor="#fcc62d"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -65,10 +65,10 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imvIGUser"
             android:layout_alignParentEnd="true"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="7dp"
             android:layout_centerVertical="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/bg_circle"
             app:civ_border_color="@color/colorAccent"
             app:civ_border_width="0dp" />
