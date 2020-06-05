@@ -115,55 +115,28 @@ public class GetCoinsFragment extends Fragment {
         // 1 coins / like
         // 4 coins / follow
 
-        llActionTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (autoActionOn) {
-                    Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
-                } else {
+        llActionTask.setOnClickListener(v -> {
+            if (autoActionOn) {
+                Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
+            } else {
 
-                }
             }
         });
 
-        llSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (autoActionOn) {
-                    Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
-                } else {
+        llSkip.setOnClickListener(v -> {
+            if (autoActionOn) {
+                Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
+            } else {
 
-                }
             }
         });
 
-        llAuto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleAutoAction();
-            }
-        });
+        llAuto.setOnClickListener(v -> toggleAutoAction());
 
-        llFilters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (autoActionOn) {
-                    Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
-                } else {
-                    if (rlFilterMenu.isShown()) {
-                        rlFilterMenu.setVisibility(View.GONE);
-                        rlControlsHolder.setVisibility(View.VISIBLE);
-                    } else {
-                        rlFilterMenu.setVisibility(View.VISIBLE);
-                        rlControlsHolder.setVisibility(View.GONE);
-                    }
-                }
-            }
-        });
-
-        txtApplyFilters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        llFilters.setOnClickListener(v -> {
+            if (autoActionOn) {
+                Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
+            } else {
                 if (rlFilterMenu.isShown()) {
                     rlFilterMenu.setVisibility(View.GONE);
                     rlControlsHolder.setVisibility(View.VISIBLE);
@@ -171,15 +144,25 @@ public class GetCoinsFragment extends Fragment {
                     rlFilterMenu.setVisibility(View.VISIBLE);
                     rlControlsHolder.setVisibility(View.GONE);
                 }
-
-                SharedPreferences.Editor dpireFilterOptionsSPEdit = mContext.getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE).edit();
-                dpireFilterOptionsSPEdit.putBoolean(DPIRE_SP_FILTER_FOLLOW, cbFollow.isChecked());
-                dpireFilterOptionsSPEdit.putBoolean(DPIRE_SP_FILTER_FOLLOW, cbLike.isChecked());
-                dpireFilterOptionsSPEdit.apply();
-
-                filterFollowTasks = cbFollow.isChecked();
-                filterLikeTasks = cbLike.isChecked();
             }
+        });
+
+        txtApplyFilters.setOnClickListener(v -> {
+            if (rlFilterMenu.isShown()) {
+                rlFilterMenu.setVisibility(View.GONE);
+                rlControlsHolder.setVisibility(View.VISIBLE);
+            } else {
+                rlFilterMenu.setVisibility(View.VISIBLE);
+                rlControlsHolder.setVisibility(View.GONE);
+            }
+
+            SharedPreferences.Editor dpireFilterOptionsSPEdit = mContext.getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE).edit();
+            dpireFilterOptionsSPEdit.putBoolean(DPIRE_SP_FILTER_FOLLOW, cbFollow.isChecked());
+            dpireFilterOptionsSPEdit.putBoolean(DPIRE_SP_FILTER_FOLLOW, cbLike.isChecked());
+            dpireFilterOptionsSPEdit.apply();
+
+            filterFollowTasks = cbFollow.isChecked();
+            filterLikeTasks = cbLike.isChecked();
         });
 
         rlFilterMenu.setVisibility(View.GONE);
