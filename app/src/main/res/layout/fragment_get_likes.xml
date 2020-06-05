@@ -1,21 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    android:paddingTop="64dp">
 
-    <RelativeLayout
-        android:id="@+id/rlLoading"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvIGAccounts"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg_login_holder"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:clipToPadding="false"
+        android:overScrollMode="never" />
+
+    <LinearLayout
+        android:id="@+id/rlBottomControls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rvIGAccounts"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:elevation="10dp">
-    </RelativeLayout>
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_get_followers_holder"
+        android:elevation="20dp"
+        android:orientation="vertical"
+        android:paddingTop="18dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvGetLikes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingBottom="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llBottomPlaceOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rvIGAccounts"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/bg_place_order"
+        android:elevation="20dp"
+        android:orientation="vertical"
+        android:paddingTop="18dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="5dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Item choose:"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:id="@+id/llLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imgLike"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_ig_like" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:text="x"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtAmountLikes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtAmountCoins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="5dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/imgCoins"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_ig_coins"
+                    android:padding="3dp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:id="@+id/llCancelOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_get_coins_btn"
+                android:elevation="7dp"
+                android:orientation="vertical"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="Cancel"
+                    android:textColor="#AC1005"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llPlaceOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_get_coins_btn"
+                android:elevation="7dp"
+                android:orientation="vertical"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="Purchase"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>
