@@ -5,12 +5,14 @@ import android.animation.TimeAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,10 +28,17 @@ import com.dolphpire.instamanage.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_APP_DATA;
+import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_FILTER_FOLLOW;
+import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_FILTER_LIKE;
+
 public class GetCoinsFragment extends Fragment {
 
     @BindView(R.id.rlBottomControls)
     RelativeLayout rlBottomControls;
+    @BindView(R.id.rlControlsHolder)
+    RelativeLayout rlControlsHolder;
     @BindView(R.id.rlFilterMenu)
     RelativeLayout rlFilterMenu;
     @BindView(R.id.txtApplyFilters)
@@ -44,10 +53,16 @@ public class GetCoinsFragment extends Fragment {
     RelativeLayout llFilters;
     @BindView(R.id.txtAutoAction)
     TextView txtAutoAction;
+    @BindView(R.id.cbLike)
+    CheckBox cbLike;
+    @BindView(R.id.cbFollow)
+    CheckBox cbFollow;
     private View mView;
     private Context mContext;
     private Activity mActivity;
     private boolean autoActionOn = false;
+    private boolean filterLikeTasks = true;
+    private boolean filterFollowTasks = true;
 
     public GetCoinsFragment() {
 
@@ -90,62 +105,64 @@ public class GetCoinsFragment extends Fragment {
 
         setAnimation();
 
+        SharedPreferences dpireFilterOptionsSP = mContext.getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
+        filterFollowTasks = dpireFilterOptionsSP.getBoolean(DPIRE_SP_FILTER_FOLLOW, true);
+        filterLikeTasks = dpireFilterOptionsSP.getBoolean(DPIRE_SP_FILTER_LIKE, true);
+
+        cbFollow.setChecked(filterFollowTasks);
+        cbLike.setChecked(filterLikeTasks);
+
         // 1 coins / like
         // 4 coins / follow
 
-        llActionTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (autoActionOn) {
-                    Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
-                } else {
+        llActionTask.setOnClickListener(v -> {
+            if (autoActionOn) {
+                Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
+            } else {
 
-                }
             }
         });
 
-        llSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (autoActionOn) {
-                    Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
-                } else {
+        llSkip.setOnClickListener(v -> {
+            if (autoActionOn) {
+                Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
+            } else {
 
-                }
             }
         });
 
-        llAuto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleAutoAction();
-            }
-        });
+        llAuto.setOnClickListener(v -> toggleAutoAction());
 
-        llFilters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (autoActionOn) {
-                    Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
-                } else {
-                    if (rlFilterMenu.isShown()) {
-                        rlFilterMenu.setVisibility(View.GONE);
-                    } else {
-                        rlFilterMenu.setVisibility(View.VISIBLE);
-                    }
-                }
-            }
-        });
-
-        txtApplyFilters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        llFilters.setOnClickListener(v -> {
+            if (autoActionOn) {
+                Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
+            } else {
                 if (rlFilterMenu.isShown()) {
                     rlFilterMenu.setVisibility(View.GONE);
+                    rlControlsHolder.setVisibility(View.VISIBLE);
                 } else {
                     rlFilterMenu.setVisibility(View.VISIBLE);
+                    rlControlsHolder.setVisibility(View.GONE);
                 }
             }
+        });
+
+        txtApplyFilters.setOnClickListener(v -> {
+            if (rlFilterMenu.isShown()) {
+                rlFilterMenu.setVisibility(View.GONE);
+                rlControlsHolder.setVisibility(View.VISIBLE);
+            } else {
+                rlFilterMenu.setVisibility(View.VISIBLE);
+                rlControlsHolder.setVisibility(View.GONE);
+            }
+
+            SharedPreferences.Editor dpireFilterOptionsSPEdit = mContext.getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE).edit();
+            dpireFilterOptionsSPEdit.putBoolean(DPIRE_SP_FILTER_FOLLOW, cbFollow.isChecked());
+            dpireFilterOptionsSPEdit.putBoolean(DPIRE_SP_FILTER_FOLLOW, cbLike.isChecked());
+            dpireFilterOptionsSPEdit.apply();
+
+            filterFollowTasks = cbFollow.isChecked();
+            filterLikeTasks = cbLike.isChecked();
         });
 
         rlFilterMenu.setVisibility(View.GONE);
