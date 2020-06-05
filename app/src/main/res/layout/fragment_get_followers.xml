@@ -6,45 +6,142 @@
     android:background="@color/colorBackground"
     android:paddingTop="64dp">
 
-    <RelativeLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvIGAccounts"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:clipToPadding="false"
+        android:overScrollMode="never" />
+
+    <LinearLayout
         android:id="@+id/rlBottomControls"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rvIGAccounts"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/bg_get_followers_holder"
-        android:elevation="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:paddingTop="10dp">
+        android:background="@drawable/bg_get_followers_holder"
+        android:elevation="20dp"
+        android:orientation="vertical"
+        android:paddingTop="18dp">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvGetFollowers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingBottom="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llBottomPlaceOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rvIGAccounts"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_place_order"
+        android:elevation="20dp"
+        android:orientation="vertical"
+        android:paddingTop="18dp">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp">
+            android:clickable="false"
+            android:focusable="false"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Do you want to place the order?"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
 
-            <RadioButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:textSize="14sp"
-                android:text=""
-                android:theme="@style/RadioButton" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_marginTop="10dp">
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/llLeft"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:clickable="false"
-                android:focusable="false"
-                android:fontFamily="@font/open_sans_bold"
-                android:text="4 coins"
-                android:textColor="#000000"
-                android:textSize="18sp" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/imgFollower"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="#00BCD4" />
 
-    </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:text="x"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtAmountFollowers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtAmountCoins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="5dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/imgFollower2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="#FF9800" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
