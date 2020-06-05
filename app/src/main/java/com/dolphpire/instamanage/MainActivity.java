@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initOkManager();
 
         findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,18 +36,6 @@ public class MainActivity extends AppCompatActivity {
                 login();
             }
         });
-
-        Toast.makeText(this, IGCommonFieldsManager.getInstance().getPKID(), Toast.LENGTH_SHORT).show();
-    }
-
-    private void initOkManager() {
-
-        OKConfigData okConfigData = new OKConfigData();
-        ClearableCookieJar cookieJar = new PersistentCookieJar(new SetCookieCache(),
-                new SharedPrefsCookiePersistor(MainActivity.this));
-        okConfigData.setCookiesJar(cookieJar);
-        OkHttpManager.getInstance().init(okConfigData);
-
     }
 
     private void getCsftoken() {
@@ -70,29 +57,29 @@ public class MainActivity extends AppCompatActivity {
 
     private void login() {
 
-        EditText userName = findViewById(R.id.editTextTextPersonName);
-        EditText pwd = findViewById(R.id.editTextTextPassword);
+//        EditText userName = findViewById(R.id.editTextTextPersonName);
+//        EditText pwd = findViewById(R.id.editTextTextPassword);
         getCsftoken();
 
-        LoginRequest loginRequest = new LoginRequest(userName.getText().toString(), pwd.getText().toString());
-        loginRequest.execute(new InsRequestCallBack<LoginResponseData>() {
-            @Override
-            public void onSuccess(int statusCode, LoginResponseData insBaseData) {
-                LoginResponseData.LoggedInUserBean loggedInUserBean = null;
-                if (insBaseData != null && (loggedInUserBean = insBaseData.getLogged_in_user()) != null) {
-                    String pkId = loggedInUserBean.getPk() + "";
-                    if (!TextUtils.isEmpty(pkId)) {
-                        IGCommonFieldsManager.getInstance().savePKID(pkId);
-                    }
-                    Log.d("login", "pkId = " + pkId);
-                }
-            }
-
-            @Override
-            public void onFailure(int errorCode, String errorMsg) {
-                LLog.d("failed", String.format("errorCode= %s , errorMsg = %s", errorCode, errorMsg));
-            }
-        });
+//        LoginRequest loginRequest = new LoginRequest(userName.getText().toString(), pwd.getText().toString());
+//        loginRequest.execute(new InsRequestCallBack<LoginResponseData>() {
+//            @Override
+//            public void onSuccess(int statusCode, LoginResponseData insBaseData) {
+//                LoginResponseData.LoggedInUserBean loggedInUserBean = null;
+//                if (insBaseData != null && (loggedInUserBean = insBaseData.getLogged_in_user()) != null) {
+//                    String pkId = loggedInUserBean.getPk() + "";
+//                    if (!TextUtils.isEmpty(pkId)) {
+//                        IGCommonFieldsManager.getInstance().savePKID(pkId);
+//                    }
+//                    Log.d("login", "pkId = " + pkId);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(int errorCode, String errorMsg) {
+//                LLog.d("failed", String.format("errorCode= %s , errorMsg = %s", errorCode, errorMsg));
+//            }
+//        });
 
     }
 }
