@@ -22,6 +22,8 @@ public class HolderIGAccount extends RecyclerView.ViewHolder {
     RelativeLayout rlIGAccount;
     @BindView(R.id.rlAddAccount)
     RelativeLayout rlAddAccount;
+    @BindView(R.id.rlTermsPrivacy)
+    RelativeLayout rlTermsPrivacy;
     @BindView(R.id.imvIGUser)
     CircleImageView imvIGUser;
     @BindView(R.id.txtIGUsername)
@@ -48,13 +50,20 @@ public class HolderIGAccount extends RecyclerView.ViewHolder {
 
         rlIGAccount.setVisibility(View.GONE);
         rlAddAccount.setVisibility(View.GONE);
+        rlTermsPrivacy.setVisibility(View.GONE);
         if (mModelIGAccount.getType() == 0) {
             loadIGAccount();
         } else if (mModelIGAccount.getType() == 1) {
             loadAddAccount();
         } else if (mModelIGAccount.getType() == 2) {
-
+            loadTermsPrivacy();
         }
+
+    }
+
+    private void loadTermsPrivacy() {
+
+        rlTermsPrivacy.setVisibility(View.VISIBLE);
 
     }
 

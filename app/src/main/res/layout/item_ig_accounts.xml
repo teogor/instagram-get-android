@@ -115,4 +115,27 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rlTermsPrivacy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/title_toolbar"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:fontFamily="@font/open_sans"
+            android:text="*we are not sharing this linked accounts with 3rd parties\n*check the terms of service and privacy policy for more informations about the data that we collect"
+            android:textColor="@color/colorTextLvl1"
+            android:textSize="16sp"
+            tools:ignore="MissingPrefix"/>
+
+    </RelativeLayout>
+
 </LinearLayout>
