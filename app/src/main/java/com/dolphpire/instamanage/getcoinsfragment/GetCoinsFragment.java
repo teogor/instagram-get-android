@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -111,6 +112,13 @@ public class GetCoinsFragment extends Fragment {
 
         cbFollow.setChecked(filterFollowTasks);
         cbLike.setChecked(filterLikeTasks);
+        if (filterFollowTasks && filterLikeTasks) {
+            txtAutoAction.setText("Auto Follow & Like");
+        } else if (filterLikeTasks) {
+            txtAutoAction.setText("Auto Like");
+        } else if (filterFollowTasks) {
+            txtAutoAction.setText("Auto Follow");
+        }
 
         // 1 coins / like
         // 4 coins / follow
@@ -148,21 +156,31 @@ public class GetCoinsFragment extends Fragment {
         });
 
         txtApplyFilters.setOnClickListener(v -> {
-            if (rlFilterMenu.isShown()) {
+            if (!cbLike.isChecked() && !cbFollow.isChecked()) {
+                Toast.makeText(mContext, "You can not disable all the filters", Toast.LENGTH_SHORT).show();
+            } else if (rlFilterMenu.isShown()) {
                 rlFilterMenu.setVisibility(View.GONE);
                 rlControlsHolder.setVisibility(View.VISIBLE);
+
+                SharedPreferences.Editor dpireFilterOptionsSPEdit = mContext.getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE).edit();
+                dpireFilterOptionsSPEdit.putBoolean(DPIRE_SP_FILTER_FOLLOW, cbFollow.isChecked());
+                dpireFilterOptionsSPEdit.putBoolean(DPIRE_SP_FILTER_LIKE, cbLike.isChecked());
+                dpireFilterOptionsSPEdit.apply();
+
+                filterFollowTasks = cbFollow.isChecked();
+                filterLikeTasks = cbLike.isChecked();
+                if (filterFollowTasks && filterLikeTasks) {
+                    txtAutoAction.setText("Auto Follow & Like");
+                } else if (filterLikeTasks) {
+                    txtAutoAction.setText("Auto Like");
+                } else if (filterFollowTasks) {
+                    txtAutoAction.setText("Auto Follow");
+                }
             } else {
                 rlFilterMenu.setVisibility(View.VISIBLE);
                 rlControlsHolder.setVisibility(View.GONE);
             }
 
-            SharedPreferences.Editor dpireFilterOptionsSPEdit = mContext.getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE).edit();
-            dpireFilterOptionsSPEdit.putBoolean(DPIRE_SP_FILTER_FOLLOW, cbFollow.isChecked());
-            dpireFilterOptionsSPEdit.putBoolean(DPIRE_SP_FILTER_FOLLOW, cbLike.isChecked());
-            dpireFilterOptionsSPEdit.apply();
-
-            filterFollowTasks = cbFollow.isChecked();
-            filterLikeTasks = cbLike.isChecked();
         });
 
         rlFilterMenu.setVisibility(View.GONE);

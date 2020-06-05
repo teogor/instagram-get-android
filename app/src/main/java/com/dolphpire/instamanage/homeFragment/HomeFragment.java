@@ -20,7 +20,6 @@ import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getcoinsfragment.GetCoinsFragment;
 import com.dolphpire.instamanage.getfollowersfragment.GetFollowersFragment;
 import com.dolphpire.instamanage.getlikesfragment.GetLikesFragment;
-import com.dolphpire.instamanage.igaccounts.DialogIGAccounts;
 import com.dolphpire.instamanage.igaccounts.IGAccountActivity;
 
 import butterknife.BindView;
