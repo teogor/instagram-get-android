@@ -44,7 +44,7 @@ public class AdapterIGAccount extends RecyclerView.Adapter<HolderIGAccount> {
 
     @Override
     public void onBindViewHolder(HolderIGAccount holder, int position) {
-        holder.setContent(mDataList.get(position), listener, position);
+        holder.setContent(mDataList.get(position), listener, position, activity);
     }
 
     @Override

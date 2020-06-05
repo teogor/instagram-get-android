@@ -13,7 +13,6 @@
     <color name="colorRipple">#CFCFCF</color>
     <color name="colorTransparentAccent">#B3000000</color>
 
-    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#ffffff</color>
 
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
@@ -49,6 +48,10 @@
 
     <color name="colorBgGetCoins1">#1EE9E2</color>
     <color name="colorBgGetCoins2">#36F47C</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#236DDC</color>
+    <color name="colorIGLogin1">#236DDC</color>
+    <color name="colorIGLogin2">#0B50B6</color>
 
     <color name="colorSelected">#3217EB</color>
     <color name="colorSelectedBackground">#CC00BCD4</color>

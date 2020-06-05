@@ -5,8 +5,11 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.insapi.manager.IGCommonFieldsManager;
+import com.dolphpire.instamanage.MainActivity;
 import com.dolphpire.instamanage.home.HomeActivity;
+import com.dolphpire.instamanage.iglogin.IGLoginActivity;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
@@ -32,14 +35,14 @@ public class SplashActivity extends AppCompatActivity {
     private void initOkManager() {
         OKConfigData okConfigData = new OKConfigData();
         ClearableCookieJar cookieJar = new PersistentCookieJar(new SetCookieCache(),
-                new SharedPrefsCookiePersistor(SplashActivity.this));
+                new SharedPrefsCookiePersistor(DolphPireApp.getInstance().getApplicationContext()));
         okConfigData.setCookiesJar(cookieJar);
         OkHttpManager.getInstance().init(okConfigData);
 
     }
 
     private void initInsFiledManger() {
-        IGCommonFieldsManager.getInstance().init(this);
+        IGCommonFieldsManager.getInstance().init(DolphPireApp.getInstance().getApplicationContext());
     }
 
 }
