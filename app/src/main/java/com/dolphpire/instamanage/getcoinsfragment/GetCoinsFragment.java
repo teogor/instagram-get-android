@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,6 +31,8 @@ public class GetCoinsFragment extends Fragment {
 
     @BindView(R.id.rlBottomControls)
     RelativeLayout rlBottomControls;
+    @BindView(R.id.rlControlsHolder)
+    RelativeLayout rlControlsHolder;
     @BindView(R.id.rlFilterMenu)
     RelativeLayout rlFilterMenu;
     @BindView(R.id.txtApplyFilters)
@@ -44,10 +47,16 @@ public class GetCoinsFragment extends Fragment {
     RelativeLayout llFilters;
     @BindView(R.id.txtAutoAction)
     TextView txtAutoAction;
+    @BindView(R.id.cbLike)
+    CheckBox cbLike;
+    @BindView(R.id.cbFollow)
+    CheckBox cbFollow;
     private View mView;
     private Context mContext;
     private Activity mActivity;
     private boolean autoActionOn = false;
+    private boolean filterLikeTasks = true;
+    private boolean filterFollowTasks = true;
 
     public GetCoinsFragment() {
 
@@ -90,6 +99,9 @@ public class GetCoinsFragment extends Fragment {
 
         setAnimation();
 
+        cbFollow.setChecked(filterFollowTasks);
+        cbLike.setChecked(filterLikeTasks);
+
         // 1 coins / like
         // 4 coins / follow
 
@@ -130,8 +142,10 @@ public class GetCoinsFragment extends Fragment {
                 } else {
                     if (rlFilterMenu.isShown()) {
                         rlFilterMenu.setVisibility(View.GONE);
+                        rlControlsHolder.setVisibility(View.VISIBLE);
                     } else {
                         rlFilterMenu.setVisibility(View.VISIBLE);
+                        rlControlsHolder.setVisibility(View.GONE);
                     }
                 }
             }
@@ -142,9 +156,13 @@ public class GetCoinsFragment extends Fragment {
             public void onClick(View v) {
                 if (rlFilterMenu.isShown()) {
                     rlFilterMenu.setVisibility(View.GONE);
+                    rlControlsHolder.setVisibility(View.VISIBLE);
                 } else {
                     rlFilterMenu.setVisibility(View.VISIBLE);
+                    rlControlsHolder.setVisibility(View.GONE);
                 }
+                filterFollowTasks = cbFollow.isChecked();
+                filterLikeTasks = cbLike.isChecked();
             }
         });
 
