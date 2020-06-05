@@ -46,8 +46,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.dolphpire.api.utils.DolphPireUtils.ZFLOW_SP_APP_DATA;
-import static com.dolphpire.api.utils.DolphPireUtils.ZFLOW_SP_CURRENT_DATA;
 
 public class DolphPireApp {
 
@@ -285,10 +283,6 @@ public class DolphPireApp {
         if (this.mZFlowSyncUser.getUser() != null) {
             user.setLogKey(this.mZFlowSyncUser.getUser().getLogKey());
         }
-        SharedPreferences mPrefs = DolphPireApp.getInstance().getApplicationContext().getSharedPreferences(ZFLOW_SP_APP_DATA, MODE_PRIVATE);
-        SharedPreferences.Editor prefsEditor = mPrefs.edit();
-        prefsEditor.putString(ZFLOW_SP_CURRENT_DATA, new Gson().toJson(user));
-        prefsEditor.apply();
         this.mZFlowSyncUser.setUser(user);
     }
 
