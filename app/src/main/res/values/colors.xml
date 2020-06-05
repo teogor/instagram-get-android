@@ -44,6 +44,9 @@
     <color name="colorProfileTab1">#3217EB</color>
     <color name="colorProfileTab2">#5037fc</color>
 
+    <color name="colorBgPlaceOrder1">#3F51B5</color>
+    <color name="colorBgPlaceOrder2">#9C27B0</color>
+
     <color name="colorSelected">#3217EB</color>
     <color name="colorSelectedBackground">#CC00BCD4</color>
     <color name="colorUnselected">#5037fc</color>
