@@ -80,7 +80,7 @@
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
                     android:text="Skip"
-                    android:textColor="#000000"
+                    android:textColor="#AC1005"
                     android:textSize="16sp" />
 
             </LinearLayout>

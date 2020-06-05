@@ -20,9 +20,11 @@ import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getcoinsfragment.GetCoinsFragment;
 import com.dolphpire.instamanage.getfollowersfragment.GetFollowersFragment;
 import com.dolphpire.instamanage.getlikesfragment.GetLikesFragment;
+import com.dolphpire.instamanage.igaccounts.DialogIGAccounts;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeFragment extends Fragment {
 
@@ -39,6 +41,10 @@ public class HomeFragment extends Fragment {
     ImageView btnCoins;
     @BindView(R.id.title_toolbar)
     TextView title_toolbar;
+    @BindView(R.id.txt_coins)
+    TextView txt_coins;
+    @BindView(R.id.imvIGUser)
+    CircleImageView imvIGUser;
 
     public HomeFragment() {
 
@@ -83,37 +89,35 @@ public class HomeFragment extends Fragment {
         GetLikesFragment getLikesFragment = new GetLikesFragment();
         GetFollowersFragment getFollowersFragment = new GetFollowersFragment();
 
-        btnLikes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showFragment(getLikesFragment);
-                btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
-                btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
-                title_toolbar.setText("Get Likes");
-            }
+        btnLikes.setOnClickListener(v -> {
+            showFragment(getLikesFragment);
+            btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
+            btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
+            title_toolbar.setText("Get Likes");
         });
 
-        btnFollowers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showFragment(getFollowersFragment);
-                btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
-                btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
-                title_toolbar.setText("Get Followers");
-            }
+        btnFollowers.setOnClickListener(v -> {
+            showFragment(getFollowersFragment);
+            btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
+            btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
+            title_toolbar.setText("Get Followers");
         });
 
-        btnCoins.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showFragment(getCoinsFragment);
-                btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
-                btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
-                title_toolbar.setText("Get Coins");
-            }
+        btnCoins.setOnClickListener(v -> {
+            showFragment(getCoinsFragment);
+            btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
+            btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
+            title_toolbar.setText("Get Coins");
         });
 
         showFragment(getCoinsFragment);
+
+        imvIGUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DialogIGAccounts(mContext).show();
+            }
+        });
 
     }
 
