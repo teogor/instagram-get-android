@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvIGAccounts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingTop="64dp"
+        android:paddingBottom="10dp" />
+
     <RelativeLayout
         android:id="@+id/rlToolbar"
         android:layout_width="match_parent"
