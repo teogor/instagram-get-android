@@ -21,7 +21,7 @@
             android:id="@+id/imgFollower"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="#00BCD4"
+            android:src="@drawable/ic_ig_follower"
             android:layout_gravity="center_vertical"/>
 
         <TextView
@@ -70,10 +70,11 @@
             android:textSize="16sp" />
 
         <ImageView
-            android:id="@+id/imgFollower2"
+            android:id="@+id/imgCoins"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="#FF9800"
+            android:padding="3dp"
+            android:src="@drawable/ic_ig_coins"
             android:layout_gravity="center_vertical"/>
 
     </LinearLayout>
