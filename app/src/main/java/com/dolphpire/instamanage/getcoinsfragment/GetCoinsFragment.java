@@ -72,6 +72,9 @@ public class GetCoinsFragment extends Fragment {
 
         setAnimation();
 
+        // 1 coins / like
+        // 4 coins / follow
+
     }
 
     private void setAnimation() {

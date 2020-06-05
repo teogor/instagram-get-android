@@ -7,41 +7,19 @@
     android:paddingTop="54dp">
 
     <LinearLayout
+        android:id="@+id/llTaskHolder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_above="@+id/rlBottomControls"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/llCoins"
-        android:layout_marginBottom="10dp"
         android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/bg_get_coins_holder"
         android:backgroundTint="#3E6B73"
-        android:elevation="10dp">
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llCoins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/rlBottomControls"
-        android:layout_marginBottom="-10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:clickable="false"
-            android:focusable="false"
-            android:fontFamily="@font/open_sans_bold"
-            android:gravity="center"
-            android:text="4 coins"
-            android:textColor="@color/text_lvl1"
-            android:textSize="18sp" />
+        android:elevation="10dp"
+        android:orientation="vertical">
 
     </LinearLayout>
 
@@ -50,26 +28,26 @@
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
         android:background="@drawable/bg_get_coins_holder"
-        android:elevation="20dp"
-        android:layout_margin="20dp">
+        android:elevation="20dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_above="@+id/llAuto"
             android:layout_centerHorizontal="true"
-            android:layout_above="@+id/llAuto">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/bg_get_coins_btn"
                 android:elevation="7dp"
-                android:layout_margin="10dp"
+                android:orientation="vertical"
                 android:paddingStart="25dp"
-                android:paddingEnd="25dp"
-                android:orientation="vertical">
+                android:paddingEnd="25dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -88,12 +66,12 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/bg_get_coins_btn"
                 android:elevation="7dp"
-                android:layout_margin="10dp"
+                android:orientation="horizontal"
                 android:paddingStart="25dp"
-                android:paddingEnd="25dp"
-                android:orientation="vertical">
+                android:paddingEnd="25dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -107,6 +85,59 @@
                     android:textColor="#000000"
                     android:textSize="16sp" />
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="-4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:text="+"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtAmountCoins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:text="12"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="-2dp"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:text="x"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/imgCoins"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_ig_coins" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
@@ -115,12 +146,12 @@
             android:id="@+id/llAuto"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/bg_get_coins_btn"
             android:elevation="7dp"
-            android:layout_marginBottom="10dp"
             android:orientation="vertical"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
             android:paddingStart="25dp"
             android:paddingEnd="25dp">
 
