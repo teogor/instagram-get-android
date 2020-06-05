@@ -47,6 +47,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:focusable="true"
         android:background="@drawable/bg_place_order"
         android:elevation="20dp"
         android:orientation="vertical"
@@ -60,15 +62,15 @@
             android:clickable="false"
             android:focusable="false"
             android:fontFamily="@font/open_sans_semibold"
-            android:text="Do you want to place the order?"
+            android:text="Item choose:"
             android:textColor="#ffffff"
             android:textSize="16sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:layout_marginTop="10dp">
 
             <LinearLayout
@@ -137,6 +139,77 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
                     android:background="#FF9800" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:id="@+id/llCancelOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_get_coins_btn"
+                android:elevation="7dp"
+                android:orientation="vertical"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="Cancel"
+                    android:textColor="#AC1005"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llPlaceOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_get_coins_btn"
+                android:elevation="7dp"
+                android:orientation="vertical"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="Purchase"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 

@@ -1,16 +1,23 @@
 package com.dolphpire.instamanage.getfollowersfragment;
 
+import android.animation.ArgbEvaluator;
+import android.animation.TimeAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +38,10 @@ public class GetFollowersFragment extends Fragment {
     RecyclerView rvGetFollowers;
     @BindView(R.id.llBottomPlaceOrder)
     LinearLayout llBottomPlaceOrder;
+    @BindView(R.id.llCancelOrder)
+    LinearLayout llCancelOrder;
+    @BindView(R.id.llPlaceOrder)
+    LinearLayout llPlaceOrder;
     @BindView(R.id.txtAmountCoins)
     TextView txtAmountCoins;
     @BindView(R.id.txtAmountFollowers)
@@ -42,6 +53,7 @@ public class GetFollowersFragment extends Fragment {
     private ArrayList<ModelGetFollowers> mDataList;
     private AdapterGetFollowers mAdapter;
     private ModelGetFollowers mModelGetFollowers;
+    private int itemChose = -1;
 
     public GetFollowersFragment() {
 
@@ -84,12 +96,7 @@ public class GetFollowersFragment extends Fragment {
 
         mDataList = new ArrayList<>();
         mAdapter = new AdapterGetFollowers(mDataList, mActivity);
-        mAdapter.setListener(new AdapterGetFollowers.OnItem() {
-            @Override
-            public void onPosition(int pos) {
-                showDialogOrder(pos);
-            }
-        });
+        mAdapter.setListener(pos -> showDialogOrder(pos));
 
         rvGetFollowers.setItemAnimator(new DefaultItemAnimator());
         linearLayoutManager = new LinearLayoutManager(mContext);
@@ -97,14 +104,55 @@ public class GetFollowersFragment extends Fragment {
         rvGetFollowers.setHasFixedSize(false);
         rvGetFollowers.setAdapter(mAdapter);
 
+        llBottomPlaceOrder.setVisibility(View.GONE);
+
+        setAnimation();
+
         populateRecyclerView();
+
+        llCancelOrder.setOnClickListener(v -> llBottomPlaceOrder.setVisibility(View.GONE));
+
+        llPlaceOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                llBottomPlaceOrder.setVisibility(View.GONE);
+                Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getFollowers() + " followers", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void setAnimation() {
+
+        final ArgbEvaluator evaluator = new ArgbEvaluator();
+        final int start = ContextCompat.getColor(mContext, R.color.colorBgPlaceOrder1);
+        final int end = ContextCompat.getColor(mContext, R.color.colorBgPlaceOrder2);
+        final GradientDrawable gradient = (GradientDrawable) llBottomPlaceOrder.getBackground();
+
+        ValueAnimator animator = TimeAnimator.ofFloat(0.0f, 1.0f);
+        animator.setDuration(1500);
+        animator.setRepeatCount(ValueAnimator.INFINITE);
+        animator.setRepeatMode(ValueAnimator.REVERSE);
+        animator.addUpdateListener(valueAnimator -> {
+            float fraction = valueAnimator.getAnimatedFraction();
+            int newStrat = (int) evaluator.evaluate(fraction, start, end);
+            int newEnd = (int) evaluator.evaluate(fraction, end, start);
+            int[] newArray = {newStrat, newEnd};
+            gradient.setColors(newArray);
+        });
+
+        animator.start();
 
     }
 
     private void showDialogOrder(int pos) {
 
+        itemChose = pos;
+
         txtAmountCoins.setText(String.valueOf(mDataList.get(pos).getCoins()));
         txtAmountFollowers.setText(String.valueOf(mDataList.get(pos).getFollowers()));
+
+        llBottomPlaceOrder.setVisibility(View.VISIBLE);
 
     }
 
