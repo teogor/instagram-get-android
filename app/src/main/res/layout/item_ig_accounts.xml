@@ -130,10 +130,10 @@
             android:layout_height="wrap_content"
             android:clickable="false"
             android:focusable="false"
-            android:fontFamily="@font/open_sans"
+            android:fontFamily="@font/open_sans_semibold"
             android:text="*we are not sharing this linked accounts with 3rd parties\n*check the terms of service and privacy policy for more informations about the data that we collect"
             android:textColor="@color/colorTextLvl1"
-            android:textSize="16sp"
+            android:textSize="14sp"
             tools:ignore="MissingPrefix"/>
 
     </RelativeLayout>
