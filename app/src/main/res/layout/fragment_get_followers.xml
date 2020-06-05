@@ -6,6 +6,14 @@
     android:background="@color/colorBackground"
     android:paddingTop="64dp">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvIGAccounts"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:layout_alignParentTop="true"/>
+
     <LinearLayout
         android:id="@+id/rlBottomControls"
         android:layout_width="match_parent"
@@ -16,218 +24,17 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:paddingTop="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_below="@+id/rvIGAccounts"
+        android:paddingTop="18dp">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvGetFollowers"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:clickable="false"
-                android:focusable="false"
-                android:fontFamily="@font/open_sans"
-                android:text="4 coins"
-                android:textColor="#000000"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/background_custom_layer_20"
-            android:backgroundTint="@color/colorBackgroundLvl3">
-
-        </View>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:clickable="false"
-                android:focusable="false"
-                android:fontFamily="@font/open_sans"
-                android:text="4 coins"
-                android:textColor="#000000"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/background_custom_layer_20"
-            android:backgroundTint="@color/colorBackgroundLvl3">
-
-        </View>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:clickable="false"
-                android:focusable="false"
-                android:fontFamily="@font/open_sans"
-                android:text="4 coins"
-                android:textColor="#000000"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/background_custom_layer_20"
-            android:backgroundTint="@color/colorBackgroundLvl3">
-
-        </View>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:clickable="false"
-                android:focusable="false"
-                android:fontFamily="@font/open_sans"
-                android:text="4 coins"
-                android:textColor="#000000"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/background_custom_layer_20"
-            android:backgroundTint="@color/colorBackgroundLvl3">
-
-        </View>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:clickable="false"
-                android:focusable="false"
-                android:fontFamily="@font/open_sans"
-                android:text="4 coins"
-                android:textColor="#000000"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/background_custom_layer_20"
-            android:backgroundTint="@color/colorBackgroundLvl3">
-
-        </View>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:clickable="false"
-                android:focusable="false"
-                android:fontFamily="@font/open_sans"
-                android:text="4 coins"
-                android:textColor="#000000"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/background_custom_layer_20"
-            android:backgroundTint="@color/colorBackgroundLvl3">
-
-        </View>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:clickable="false"
-                android:focusable="false"
-                android:fontFamily="@font/open_sans"
-                android:text="4 coins"
-                android:textColor="#000000"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/background_custom_layer_20"
-            android:backgroundTint="@color/colorBackgroundLvl3">
-
-        </View>
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingBottom="10dp"/>
 
     </LinearLayout>
 
