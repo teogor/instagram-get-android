@@ -18,18 +18,18 @@ public class AdapterGetFollowers extends RecyclerView.Adapter<HolderGetFollowers
 
     private Activity activity;
     private ArrayList<ModelGetFollowers> mDataList;
-    private ChangeListener listener;
+    private OnItem listener;
 
     public AdapterGetFollowers(ArrayList<ModelGetFollowers> mDataList, Activity activity) {
         this.mDataList = mDataList;
         this.activity = activity;
     }
 
-    public ChangeListener getListener() {
+    public OnItem getListener() {
         return listener;
     }
 
-    public void setListener(ChangeListener listener) {
+    public void setListener(OnItem listener) {
         this.listener = listener;
     }
 
@@ -44,7 +44,7 @@ public class AdapterGetFollowers extends RecyclerView.Adapter<HolderGetFollowers
 
     @Override
     public void onBindViewHolder(HolderGetFollowers holder, int position) {
-        holder.setContent(mDataList.get(position), activity, listener);
+        holder.setContent(mDataList.get(position), listener, position);
     }
 
     @Override
@@ -52,8 +52,8 @@ public class AdapterGetFollowers extends RecyclerView.Adapter<HolderGetFollowers
         return mDataList.size();
     }
 
-    public interface ChangeListener {
-        void onChange();
+    public interface OnItem {
+        void onPosition(int pos);
     }
 
 

@@ -79,7 +79,12 @@ public class GetFollowersFragment extends Fragment {
 
         mDataList = new ArrayList<>();
         mAdapter = new AdapterGetFollowers(mDataList, mActivity);
-//        mAdapter.setListener(
+        mAdapter.setListener(new AdapterGetFollowers.OnItem() {
+            @Override
+            public void onPosition(int pos) {
+                
+            }
+        });
 
         rvGetFollowers.setItemAnimator(new DefaultItemAnimator());
         linearLayoutManager = new LinearLayoutManager(mContext);
