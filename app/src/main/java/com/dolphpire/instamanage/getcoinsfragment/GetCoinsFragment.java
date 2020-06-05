@@ -5,6 +5,7 @@ import android.animation.TimeAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -26,6 +27,11 @@ import com.dolphpire.instamanage.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_APP_DATA;
+import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_FILTER_FOLLOW;
+import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_FILTER_LIKE;
 
 public class GetCoinsFragment extends Fragment {
 
@@ -99,6 +105,10 @@ public class GetCoinsFragment extends Fragment {
 
         setAnimation();
 
+        SharedPreferences dpireFilterOptionsSP = mContext.getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
+        filterFollowTasks = dpireFilterOptionsSP.getBoolean(DPIRE_SP_FILTER_FOLLOW, true);
+        filterLikeTasks = dpireFilterOptionsSP.getBoolean(DPIRE_SP_FILTER_LIKE, true);
+
         cbFollow.setChecked(filterFollowTasks);
         cbLike.setChecked(filterLikeTasks);
 
@@ -161,6 +171,12 @@ public class GetCoinsFragment extends Fragment {
                     rlFilterMenu.setVisibility(View.VISIBLE);
                     rlControlsHolder.setVisibility(View.GONE);
                 }
+
+                SharedPreferences.Editor dpireFilterOptionsSPEdit = mContext.getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE).edit();
+                dpireFilterOptionsSPEdit.putBoolean(DPIRE_SP_FILTER_FOLLOW, cbFollow.isChecked());
+                dpireFilterOptionsSPEdit.putBoolean(DPIRE_SP_FILTER_FOLLOW, cbLike.isChecked());
+                dpireFilterOptionsSPEdit.apply();
+
                 filterFollowTasks = cbFollow.isChecked();
                 filterLikeTasks = cbLike.isChecked();
             }
