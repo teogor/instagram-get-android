@@ -1,16 +1,22 @@
 package com.dolphpire.instamanage.igaccounts.holder;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.instamanage.R;
+import com.dolphpire.instamanage.igaccounts.IGAccountActivity;
 import com.dolphpire.instamanage.igaccounts.adapter.AdapterIGAccount;
 import com.dolphpire.instamanage.igaccounts.model.ModelIGAccount;
+import com.dolphpire.instamanage.iglogin.IGLoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,9 +38,12 @@ public class HolderIGAccount extends RecyclerView.ViewHolder {
     ImageView imvDelete;
     @BindView(R.id.imvSelected)
     ImageView imvSelected;
+    @BindView(R.id.llAddAccount)
+    LinearLayout llAddAccount;
     private ModelIGAccount mModelIGAccount;
     private AdapterIGAccount.OnItem listener;
     private int position;
+    private Activity activity;
 
     public HolderIGAccount(View itemView) {
         super(itemView);
@@ -42,11 +51,12 @@ public class HolderIGAccount extends RecyclerView.ViewHolder {
     }
 
     @SuppressLint("SetTextI18n")
-    public void setContent(ModelIGAccount mModelIGAccount, AdapterIGAccount.OnItem listener, int position) {
+    public void setContent(ModelIGAccount mModelIGAccount, AdapterIGAccount.OnItem listener, int position, Activity activity) {
 
         this.mModelIGAccount = mModelIGAccount;
         this.listener = listener;
         this.position = position;
+        this.activity = activity;
 
         rlIGAccount.setVisibility(View.GONE);
         rlAddAccount.setVisibility(View.GONE);
@@ -70,6 +80,12 @@ public class HolderIGAccount extends RecyclerView.ViewHolder {
     private void loadAddAccount() {
 
         rlAddAccount.setVisibility(View.VISIBLE);
+
+        llAddAccount.setOnClickListener(v -> {
+            Intent intent = new Intent(activity, IGLoginActivity.class);
+            activity.startActivity(intent);
+        });
+
 
     }
 

@@ -22,22 +22,30 @@
         <item name="drawerArrowStyle">@style/NavigationViewIconBackTint</item>
     </style>
 
+    <style name="LoginTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorIGLogin2</item>
+        <item name="colorPrimaryDark">@color/colorBackground</item>
+        <item name="colorAccent">@color/colorIGLogin2</item>
+
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
+    </style>
+
     <style name="LogInInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="colorAccent">@color/appTextColorL</item>
-        <item name="boxStrokeColor">@color/appTextColorL</item>
+        <item name="colorAccent">@color/colorIGLogin2</item>
+        <item name="boxStrokeColor">@color/colorIGLogin1</item>
 
         <!-- Hint color and label color in FALSE state -->
-        <item name="android:textColorHint">@color/appTextColorL</item>
+        <item name="android:textColorHint">@color/colorIGLogin1</item>
         <item name="android:textSize">10sp</item>
 
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
-        <item name="android:colorAccent">@color/appTextColorL</item>
-        <item name="android:colorControlNormal">@color/appTextColorL</item>
-        <item name="android:colorControlActivated">@color/appTextColorL</item>
+        <item name="android:colorAccent">@color/colorIGLogin2</item>
+        <item name="android:colorControlNormal">@color/colorIGLogin1</item>
+        <item name="android:colorControlActivated">@color/colorIGLogin2</item>
     </style>
 
     <style name="LogInHintStyle" parent="@android:style/TextAppearance">
-        <item name="android:textColor">@color/appTextColorL</item>
+        <item name="android:textColor">@color/colorIGLogin2</item>
     </style>
 
     <style name="RegisterInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -85,14 +93,6 @@
         <!-- Customize your theme here. -->
         <item name="colorAccent">@color/colorAccent</item>
 
-    </style>
-
-    <style name="LoginTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccent</item>
-
-        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
     </style>
 
     <style name="EditTextOverlayLight" parent = "ThemeOverlay.AppCompat.Light">
