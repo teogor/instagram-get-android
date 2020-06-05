@@ -106,6 +106,24 @@ public class GetFollowersFragment extends Fragment {
 
         llBottomPlaceOrder.setVisibility(View.GONE);
 
+        setAnimation();
+
+        populateRecyclerView();
+
+        llCancelOrder.setOnClickListener(v -> llBottomPlaceOrder.setVisibility(View.GONE));
+
+        llPlaceOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                llBottomPlaceOrder.setVisibility(View.GONE);
+                Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getFollowers() + " followers", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void setAnimation() {
+
         final ArgbEvaluator evaluator = new ArgbEvaluator();
         final int start = ContextCompat.getColor(mContext, R.color.colorBgPlaceOrder1);
         final int end = ContextCompat.getColor(mContext, R.color.colorBgPlaceOrder2);
@@ -124,18 +142,6 @@ public class GetFollowersFragment extends Fragment {
         });
 
         animator.start();
-
-        populateRecyclerView();
-
-        llCancelOrder.setOnClickListener(v -> llBottomPlaceOrder.setVisibility(View.GONE));
-
-        llPlaceOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                llBottomPlaceOrder.setVisibility(View.GONE);
-                Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getFollowers() + " followers", Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 
