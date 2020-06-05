@@ -11,11 +11,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getfollowersfragment.adapter.AdapterGetFollowers;
 import com.dolphpire.instamanage.getfollowersfragment.model.ModelGetFollowers;
@@ -82,7 +85,7 @@ public class GetFollowersFragment extends Fragment {
         mAdapter.setListener(new AdapterGetFollowers.OnItem() {
             @Override
             public void onPosition(int pos) {
-                
+                showDialogOrder(pos);
             }
         });
 
@@ -93,6 +96,11 @@ public class GetFollowersFragment extends Fragment {
         rvGetFollowers.setAdapter(mAdapter);
 
         populateRecyclerView();
+
+    }
+
+    private void showDialogOrder(int pos) {
+
 
     }
 
