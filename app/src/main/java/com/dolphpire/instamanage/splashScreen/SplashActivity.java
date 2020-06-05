@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
         initOkManager();
         initInsFiledManger();
 
-        Intent intent = new Intent(this, IGLoginActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();
 
