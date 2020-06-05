@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -98,7 +100,7 @@ public class GetCoinsFragment extends Fragment {
         llSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                
             }
         });
 
@@ -122,8 +124,14 @@ public class GetCoinsFragment extends Fragment {
 
         autoActionOn = !autoActionOn;
         if (autoActionOn) {
+            llFilters.setEnabled(false);
+            llSkip.setEnabled(false);
+            llActionTask.setEnabled(false);
             txtAutoAction.setTextColor(Color.parseColor("#AC1005"));
         } else {
+            llFilters.setEnabled(true);
+            llSkip.setEnabled(true);
+            llActionTask.setEnabled(true);
             txtAutoAction.setTextColor(Color.parseColor("#000000"));
         }
 
