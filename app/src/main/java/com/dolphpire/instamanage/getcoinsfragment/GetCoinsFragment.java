@@ -5,6 +5,7 @@ import android.animation.TimeAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,9 +29,20 @@ public class GetCoinsFragment extends Fragment {
 
     @BindView(R.id.rlBottomControls)
     RelativeLayout rlBottomControls;
+    @BindView(R.id.llAuto)
+    LinearLayout llAuto;
+    @BindView(R.id.llActionTask)
+    LinearLayout llActionTask;
+    @BindView(R.id.llSkip)
+    LinearLayout llSkip;
+    @BindView(R.id.llFilters)
+    RelativeLayout llFilters;
+    @BindView(R.id.txtAutoAction)
+    TextView txtAutoAction;
     private View mView;
     private Context mContext;
     private Activity mActivity;
+    private boolean autoActionOn = false;
 
     public GetCoinsFragment() {
 
@@ -74,6 +87,45 @@ public class GetCoinsFragment extends Fragment {
 
         // 1 coins / like
         // 4 coins / follow
+
+        llActionTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        llSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        llAuto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleAutoAction();
+            }
+        });
+
+        llFilters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+    }
+
+    private void toggleAutoAction() {
+
+        autoActionOn = !autoActionOn;
+        if (autoActionOn) {
+            txtAutoAction.setTextColor(Color.parseColor("#AC1005"));
+        } else {
+            txtAutoAction.setTextColor(Color.parseColor("#000000"));
+        }
 
     }
 
