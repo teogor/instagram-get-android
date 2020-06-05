@@ -95,7 +95,7 @@ public class GetFollowersFragment extends Fragment {
 
         mDataList = new ArrayList<>();
         mAdapter = new AdapterGetFollowers(mDataList, mActivity);
-        mAdapter.setListener(pos -> showDialogOrder(pos));
+        mAdapter.setListener(this::showDialogOrder);
 
         rvGetFollowers.setItemAnimator(new DefaultItemAnimator());
         linearLayoutManager = new LinearLayoutManager(mContext);

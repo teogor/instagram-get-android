@@ -95,7 +95,7 @@ public class GetLikesFragment extends Fragment {
 
         mDataList = new ArrayList<>();
         mAdapter = new AdapterGetLikes(mDataList, mActivity);
-        mAdapter.setListener(pos -> showDialogOrder(pos));
+        mAdapter.setListener(this::showDialogOrder);
 
         rvGetLikes.setItemAnimator(new DefaultItemAnimator());
         linearLayoutManager = new LinearLayoutManager(mContext);
