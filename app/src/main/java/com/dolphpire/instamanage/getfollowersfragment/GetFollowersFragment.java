@@ -6,19 +6,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getfollowersfragment.adapter.AdapterGetFollowers;
 import com.dolphpire.instamanage.getfollowersfragment.model.ModelGetFollowers;
@@ -30,6 +27,14 @@ import butterknife.ButterKnife;
 
 public class GetFollowersFragment extends Fragment {
 
+    @BindView(R.id.rvGetFollowers)
+    RecyclerView rvGetFollowers;
+    @BindView(R.id.llBottomPlaceOrder)
+    LinearLayout llBottomPlaceOrder;
+    @BindView(R.id.txtAmountCoins)
+    TextView txtAmountCoins;
+    @BindView(R.id.txtAmountFollowers)
+    TextView txtAmountFollowers;
     private View mView;
     private Context mContext;
     private Activity mActivity;
@@ -37,9 +42,6 @@ public class GetFollowersFragment extends Fragment {
     private ArrayList<ModelGetFollowers> mDataList;
     private AdapterGetFollowers mAdapter;
     private ModelGetFollowers mModelGetFollowers;
-
-    @BindView(R.id.rvGetFollowers)
-    RecyclerView rvGetFollowers;
 
     public GetFollowersFragment() {
 
@@ -101,6 +103,8 @@ public class GetFollowersFragment extends Fragment {
 
     private void showDialogOrder(int pos) {
 
+        txtAmountCoins.setText(String.valueOf(mDataList.get(pos).getCoins()));
+        txtAmountFollowers.setText(String.valueOf(mDataList.get(pos).getFollowers()));
 
     }
 
