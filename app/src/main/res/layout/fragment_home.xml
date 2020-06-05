@@ -56,8 +56,8 @@
             android:clickable="false"
             android:focusable="false"
             android:fontFamily="@font/open_sans_semibold"
-            android:text="14.3k"
-            android:textColor="#FF9800"
+            android:text="0"
+            android:textColor="#fcc62d"
             android:textSize="16sp"
             android:textStyle="bold"
             tools:ignore="MissingPrefix" />
@@ -65,10 +65,10 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imvIGUser"
             android:layout_alignParentEnd="true"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="7dp"
             android:layout_centerVertical="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/bg_circle"
             app:civ_border_color="@color/colorAccent"
             app:civ_border_width="0dp" />
@@ -125,11 +125,11 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@drawable/bg_circle"
-        android:backgroundTint="#FF9800"
+        android:backgroundTint="#fcc62d"
         android:elevation="30dp"
-        android:padding="16dp"
+        android:padding="10dp"
         android:layout_marginBottom="4dp"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/ic_ig_coins_filled"
         android:tint="@color/colorBackground" />
 
 </RelativeLayout>

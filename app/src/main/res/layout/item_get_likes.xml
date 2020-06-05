@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:id="@+id/rlGetFollowers"
+    android:id="@+id/rlGetLikes"
     android:paddingEnd="10dp"
     android:paddingStart="10dp"
     android:clickable="true"
@@ -18,10 +18,10 @@
         android:layout_alignParentStart="true">
 
         <ImageView
-            android:id="@+id/imgFollower"
+            android:id="@+id/imgLikes"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_ig_follower"
+            android:src="@drawable/ic_ig_like"
             android:layout_gravity="center_vertical"/>
 
         <TextView
@@ -37,7 +37,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/txtAmountFollowers"
+            android:id="@+id/txtAmountLikes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="false"
@@ -73,8 +73,8 @@
             android:id="@+id/imgCoins"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:padding="3dp"
             android:src="@drawable/ic_ig_coins"
+            android:padding="3dp"
             android:layout_gravity="center_vertical"/>
 
     </LinearLayout>

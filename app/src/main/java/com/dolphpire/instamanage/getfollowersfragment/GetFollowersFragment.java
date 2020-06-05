@@ -5,7 +5,6 @@ import android.animation.TimeAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -96,7 +95,7 @@ public class GetFollowersFragment extends Fragment {
 
         mDataList = new ArrayList<>();
         mAdapter = new AdapterGetFollowers(mDataList, mActivity);
-        mAdapter.setListener(pos -> showDialogOrder(pos));
+        mAdapter.setListener(this::showDialogOrder);
 
         rvGetFollowers.setItemAnimator(new DefaultItemAnimator());
         linearLayoutManager = new LinearLayoutManager(mContext);
