@@ -2,6 +2,7 @@ package com.dolphpire.instamanage.homeFragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.dolphpire.instamanage.getcoinsfragment.GetCoinsFragment;
 import com.dolphpire.instamanage.getfollowersfragment.GetFollowersFragment;
 import com.dolphpire.instamanage.getlikesfragment.GetLikesFragment;
 import com.dolphpire.instamanage.igaccounts.DialogIGAccounts;
+import com.dolphpire.instamanage.igaccounts.IGAccountActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -111,11 +113,9 @@ public class HomeFragment extends Fragment {
 
         showFragment(getCoinsFragment);
 
-        imvIGUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new DialogIGAccounts(mContext).show();
-            }
+        imvIGUser.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, IGAccountActivity.class);
+            mContext.startActivity(intent);
         });
 
     }
