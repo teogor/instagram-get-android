@@ -49,7 +49,7 @@
         <TextView
             android:id="@+id/txt_coins"
             android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/imgInstaUser"
+            android:layout_toStartOf="@+id/imvIGUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
@@ -63,11 +63,11 @@
             tools:ignore="MissingPrefix" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgInstaUser"
+            android:id="@+id/imvIGUser"
             android:layout_alignParentEnd="true"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="7dp"
             android:layout_centerVertical="true"
             android:background="@drawable/bg_circle"
             app:civ_border_color="@color/colorAccent"
