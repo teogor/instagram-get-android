@@ -2,7 +2,7 @@ package com.dolphpire.api.links;
 
 public class EndPoints {
 
-    private final static String BASE_URL = "https://iggetpro.000webhostapp.com//v1";
+    private final static String BASE_URL = "https://iggetpro.000webhostapp.com/v1";
 
     public final static String LOGIN = BASE_URL + "/mobile/login";
     public final static String SIGNUP = BASE_URL + "/mobile/signup";

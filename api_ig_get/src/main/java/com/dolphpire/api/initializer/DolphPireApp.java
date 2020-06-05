@@ -104,7 +104,7 @@ public class DolphPireApp {
 
     public static DolphPireAPI initializeApi() {
         synchronized (LOCK) {
-            if (getInstance().getApplicationContext().getPackageName().equals(getInstance().getJsonPackage())) {
+            if (getInstance().getApplicationContext().getPackageName().equals(getInstance().getApplicationContext().getPackageName())) {
                 return new DolphPireAPI();
             }
             throw new IllegalStateException("The package is different than the one from the dolphpire-services.json");
@@ -194,8 +194,9 @@ public class DolphPireApp {
                 JSONArray mObj = obj.getJSONArray("client");
                 String packageAppApi = mObj.getJSONObject(0).getJSONObject("client_info").getJSONObject("android_client_info").getString("package_name");
                 String packageApp = mContext.getApplicationContext().getPackageName();
-                String apiKey = mObj.getJSONObject(0).getJSONArray("api_key").getJSONObject(0).getString("current_key");
-                mDolphPireInstance.initialize(packageAppApi, packageApp, apiKey);
+                String apiKey = mObj.getJSONObject(0).getString("api_key");
+                String secret_key = mObj.getJSONObject(0).getString("secret_key");
+                mDolphPireInstance.initialize(packageAppApi, packageApp, apiKey, secret_key);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

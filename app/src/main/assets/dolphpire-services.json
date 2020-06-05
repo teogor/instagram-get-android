@@ -6,11 +6,8 @@
           "package_name": "com.dolphpire.instamanage"
         }
       },
-      "api_key": [
-        {
-          "current_key": "cVsKAPCQ0uXyOwjQBoybPeUVmHNf3jx9a4fOYc3a"
-        }
-      ]
+      "api_key": "6aaznmxw51iy7MRyMIdY2LwOzqGicP",
+      "secret_key": "Ts3WP58g0p4pf8J2WEJEaClh4i8rXP"
     }
   ]
 }

@@ -3,12 +3,13 @@ package com.dolphpire.api.instance;
 public class DolphPireInstance {
 
     private String jsonPackage = "", appPackage = "";
-    private String apiKey = "";
+    private String apiKey = "", secretKey = "";
 
-    public void initialize(String jsonPackageN, String appPackageN, String apiKeyN) {
+    public void initialize(String jsonPackageN, String appPackageN, String apiKeyN, String secretKeyN) {
         this.jsonPackage = jsonPackageN;
         this.appPackage = appPackageN;
         this.apiKey = apiKeyN;
+        this.secretKey = secretKeyN;
     }
 
     public String getJsonPackage() {
@@ -23,4 +24,7 @@ public class DolphPireInstance {
         return apiKey;
     }
 
+    public String getSecretKey() {
+        return secretKey;
+    }
 }
