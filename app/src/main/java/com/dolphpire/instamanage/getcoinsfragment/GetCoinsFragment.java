@@ -6,7 +6,6 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -31,6 +30,10 @@ public class GetCoinsFragment extends Fragment {
 
     @BindView(R.id.rlBottomControls)
     RelativeLayout rlBottomControls;
+    @BindView(R.id.rlFilterMenu)
+    RelativeLayout rlFilterMenu;
+    @BindView(R.id.txtApplyFilters)
+    TextView txtApplyFilters;
     @BindView(R.id.llAuto)
     LinearLayout llAuto;
     @BindView(R.id.llActionTask)
@@ -93,14 +96,22 @@ public class GetCoinsFragment extends Fragment {
         llActionTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (autoActionOn) {
+                    Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
+                } else {
 
+                }
             }
         });
 
         llSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                if (autoActionOn) {
+                    Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
+                } else {
+
+                }
             }
         });
 
@@ -114,9 +125,30 @@ public class GetCoinsFragment extends Fragment {
         llFilters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (autoActionOn) {
+                    Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (rlFilterMenu.isShown()) {
+                        rlFilterMenu.setVisibility(View.GONE);
+                    } else {
+                        rlFilterMenu.setVisibility(View.VISIBLE);
+                    }
+                }
             }
         });
+
+        txtApplyFilters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rlFilterMenu.isShown()) {
+                    rlFilterMenu.setVisibility(View.GONE);
+                } else {
+                    rlFilterMenu.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        rlFilterMenu.setVisibility(View.GONE);
 
     }
 
@@ -124,14 +156,14 @@ public class GetCoinsFragment extends Fragment {
 
         autoActionOn = !autoActionOn;
         if (autoActionOn) {
-            llFilters.setEnabled(false);
-            llSkip.setEnabled(false);
-            llActionTask.setEnabled(false);
+//            llFilters.setEnabled(false);
+//            llSkip.setEnabled(false);
+//            llActionTask.setEnabled(false);
             txtAutoAction.setTextColor(Color.parseColor("#AC1005"));
         } else {
-            llFilters.setEnabled(true);
-            llSkip.setEnabled(true);
-            llActionTask.setEnabled(true);
+//            llFilters.setEnabled(true);
+//            llSkip.setEnabled(true);
+//            llActionTask.setEnabled(true);
             txtAutoAction.setTextColor(Color.parseColor("#000000"));
         }
 

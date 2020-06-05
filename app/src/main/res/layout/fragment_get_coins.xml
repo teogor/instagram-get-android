@@ -28,196 +28,259 @@
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/bg_get_coins_holder"
         android:elevation="20dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/llBottom"
-            android:layout_centerHorizontal="true"
-            android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/llSkip"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/bg_get_coins_btn"
-                android:elevation="3dp"
-                android:orientation="vertical"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:fontFamily="@font/open_sans"
-                    android:gravity="center"
-                    android:text="Skip"
-                    android:textColor="#AC1005"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llActionTask"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/bg_get_coins_btn"
-                android:elevation="3dp"
-                android:orientation="horizontal"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:fontFamily="@font/open_sans"
-                    android:gravity="center"
-                    android:text="Follow"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/llBottom"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/llSkip"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="-4dp"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/bg_get_coins_btn"
+                    android:elevation="3dp"
+                    android:orientation="vertical"
+                    android:paddingStart="25dp"
+                    android:paddingEnd="25dp">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
                         android:clickable="false"
                         android:focusable="false"
-                        android:fontFamily="@font/open_sans_semibold"
-                        android:text="+"
-                        android:textColor="#000000"
-                        android:textSize="14sp" />
+                        android:fontFamily="@font/open_sans"
+                        android:gravity="center"
+                        android:text="Skip"
+                        android:textColor="#AC1005"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llActionTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/bg_get_coins_btn"
+                    android:elevation="3dp"
+                    android:orientation="horizontal"
+                    android:paddingStart="25dp"
+                    android:paddingEnd="25dp">
 
                     <TextView
-                        android:id="@+id/txtAmountCoins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/open_sans"
+                        android:gravity="center"
+                        android:text="Follow"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:fontFamily="@font/open_sans_semibold"
-                        android:text="12"
-                        android:textColor="#000000"
-                        android:textSize="14sp" />
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="-4dp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="-2dp"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:fontFamily="@font/open_sans_semibold"
-                        android:text="x"
-                        android:textColor="#000000"
-                        android:textSize="14sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:fontFamily="@font/open_sans_semibold"
+                            android:text="+"
+                            android:textColor="#000000"
+                            android:textSize="14sp" />
 
-                    <ImageView
-                        android:id="@+id/imgCoins"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center_vertical"
-                        android:padding="3dp"
-                        android:src="@drawable/ic_ig_coins" />
+                        <TextView
+                            android:id="@+id/txtAmountCoins"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:fontFamily="@font/open_sans_semibold"
+                            android:text="12"
+                            android:textColor="#000000"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="-2dp"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:fontFamily="@font/open_sans_semibold"
+                            android:text="x"
+                            android:textColor="#000000"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:id="@+id/imgCoins"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center_vertical"
+                            android:padding="3dp"
+                            android:src="@drawable/ic_ig_coins" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llBottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/llBottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp"
-            android:layout_centerHorizontal="true">
+                <LinearLayout
+                    android:id="@+id/llAuto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/bg_get_coins_btn"
+                    android:elevation="3dp"
+                    android:orientation="vertical"
+                    android:paddingStart="25dp"
+                    android:paddingEnd="25dp">
+
+                    <TextView
+                        android:id="@+id/txtAutoAction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/open_sans"
+                        android:gravity="center"
+                        android:text="Auto Follow and Like"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/llFilters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/bg_get_coins_btn"
+                    android:elevation="3dp"
+                    android:orientation="vertical"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerInParent="true"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_filter" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlFilterMenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_get_coins_holder"
+            android:clickable="true"
+            android:focusable="true">
 
             <LinearLayout
-                android:id="@+id/llAuto"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
+                android:layout_margin="10dp"
                 android:background="@drawable/bg_get_coins_btn"
                 android:elevation="3dp"
                 android:orientation="vertical"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp">
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="5dp">
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="show like tasks"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="14sp"
+                    android:theme="@style/DPCheckBox" />
+
+                <CheckBox
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="show follow tasks"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="14sp"
+                    android:theme="@style/DPCheckBox" />
 
                 <TextView
-                    android:id="@+id/txtAutoAction"
+                    android:id="@+id/txtApplyFilters"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
                     android:clickable="false"
                     android:focusable="false"
-                    android:fontFamily="@font/open_sans"
+                    android:fontFamily="@font/open_sans_semibold"
                     android:gravity="center"
-                    android:text="Auto Follow and Like"
+                    android:text="APPLY"
                     android:textColor="#000000"
                     android:textSize="16sp" />
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:id="@+id/llFilters"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/bg_get_coins_btn"
-                android:elevation="3dp"
-                android:orientation="vertical"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_centerInParent="true"
-                    android:padding="3dp"
-                    android:src="@drawable/ic_filter" />
-
-            </RelativeLayout>
-        </LinearLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 
