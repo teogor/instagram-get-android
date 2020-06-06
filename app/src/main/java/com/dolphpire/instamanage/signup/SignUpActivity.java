@@ -10,12 +10,15 @@ import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.dolphpire.api.action.user.check.DataCheckAction;
-import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.instamanage.R;
-import com.dolphpire.instamanage.login.LoginActivity;
 import com.dolphpire.android.material.textfield.TextInputEditText;
 import com.dolphpire.android.material.textfield.TextInputLayout;
+import com.dolphpire.api.action.user.check.DataCheckAction;
+import com.dolphpire.api.initializer.DolphPireApp;
+import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
+import com.dolphpire.instamanage.R;
+import com.dolphpire.instamanage.login.LoginActivity;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +39,8 @@ public class SignUpActivity extends AppCompatActivity {
     TextInputEditText tietInputPassword;
     @BindView(R.id.tietInputPasswordC)
     TextInputEditText tietInputPasswordC;
+    @BindView(R.id.tilInputPasswordC)
+    TextInputLayout tilInputPasswordC;
     @BindView(R.id.btnLogIn)
     Button btnLogIn;
     @BindView(R.id.btnSignUp)
@@ -61,6 +66,25 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validateInput()) {
+                    DolphPireApp.initializeApi().signup().createAccount()
+                            .setPassword(Objects.requireNonNull(tietInputPassword.getText()).toString())
+                            .setUsername(Objects.requireNonNull(tietInputUsername.getText()).toString())
+                            .setEmail(Objects.requireNonNull(tietInputEmail.getText()).toString())
+                            .set()
+                            .addOnCompleteListener(new ZFlowOnCompleteCallback.OnComplete() {
+                                @Override
+                                public void onCompleted() {
+
+                                }
+                            })
+                            .execute();
+                }
+            }
+        });
 
         DataCheckAction usernameCheck = DolphPireApp.initializeApi().user().check();
         DataCheckAction emailCheck = DolphPireApp.initializeApi().user().check();
@@ -73,7 +97,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                usernameCheck.email(s.toString())
+                usernameCheck.username(s.toString())
                         .addOnFoundListener(found -> {
 
                         })
@@ -106,6 +130,77 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private boolean validateInput() {
+
+        boolean validData = true;
+
+        String email = Objects.requireNonNull(tietInputEmail.getText()).toString().trim();
+        String username = Objects.requireNonNull(tietInputUsername.getText()).toString().trim();
+        String password = Objects.requireNonNull(tietInputPassword.getText()).toString().trim();
+        String passwordC = Objects.requireNonNull(tietInputPasswordC.getText()).toString().trim();
+
+        if (email.isEmpty()) {
+
+            tilInputEmail.setErrorEnabled(true);
+            tilInputEmail.setError("Empty field");
+            validData = false;
+
+        } else {
+
+            tilInputEmail.setErrorEnabled(false);
+
+        }
+
+        if (username.isEmpty()) {
+
+            tilInputUsername.setErrorEnabled(true);
+            tilInputUsername.setError("Empty field");
+            validData = false;
+
+        } else {
+
+            tilInputUsername.setErrorEnabled(false);
+
+        }
+
+        if (password.isEmpty()) {
+
+            tilInputPassword.setErrorEnabled(true);
+            tilInputPassword.setError("Empty field");
+            validData = false;
+
+        } else {
+
+            tilInputPassword.setErrorEnabled(false);
+
+        }
+
+        if (passwordC.isEmpty()) {
+
+            tilInputPasswordC.setErrorEnabled(true);
+            tilInputPasswordC.setError("Empty field");
+            validData = false;
+
+        } else {
+
+            tilInputPasswordC.setErrorEnabled(false);
+
+        }
+
+        if (!password.isEmpty() && !passwordC.isEmpty() && !password.equals(passwordC)) {
+
+            tilInputPassword.setErrorEnabled(true);
+            tilInputPassword.setError("Passwords don't match");
+            tilInputPasswordC.setErrorEnabled(true);
+            tilInputPasswordC.setError("Passwords don't match");
+            validData = false;
+
+        }
+
+        return validData;
 
     }
 

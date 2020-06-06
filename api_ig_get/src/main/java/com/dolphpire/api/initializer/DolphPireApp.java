@@ -295,6 +295,10 @@ public class DolphPireApp {
         return mDolphPireInstance.getKey();
     }
 
+    public String getSecretKey() {
+        return mDolphPireInstance.getSecretKey();
+    }
+
     private String getJsonPackage() {
         return mDolphPireInstance.getJsonPackage();
     }
