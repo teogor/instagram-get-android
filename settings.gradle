@@ -1,3 +1,4 @@
+include ':library_material'
 include ':library_navigationdrawer'
 include ':api_ig_get'
 include ':api_instagram'

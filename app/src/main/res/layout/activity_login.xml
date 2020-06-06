@@ -25,41 +25,49 @@
             android:paddingEnd="20dp"
             android:paddingStart="20dp">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.dolphpire.android.material.textfield.TextInputLayout
                 android:id="@+id/tilInputLogIn"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:hintTextAppearance="@style/LogInHintStyle"
-                style="@style/LogInInputStyle">
+                android:hint="Email or username"
+                app:errorEnabled="true"
+                app:boxStrokeColor="#FFFFFF"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeColorNormal="#FFFFFF"
+                app:hintTextColor="#FFFFFF">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.dolphpire.android.material.textfield.TextInputEditText
                     android:id="@+id/tietInputLogIn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:inputType="text"
-                    android:textColor="@color/appTextColorL"
-                    android:hint="Email or username" />
+                    android:inputType="text"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </com.dolphpire.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.dolphpire.android.material.textfield.TextInputLayout
                 android:id="@+id/tilInputPassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:hintTextAppearance="@style/LogInHintStyle"
-                style="@style/LogInInputStyle">
+                android:hint="Password"
+                app:errorEnabled="true"
+                app:boxStrokeColor="#FFFFFF"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeColorNormal="#FFFFFF"
+                app:hintTextColor="#FFFFFF"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="#ffffff">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.dolphpire.android.material.textfield.TextInputEditText
                     android:id="@+id/tietInputPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:inputType="textPassword"
-                    android:textColor="@color/appTextColorL"
-                    android:hint="Password" />
+                    android:inputType="textPassword"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </com.dolphpire.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnLogIn"
