@@ -11,6 +11,8 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dolphpire.android.material.textfield.TextInputEditText;
+import com.dolphpire.android.material.textfield.TextInputLayout;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ZFlowLoginListener;
 import com.dolphpire.api.models.ZeoFlowUser;
@@ -22,8 +24,6 @@ import com.dolphpire.insapi.request.api.login.LoginResponseData;
 import com.dolphpire.insapi.response.InsBaseResponseData;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.signup.SignUpActivity;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.joy.libok.test.log.LLog;
 
 import java.util.Objects;

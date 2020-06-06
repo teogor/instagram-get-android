@@ -1,0 +1,137 @@
+apply plugin: 'com.android.library'
+
+dependencies {
+  api compatibility("annotation")
+  api compatibility("appcompat")
+  api compatibility("cardview")
+  api compatibility("coordinatorlayout")
+  api compatibility("core")
+  api compatibility("dynamicanimation")
+  api compatibility("experimental")
+  api compatibility("fragment")
+  api compatibility("lifecycleRuntime")
+  api compatibility("recyclerview")
+  api compatibility("transition")
+  api compatibility("vectordrawable")
+  api compatibility("viewpager2")
+}
+
+def srcDirs = [
+  'com/dolphpire/android/material/animation',
+  'com/dolphpire/android/material/appbar',
+  'com/dolphpire/android/material/badge',
+  'com/dolphpire/android/material/behavior',
+  'com/dolphpire/android/material/bottomappbar',
+  'com/dolphpire/android/material/bottomnavigation',
+  'com/dolphpire/android/material/bottomsheet',
+  'com/dolphpire/android/material/button',
+  'com/dolphpire/android/material/canvas',
+  'com/dolphpire/android/material/card',
+  'com/dolphpire/android/material/checkbox',
+  'com/dolphpire/android/material/chip',
+  'com/dolphpire/android/material/circularreveal',
+  'com/dolphpire/android/material/circularreveal/cardview',
+  'com/dolphpire/android/material/circularreveal/coordinatorlayout',
+  'com/dolphpire/android/material/color',
+  'com/dolphpire/android/material/datepicker',
+  'com/dolphpire/android/material/dialog',
+  'com/dolphpire/android/material/drawable',
+  'com/dolphpire/android/material/elevation',
+  'com/dolphpire/android/material/expandable',
+  'com/dolphpire/android/material/floatingactionbutton',
+  'com/dolphpire/android/material/imageview',
+  'com/dolphpire/android/material/internal',
+  'com/dolphpire/android/material/math',
+  'com/dolphpire/android/material/menu',
+  'com/dolphpire/android/material/navigation',
+  'com/dolphpire/android/material/progressindicator',
+  'com/dolphpire/android/material/radiobutton',
+  'com/dolphpire/android/material/resources',
+  'com/dolphpire/android/material/ripple',
+  'com/dolphpire/android/material/shape',
+  'com/dolphpire/android/material/shadow',
+  'com/dolphpire/android/material/slider',
+  'com/dolphpire/android/material/snackbar',
+  'com/dolphpire/android/material/stateful',
+  'com/dolphpire/android/material/switchmaterial',
+  'com/dolphpire/android/material/tabs',
+  'com/dolphpire/android/material/textfield',
+  'com/dolphpire/android/material/textview',
+  'com/dolphpire/android/material/theme',
+  'com/dolphpire/android/material/theme/overlay',
+  'com/dolphpire/android/material/tooltip',
+  'com/dolphpire/android/material/transition',
+  'com/dolphpire/android/material/transformation',
+  'com/dolphpire/android/material/typography',
+]
+
+android {
+  compileSdkVersion 29
+  buildToolsVersion "29.0.3"
+
+  sourceSets {
+    main.manifest.srcFile 'java/com/dolphpire/android/material/AndroidManifest.xml'
+    main.java.srcDir 'java'
+    main.java.includes = srcDirs.collect { it + '/**/*.java' }
+    main.java.excludes = [
+      '**/build/**',
+    ]
+    srcDirs.forEach {
+      main.res.srcDirs += 'java/' + it + '/res'
+      main.res.srcDirs += 'java/' + it + '/res-public'
+    }
+  }
+
+  buildTypes.all {
+    consumerProguardFiles 'proguard-behaviors.pro', 'proguard-inflater.pro', 'proguard-recyclerview.pro'
+  }
+
+  defaultConfig {
+    minSdkVersion 14
+  }
+
+  defaultConfig{
+    vectorDrawables.useSupportLibrary = true
+  }
+
+}
+
+/**
+ * Return the module dependency for the given compatibility library name.
+ */
+def compatibility(name) {
+  switch (name) {
+    case "annotation":
+      return "androidx.annotation:annotation:${androidXVersions.annotation}"
+    case "appcompat":
+      return "androidx.appcompat:appcompat:${androidXVersions.appCompat}"
+    case "cardview":
+      return "androidx.cardview:cardview:${androidXVersions.cardView}"
+    case "constraintlayout":
+      return "androidx.constraintlayout:constraintlayout:${androidXVersions.constraintlayout}"
+    case "coordinatorlayout":
+      return "androidx.coordinatorlayout:coordinatorlayout:${androidXVersions.coordinatorlayout}"
+    case "core":
+      return "androidx.core:core:${androidXVersions.core}"
+    case "dynamicanimation":
+      return "androidx.dynamicanimation:dynamicanimation:${androidXVersions.dynamicanimation}"
+    case "fragment":
+      return "androidx.fragment:fragment:${androidXVersions.fragment}"
+    case "lifecycleRuntime":
+      return "androidx.lifecycle:lifecycle-runtime:${androidXVersions.lifecycle}"
+    case "recyclerview":
+      return "androidx.recyclerview:recyclerview:${androidXVersions.recyclerView}"
+    case "transition":
+      return "androidx.transition:transition:${androidXVersions.transition}"
+    case "vectordrawable":
+      return "androidx.vectordrawable:vectordrawable:${androidXVersions.vectorDrawable}"
+    case "recyclerViewSelection":
+      return "androidx.recyclerview:recyclerview-selection:${androidXVersions.recyclerViewSelection}"
+    case "viewpager2":
+      return "androidx.viewpager2:viewpager2:${androidXVersions.viewpager2}"
+    case "experimental":
+      return "androidx.annotation:annotation-experimental:${androidXVersions.experimental}"
+    default:
+      throw new IllegalArgumentException("No mapping exists for name: $name.")
+  }
+}

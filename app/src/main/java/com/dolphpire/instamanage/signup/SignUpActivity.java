@@ -14,8 +14,8 @@ import com.dolphpire.api.action.user.check.DataCheckAction;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.login.LoginActivity;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
+import com.dolphpire.android.material.textfield.TextInputEditText;
+import com.dolphpire.android.material.textfield.TextInputLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

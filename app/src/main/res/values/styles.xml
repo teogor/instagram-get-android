@@ -22,10 +22,10 @@
         <item name="drawerArrowStyle">@style/NavigationViewIconBackTint</item>
     </style>
 
-    <style name="LoginTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/colorIGLogin2</item>
+    <style name="LoginTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/colorBackground</item>
         <item name="colorPrimaryDark">@color/colorBackground</item>
-        <item name="colorAccent">@color/colorIGLogin2</item>
+        <item name="colorAccent">@color/colorBackground</item>
 
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
     </style>

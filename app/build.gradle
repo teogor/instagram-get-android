@@ -30,6 +30,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     api project(':api_instagram')
+    api project(':library_material')
     api project(':api_ig_get')
     api project(':library_navigationdrawer')
 

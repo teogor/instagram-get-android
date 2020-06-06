@@ -1,5 +1,7 @@
 package com.dolphpire.api.action.user.check;
 
+import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -16,6 +18,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.dolphpire.api.initializer.DolphPireApp.TAG;
+
 public class CheckCredentialsAction {
 
     //class model
@@ -30,11 +34,11 @@ public class CheckCredentialsAction {
 
     public void execute() {
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                EndPoints.USER_CHECK, new Response.Listener<String>() {
+                EndPoints.CHECK_CREDENTIALS, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
-                //Log.e(TAG, "response: " + response);
+                Log.e(TAG, "response: " + response);
                 try {
                     JSONObject responseObj = new JSONObject(response);
                     // check for error flag
@@ -78,7 +82,7 @@ public class CheckCredentialsAction {
                 Map<String, String> params = new HashMap<>();
                 params.put("api_key", DolphPireApp.getInstance().getApiKey());
                 params.put("secret_key", DolphPireApp.getInstance().getPackage());
-                params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUserID()));
+                params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUser() == null ? 0 : DolphPireApp.getInstance().getUserID()));
 
                 params.put("credential", !credential.equals("0") ? "null" : credential);
                 return params;
