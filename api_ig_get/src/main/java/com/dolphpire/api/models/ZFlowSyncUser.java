@@ -8,19 +8,19 @@ import java.util.Map;
 
 public class ZFlowSyncUser implements Serializable {
 
-    private ZeoFlowUser mZeoFlowUser;
+    private UserModel mUserModel;
     private Map<String, ChangeListener> INSTANCES = new ArrayMap<>();
 
-    public ZeoFlowUser getUser() {
-        return this.mZeoFlowUser;
+    public UserModel getUser() {
+        return this.mUserModel;
     }
 
-    public void setUser(ZeoFlowUser user) {
+    public void setUser(UserModel user) {
         ArrayList<ChangeListener> data = new ArrayList<>(INSTANCES.values());
         for (int i = 0; i < data.size(); i++) {
             data.get(i).onChange(user);
         }
-        this.mZeoFlowUser = user;
+        this.mUserModel = user;
     }
 
     public void removeInstance(String TAG) {
@@ -32,7 +32,7 @@ public class ZFlowSyncUser implements Serializable {
     }
 
     public interface ChangeListener {
-        void onChange(ZeoFlowUser user);
+        void onChange(UserModel user);
     }
 
 }

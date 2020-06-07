@@ -12,7 +12,7 @@ import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowLoginListener;
 import com.dolphpire.api.links.EndPoints;
-import com.dolphpire.api.models.ZeoFlowUser;
+import com.dolphpire.api.models.UserModel;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -31,7 +31,7 @@ public class Login
     //class model
     private String loginKey;
     private String password;
-    private ZFlowLoginListener.OnLoggedIn<ZeoFlowUser> onLoggedIn;
+    private ZFlowLoginListener.OnLoggedIn<UserModel> onLoggedIn;
     private ZFlowLoginListener.OnLoginFailure onLoginFailure;
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
@@ -56,23 +56,23 @@ public class Login
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 EndPoints.LOGIN, response ->
         {
-            Log.e(TAG, "response: " + response);
+//            Log.e(TAG, "response: " + response);
             try
             {
                 JSONObject responseObj = new JSONObject(response);
                 // check for error flag
                 if (!responseObj.getBoolean("error"))
                 {
-                    JSONObject userData = responseObj.getJSONObject("data");
+                    JSONObject userData = responseObj.getJSONObject("data").getJSONObject("userData");
                     JsonParser parser = new JsonParser();
                     JsonElement mJson = parser.parse(userData.toString());
                     Gson gson = new Gson();
-                    ZeoFlowUser mZeoFlowUser = gson.fromJson(mJson, ZeoFlowUser.class);
-                    DolphPireApp.getInstance().setUser(mZeoFlowUser);
+                    UserModel mUserModel = gson.fromJson(mJson, UserModel.class);
+                    DolphPireApp.getInstance().setUser(mUserModel);
 
                     if (onLoggedIn != null)
                     {
-                        onLoggedIn.onLoggedIn(mZeoFlowUser);
+                        onLoggedIn.onLoggedIn(mUserModel);
                     }
 
                 } else
@@ -126,6 +126,11 @@ public class Login
             } catch (JSONException ignored)
             {
                 //empty method
+                if (onFailureListener != null)
+                {
+                    Exception exception = new Exception("error on fetching");
+                    onFailureListener.onFailure(exception);
+                }
             }
         }, new Response.ErrorListener()
         {
@@ -135,6 +140,11 @@ public class Login
             {
                 NetworkResponse networkResponse = error.networkResponse;
 //                Log.e(TAG, "Volley error: " + error.getMessage() + ", code: " + networkResponse);
+                if (onFailureListener != null)
+                {
+                    Exception exception = new Exception(error.getMessage());
+                    onFailureListener.onFailure(exception);
+                }
 
             }
         })
@@ -159,7 +169,7 @@ public class Login
 
     }
 
-    public Login addOnLoggedInListener(ZFlowLoginListener.OnLoggedIn<ZeoFlowUser> onLoggedIn)
+    public Login addOnLoggedInListener(ZFlowLoginListener.OnLoggedIn<UserModel> onLoggedIn)
     {
         this.onLoggedIn = onLoggedIn;
         return this;

@@ -17,7 +17,6 @@ import com.dolphpire.android.material.textfield.TextInputEditText;
 import com.dolphpire.android.material.textfield.TextInputLayout;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ZFlowLoginListener;
-import com.dolphpire.api.models.ZeoFlowUser;
 import com.dolphpire.insapi.manager.IGCommonFieldsManager;
 import com.dolphpire.insapi.request.InsRequestCallBack;
 import com.dolphpire.insapi.request.api.header.GetHeaderRequest;
@@ -87,7 +86,7 @@ public class LoginActivity extends AppCompatActivity
 
     private void tryLogin()
     {
-//        rlLoading.setVisibility(View.VISIBLE);
+        rlLoading.setVisibility(View.VISIBLE);
         hideKeyboard(LoginActivity.this);
         if (validateInput())
         {
@@ -145,13 +144,10 @@ public class LoginActivity extends AppCompatActivity
                 .withLoginKey(Objects.requireNonNull(tietInputLogIn.getText()).toString())
                 .withPassword(Objects.requireNonNull(tietInputPassword.getText()).toString())
                 .set()
-                .addOnLoggedInListener(new ZFlowLoginListener.OnLoggedIn<ZeoFlowUser>()
+                .addOnLoggedInListener(userData ->
                 {
-                    @Override
-                    public void onLoggedIn(ZeoFlowUser userData)
-                    {
-
-                    }
+                    Log.d("userModel", String.valueOf(userData.getUUID()));
+                    rlLoading.setVisibility(View.GONE);
                 })
                 .addOnFailureListener(new ZFlowLoginListener.OnLoginFailure()
                 {
@@ -179,6 +175,7 @@ public class LoginActivity extends AppCompatActivity
 
                         tilInputLogIn.setErrorEnabled(true);
                         tilInputLogIn.setError(error);
+                        rlLoading.setVisibility(View.GONE);
 
                     }
 
@@ -188,12 +185,12 @@ public class LoginActivity extends AppCompatActivity
 
                         tilInputPassword.setErrorEnabled(true);
                         tilInputPassword.setError(error);
+                        rlLoading.setVisibility(View.GONE);
 
                     }
                 })
+                .addOnFailureListener(e -> rlLoading.setVisibility(View.GONE))
                 .execute();
-
-        rlLoading.setVisibility(View.GONE);
 
     }
 
