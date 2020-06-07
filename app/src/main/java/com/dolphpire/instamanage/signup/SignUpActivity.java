@@ -6,16 +6,19 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dolphpire.android.material.textfield.TextInputEditText;
+import com.dolphpire.android.material.textfield.TextInputLayout;
 import com.dolphpire.api.action.user.check.DataCheckAction;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.login.LoginActivity;
-import com.dolphpire.android.material.textfield.TextInputEditText;
-import com.dolphpire.android.material.textfield.TextInputLayout;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,10 +39,12 @@ public class SignUpActivity extends AppCompatActivity {
     TextInputEditText tietInputPassword;
     @BindView(R.id.tietInputPasswordC)
     TextInputEditText tietInputPasswordC;
-    @BindView(R.id.btnLogIn)
-    Button btnLogIn;
-    @BindView(R.id.btnSignUp)
-    Button btnSignUp;
+    @BindView(R.id.tilInputPasswordC)
+    TextInputLayout tilInputPasswordC;
+    @BindView(R.id.llLogin)
+    LinearLayout llLogin;
+    @BindView(R.id.llCreateAccount)
+    LinearLayout llCreateAccount;
     @BindView(R.id.rlLoading)
     RelativeLayout rlLoading;
 
@@ -52,7 +57,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         rlLoading.setVisibility(View.GONE);
 
-        btnLogIn.setOnClickListener(new View.OnClickListener() {
+        llLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
@@ -61,6 +66,27 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+        llCreateAccount.setOnClickListener(v -> {
+
+            rlLoading.setVisibility(View.VISIBLE);
+            if (validateInput()) {
+                DolphPireApp.initializeApi().signup().createAccount()
+                        .setPassword(Objects.requireNonNull(tietInputPassword.getText()).toString())
+                        .setUsername(Objects.requireNonNull(tietInputUsername.getText()).toString())
+                        .setEmail(Objects.requireNonNull(tietInputEmail.getText()).toString())
+                        .set()
+                        .addOnCompleteListener(() -> {
+                            rlLoading.setVisibility(View.GONE);
+                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        })
+                        .addOnFailureListener(e -> rlLoading.setVisibility(View.GONE))
+                        .execute();
+            } else {
+                rlLoading.setVisibility(View.GONE);
+            }
+        });
 
         DataCheckAction usernameCheck = DolphPireApp.initializeApi().user().check();
         DataCheckAction emailCheck = DolphPireApp.initializeApi().user().check();
@@ -73,20 +99,25 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                usernameCheck.email(s.toString())
-                        .addOnFoundListener(found -> {
 
-                        })
-                        .execute();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                usernameCheck.username(s.toString())
+                        .addOnFoundListener(found -> {
+                            if(found) {
+                                tilInputUsername.setErrorEnabled(true);
+                                tilInputUsername.setError("Username already exists");
+                            } else {
+                                tilInputUsername.setErrorEnabled(true);
+                            }
+                        })
+                        .execute();
             }
         });
 
-        tietInputUsername.addTextChangedListener(new TextWatcher() {
+        tietInputEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -94,18 +125,94 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                emailCheck.email(s.toString())
-                        .addOnFoundListener(found -> {
 
-                        })
-                        .execute();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                emailCheck.username(s.toString())
+                        .addOnFoundListener(found -> {
+                            if(found) {
+                                tilInputEmail.setErrorEnabled(true);
+                                tilInputEmail.setError("Email already exists");
+                            } else {
+                                tilInputEmail.setErrorEnabled(true);
+                            }
+                        })
+                        .execute();
             }
         });
+
+    }
+
+    private boolean validateInput() {
+
+        boolean validData = true;
+
+        String email = Objects.requireNonNull(tietInputEmail.getText()).toString().trim();
+        String username = Objects.requireNonNull(tietInputUsername.getText()).toString().trim();
+        String password = Objects.requireNonNull(tietInputPassword.getText()).toString().trim();
+        String passwordC = Objects.requireNonNull(tietInputPasswordC.getText()).toString().trim();
+
+        if (email.isEmpty()) {
+
+            tilInputEmail.setErrorEnabled(true);
+            tilInputEmail.setError("Empty field");
+            validData = false;
+
+        } else {
+
+            tilInputEmail.setErrorEnabled(false);
+
+        }
+
+        if (username.isEmpty()) {
+
+            tilInputUsername.setErrorEnabled(true);
+            tilInputUsername.setError("Empty field");
+            validData = false;
+
+        } else {
+
+            tilInputUsername.setErrorEnabled(false);
+
+        }
+
+        if (password.isEmpty()) {
+
+            tilInputPassword.setErrorEnabled(true);
+            tilInputPassword.setError("Empty field");
+            validData = false;
+
+        } else {
+
+            tilInputPassword.setErrorEnabled(false);
+
+        }
+
+        if (passwordC.isEmpty()) {
+
+            tilInputPasswordC.setErrorEnabled(true);
+            tilInputPasswordC.setError("Empty field");
+            validData = false;
+
+        } else {
+
+            tilInputPasswordC.setErrorEnabled(false);
+
+        }
+
+        if (!password.isEmpty() && !passwordC.isEmpty() && !password.equals(passwordC)) {
+
+            tilInputPassword.setErrorEnabled(true);
+            tilInputPassword.setError("Passwords don't match");
+            tilInputPasswordC.setErrorEnabled(true);
+            tilInputPasswordC.setError("Passwords don't match");
+            validData = false;
+
+        }
+
+        return validData;
 
     }
 

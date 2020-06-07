@@ -8,8 +8,8 @@ public class CreateAccountAction {
         this.mCreateAccount = new CreateAccount();
     }
 
-    public CreateAccountAction setName(String name) {
-        this.mCreateAccount.setName(name);
+    public CreateAccountAction setUsername(String username) {
+        this.mCreateAccount.setUsername(username);
         return this;
     }
 
@@ -18,23 +18,8 @@ public class CreateAccountAction {
         return this;
     }
 
-    public CreateAccountAction setImage(String image) {
-        this.mCreateAccount.setImage(image);
-        return this;
-    }
-
-    public CreateAccountAction setGender(String gender) {
-        this.mCreateAccount.setGender(gender);
-        return this;
-    }
-
-    public CreateAccountAction setCountry(String country) {
-        this.mCreateAccount.setCountry(country);
-        return this;
-    }
-
-    public CreateAccountAction setDateOfBirthday(String dateOfBirthday) {
-        this.mCreateAccount.setDateOfBirthday(dateOfBirthday);
+    public CreateAccountAction setEmail(String email) {
+        this.mCreateAccount.setEmail(email);
         return this;
     }
 

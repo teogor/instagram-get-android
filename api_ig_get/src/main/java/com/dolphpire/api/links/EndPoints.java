@@ -5,7 +5,7 @@ public class EndPoints {
     private final static String BASE_URL = "https://iggetpro.000webhostapp.com/v1";
 
     public final static String LOGIN = BASE_URL + "/mobile/login";
-    public final static String SIGNUP = BASE_URL + "/mobile/signup";
+    public final static String SIGN_UP = BASE_URL + "/mobile/signup";
     public final static String CHECK_CREDENTIALS = BASE_URL + "/mobile/credentials/check";
 
     public final static String USER_FULL_DETAILS = BASE_URL + "/user/full_details";
