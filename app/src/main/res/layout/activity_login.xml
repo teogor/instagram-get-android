@@ -142,24 +142,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Powered by DolphPire"
-                android:textColor="@color/appTextColorL"
-                android:textSize="14sp"
-                tools:ignore="MissingPrefix" />
-
-        </LinearLayout>
-
     </RelativeLayout>
 
     <RelativeLayout
