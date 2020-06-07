@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -43,10 +44,10 @@ public class LoginActivity extends AppCompatActivity {
     TextInputLayout tilInputPassword;
     @BindView(R.id.tietInputPassword)
     TextInputEditText tietInputPassword;
-    @BindView(R.id.btnLogIn)
-    Button btnLogIn;
-    @BindView(R.id.btnSignUp)
-    Button btnSignUp;
+    @BindView(R.id.llLogin)
+    LinearLayout llLogin;
+    @BindView(R.id.llCreateAccount)
+    LinearLayout llCreateAccount;
     @BindView(R.id.rlLoading)
     RelativeLayout rlLoading;
 
@@ -59,8 +60,8 @@ public class LoginActivity extends AppCompatActivity {
 
         rlLoading.setVisibility(View.GONE);
 
-        btnLogIn.setOnClickListener(v -> login());
-        btnSignUp.setOnClickListener(v -> {
+        llLogin.setOnClickListener(v -> login());
+        llCreateAccount.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent);
             finish();
