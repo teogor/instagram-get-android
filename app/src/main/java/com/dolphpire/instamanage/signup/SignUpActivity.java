@@ -114,7 +114,7 @@ public class SignUpActivity extends AppCompatActivity
                                 tilInputUsername.setError("Username already exists");
                             } else
                             {
-                                tilInputUsername.setErrorEnabled(true);
+                                tilInputUsername.setErrorEnabled(false);
                             }
                         })
                         .execute();
@@ -146,7 +146,7 @@ public class SignUpActivity extends AppCompatActivity
                                 tilInputEmail.setError("Email already exists");
                             } else
                             {
-                                tilInputEmail.setErrorEnabled(true);
+                                tilInputEmail.setErrorEnabled(false);
                             }
                         })
                         .execute();

@@ -4,8 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
+import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -16,7 +17,6 @@ import com.dolphpire.android.material.textfield.TextInputEditText;
 import com.dolphpire.android.material.textfield.TextInputLayout;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ZFlowLoginListener;
-import com.dolphpire.api.models.ZeoFlowUser;
 import com.dolphpire.insapi.manager.IGCommonFieldsManager;
 import com.dolphpire.insapi.request.InsRequestCallBack;
 import com.dolphpire.insapi.request.api.header.GetHeaderRequest;
@@ -34,7 +34,8 @@ import butterknife.ButterKnife;
 
 import static com.dolphpire.instamanage.utils.Utils.hideKeyboard;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity
+{
 
     @BindView(R.id.tilInputLogIn)
     TextInputLayout tilInputLogIn;
@@ -52,7 +53,8 @@ public class LoginActivity extends AppCompatActivity {
     RelativeLayout rlLoading;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -60,8 +62,21 @@ public class LoginActivity extends AppCompatActivity {
 
         rlLoading.setVisibility(View.GONE);
 
-        llLogin.setOnClickListener(v -> login());
-        llCreateAccount.setOnClickListener(v -> {
+        llLogin.setOnClickListener(v -> tryLogin());
+
+        tietInputPassword.setOnEditorActionListener((v, actionId, event) ->
+        {
+            if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE))
+            {
+
+                tryLogin();
+
+            }
+            return false;
+        });
+
+        llCreateAccount.setOnClickListener(v ->
+        {
             Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent);
             finish();
@@ -69,91 +84,164 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void login() {
-
-        hideKeyboard(LoginActivity.this);
+    private void tryLogin()
+    {
         rlLoading.setVisibility(View.VISIBLE);
+        hideKeyboard(LoginActivity.this);
+        if (validateInput())
+        {
+            login();
+        } else
+        {
+            rlLoading.setVisibility(View.GONE);
+        }
+    }
+
+    private boolean validateInput()
+    {
+
+        boolean validData = true;
+
+        String logKey = Objects.requireNonNull(tietInputLogIn.getText()).toString().trim();
+        String password = Objects.requireNonNull(tietInputPassword.getText()).toString().trim();
+
+        if (logKey.isEmpty())
+        {
+
+            tilInputLogIn.setErrorEnabled(true);
+            tilInputLogIn.setError("Empty field");
+            validData = false;
+
+        } else
+        {
+
+            tilInputLogIn.setErrorEnabled(false);
+
+        }
+
+        if (password.isEmpty())
+        {
+
+            tilInputPassword.setErrorEnabled(true);
+            tilInputPassword.setError("Empty field");
+            validData = false;
+
+        } else
+        {
+
+            tilInputPassword.setErrorEnabled(false);
+
+        }
+
+        return validData;
+
+    }
+
+    private void login()
+    {
         DolphPireApp.initializeApi()
                 .login()
                 .withLoginKey(Objects.requireNonNull(tietInputLogIn.getText()).toString())
                 .withPassword(Objects.requireNonNull(tietInputPassword.getText()).toString())
                 .set()
-                .addOnLoggedInListener(new ZFlowLoginListener.OnLoggedIn<ZeoFlowUser>() {
+                .addOnLoggedInListener(userData ->
+                {
+                    Log.d("userModel", String.valueOf(userData.getUUID()));
+                    rlLoading.setVisibility(View.GONE);
+                })
+                .addOnFailureListener(new ZFlowLoginListener.OnLoginFailure()
+                {
                     @Override
-                    public void onLoggedIn(ZeoFlowUser userData) {
+                    public void onAccountClosed(@NonNull String error)
+                    {
+
+                    }
+
+                    @Override
+                    public void onEmailNotVerified(@NonNull String error)
+                    {
+
+                    }
+
+                    @Override
+                    public void onTwoStepsAuth(@NonNull String error)
+                    {
+
+                    }
+
+                    @Override
+                    public void onBadLogKey(@NonNull String error)
+                    {
+
+                        tilInputLogIn.setErrorEnabled(true);
+                        tilInputLogIn.setError(error);
+                        rlLoading.setVisibility(View.GONE);
+
+                    }
+
+                    @Override
+                    public void onBadPassword(@NonNull String error)
+                    {
+
+                        tilInputPassword.setErrorEnabled(true);
+                        tilInputPassword.setError(error);
+                        rlLoading.setVisibility(View.GONE);
 
                     }
                 })
-                .addOnFailureListener(new ZFlowLoginListener.OnLoginFailure() {
-                    @Override
-                    public void onAccountClosed(@NonNull String error) {
-
-                    }
-
-                    @Override
-                    public void onEmailNotVerified(@NonNull String error) {
-
-                    }
-
-                    @Override
-                    public void onTwoStepsAuth(@NonNull String error) {
-
-                    }
-
-                    @Override
-                    public void onBadLogKey(@NonNull String error) {
-
-                    }
-
-                    @Override
-                    public void onBadPassword(@NonNull String error) {
-
-                    }
-                })
+                .addOnFailureListener(e -> rlLoading.setVisibility(View.GONE))
                 .execute();
-
-        rlLoading.setVisibility(View.GONE);
 
     }
 
-    private void loginWithIG() {
+    private void loginWithIG()
+    {
 
         hideKeyboard(LoginActivity.this);
         rlLoading.setVisibility(View.VISIBLE);
         getCsftoken();
 
         LoginRequest loginRequest = new LoginRequest(Objects.requireNonNull(tietInputLogIn.getText()).toString(), Objects.requireNonNull(tietInputPassword.getText()).toString());
-        loginRequest.execute(new InsRequestCallBack<LoginResponseData>() {
+        loginRequest.execute(new InsRequestCallBack<LoginResponseData>()
+        {
             @Override
-            public void onSuccess(int statusCode, LoginResponseData insBaseData) {
+            public void onSuccess(int statusCode, LoginResponseData insBaseData)
+            {
                 LoginResponseData.LoggedInUserBean loggedInUserBean;
-                if (insBaseData != null && (loggedInUserBean = insBaseData.getLogged_in_user()) != null) {
+                if (insBaseData != null && (loggedInUserBean = insBaseData.getLogged_in_user()) != null)
+                {
                     String pkId = loggedInUserBean.getPk() + "";
-                    if (!TextUtils.isEmpty(pkId)) {
+                    if (!TextUtils.isEmpty(pkId))
+                    {
                         IGCommonFieldsManager.getInstance().savePKID(pkId);
                     }
                 }
             }
 
             @Override
-            public void onFailure(int errorCode, String errorMsg) {
+            public void onFailure(int errorCode, String errorMsg)
+            {
                 LLog.d("failed", String.format("errorCode= %s , errorMsg = %s", errorCode, errorMsg));
             }
         });
 
     }
 
-    private void getCsftoken() {
+    private void getCsftoken()
+    {
         final GetHeaderRequest getHeaderRequest = new GetHeaderRequest();
-        getHeaderRequest.execute(new InsRequestCallBack() {
+        getHeaderRequest.execute(new InsRequestCallBack()
+        {
             @Override
-            public void onSuccess(int statusCode, InsBaseResponseData insBaseData) {
+            public void onSuccess(int statusCode, InsBaseResponseData insBaseData)
+            {
                 String csrfCookie = getHeaderRequest.getCsrfCookie();
                 Log.d("succeed", "get Csftoken onSuccess，csrfCookie =  " + csrfCookie);
             }
 
             @Override
-            public void onFailure(int errorCode, String errorMsg) {
+            public void onFailure(int errorCode, String errorMsg)
+            {
                 Log.d("error", "get Csftoken onFailure ");
             }
         });
@@ -161,19 +249,22 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         super.onBackPressed();
         finish();
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onDestroy()
+    {
         super.onDestroy();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
