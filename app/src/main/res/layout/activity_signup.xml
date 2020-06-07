@@ -7,12 +7,26 @@
     tools:context=".login.LoginActivity"
     android:background="@color/colorBackground">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:focusable="false"
+        android:fontFamily="@font/open_sans_semibold"
+        android:layout_centerHorizontal="true"
+        android:text="Sign Up"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/colorTextLvl1"
+        android:textSize="24sp"
+        tools:ignore="MissingPrefix"
+        android:layout_marginBottom="10dp"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_login_holder"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="90dp"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:elevation="10dp">
@@ -35,7 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
-                    app:errorEnabled="true"
+                    app:errorEnabled="false"
                     app:boxStrokeColor="#FFFFFF"
                     app:boxStrokeWidth="1dp"
                     app:boxStrokeColorNormal="#FFFFFF"
@@ -56,11 +70,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Username"
-                    app:errorEnabled="true"
+                    app:errorEnabled="false"
                     app:boxStrokeColor="#FFFFFF"
                     app:boxStrokeWidth="1dp"
                     app:boxStrokeColorNormal="#FFFFFF"
-                    app:hintTextColor="#FFFFFF">
+                    app:hintTextColor="#FFFFFF"
+                    android:layout_marginTop="5dp">
 
                     <com.dolphpire.android.material.textfield.TextInputEditText
                         android:id="@+id/tietInputUsername"
@@ -77,13 +92,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
-                    app:errorEnabled="true"
+                    app:errorEnabled="false"
                     app:boxStrokeColor="#FFFFFF"
                     app:boxStrokeWidth="1dp"
                     app:boxStrokeColorNormal="#FFFFFF"
                     app:hintTextColor="#FFFFFF"
                     app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="#ffffff">
+                    app:passwordToggleTint="#ffffff"
+                    android:layout_marginTop="5dp">
 
                     <com.dolphpire.android.material.textfield.TextInputEditText
                         android:id="@+id/tietInputPassword"
@@ -100,13 +116,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Confirm Password"
-                    app:errorEnabled="true"
+                    app:errorEnabled="false"
                     app:boxStrokeColor="#FFFFFF"
                     app:boxStrokeWidth="1dp"
                     app:boxStrokeColorNormal="#FFFFFF"
                     app:hintTextColor="#FFFFFF"
                     app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="#ffffff">
+                    app:passwordToggleTint="#ffffff"
+                    android:layout_marginTop="5dp">
 
                     <com.dolphpire.android.material.textfield.TextInputEditText
                         android:id="@+id/tietInputPasswordC"
@@ -117,36 +134,133 @@
 
                 </com.dolphpire.android.material.textfield.TextInputLayout>
 
-                <Button
-                    android:id="@+id/btnSignUp"
-                    android:layout_width="140dp"
+                <LinearLayout
+                    android:id="@+id/llCreateAccount"
+                    android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:paddingEnd="15dp"
-                    android:paddingStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:textSize="16sp"
-                    android:text="Sign Up"
-                    android:textAllCaps="false"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/appTextColorD"
-                    android:background="@drawable/background_custom_layer_10"
-                    android:backgroundTint="#E6FFFFFF"
-                    android:elevation="16dp"/>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/bg_get_coins_btn"
+                    android:elevation="3dp"
+                    android:orientation="vertical"
+                    android:paddingStart="25dp"
+                    android:paddingEnd="25dp">
 
-                <Button
-                    android:id="@+id/btnLogIn"
-                    android:layout_width="140dp"
-                    android:layout_height="40dp"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="Create Account"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="-5dp"
-                    android:background="#00ffffff"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical"
                     android:paddingStart="15dp"
-                    android:paddingEnd="15dp"
-                    android:text="Login"
-                    android:textAllCaps="false"
-                    android:textColor="@color/appTextColorL"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:paddingEnd="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="Already have an account? Log In"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="By creating an account you agree with:"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:id="@+id/llTermsOfService"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/bg_get_coins_btn"
+                    android:backgroundTint="#D3DC59"
+                    android:elevation="3dp"
+                    android:orientation="vertical"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="Terms of Service"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llPrivacyPolicy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/bg_get_coins_btn"
+                    android:backgroundTint="#D3DC59"
+                    android:elevation="3dp"
+                    android:orientation="vertical"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/open_sans_semibold"
+                        android:gravity="center"
+                        android:text="Privacy Policy"
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
