@@ -2,6 +2,7 @@ package com.dolphpire.api.action.login;
 
 import android.util.Log;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -76,38 +77,37 @@ public class Login
 
                 } else
                 {
-                    JSONObject errorData = responseObj.getJSONObject("errorData");
-                    if (errorData.getInt("errorType") == 100)
+                    if (responseObj.getInt("errorID") == 100)
                     {
                         if (mApiKeyError != null)
                         {
                             mApiKeyError.badApi();
                         }
-                    } else if (errorData.getInt("errorType") == 102)
+                    } else if (responseObj.getInt("errorID") == 102)
                     {
                         if (onLoginFailure != null)
                         {
                             onLoginFailure.onAccountClosed("Account Closed");
                         }
-                    } else if (errorData.getInt("errorType") == 103)
+                    } else if (responseObj.getInt("errorID") == 103)
                     {
                         if (onLoginFailure != null)
                         {
                             onLoginFailure.onEmailNotVerified("Email Not Verified");
                         }
-                    } else if (errorData.getInt("errorType") == 104)
+                    } else if (responseObj.getInt("errorID") == 124)
                     {
                         if (onLoginFailure != null)
                         {
                             onLoginFailure.onTwoStepsAuth("Two Steps Auth Enabled");
                         }
-                    } else if (errorData.getInt("errorType") == 105)
+                    } else if (responseObj.getInt("errorID") == 104)
                     {
                         if (onLoginFailure != null)
                         {
                             onLoginFailure.onBadPassword("Wrong Password");
                         }
-                    } else if (errorData.getInt("errorType") == 106)
+                    } else if (responseObj.getInt("errorID") == 106)
                     {
                         if (onLoginFailure != null)
                         {
@@ -117,7 +117,7 @@ public class Login
                     {
                         if (onFailureListener != null)
                         {
-                            Exception exception = new Exception(errorData.getInt("errorType") + ", " + errorData.getInt("errorMessage"));
+                            Exception exception = new Exception(responseObj.getInt("errorType") + ", " + responseObj.getInt("errorMessage"));
                             onFailureListener.onFailure(exception);
                         }
                     }
@@ -133,6 +133,8 @@ public class Login
             @Override
             public void onErrorResponse(VolleyError error)
             {
+                NetworkResponse networkResponse = error.networkResponse;
+//                Log.e(TAG, "Volley error: " + error.getMessage() + ", code: " + networkResponse);
 
             }
         })
@@ -143,8 +145,8 @@ public class Login
             {
                 Map<String, String> params = new HashMap<>();
                 params.put("api_key", DolphPireApp.getInstance().getApiKey());
-                params.put("package_name", DolphPireApp.getInstance().getPackage());
-                params.put("device_id", DolphPireApp.getInstance().getDeviceID());
+                params.put("secret_key", DolphPireApp.getInstance().getSecretKey());
+
 
                 params.put("log_key", loginKey);
                 params.put("password", password);

@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -61,7 +63,19 @@ public class LoginActivity extends AppCompatActivity
 
         rlLoading.setVisibility(View.GONE);
 
-        llLogin.setOnClickListener(v -> login());
+        llLogin.setOnClickListener(v -> tryLogin());
+
+        tietInputPassword.setOnEditorActionListener((v, actionId, event) ->
+        {
+            if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE))
+            {
+
+                tryLogin();
+
+            }
+            return false;
+        });
+
         llCreateAccount.setOnClickListener(v ->
         {
             Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
@@ -71,10 +85,61 @@ public class LoginActivity extends AppCompatActivity
 
     }
 
+    private void tryLogin()
+    {
+//        rlLoading.setVisibility(View.VISIBLE);
+        hideKeyboard(LoginActivity.this);
+        if (validateInput())
+        {
+            login();
+        } else
+        {
+            rlLoading.setVisibility(View.GONE);
+        }
+    }
+
+    private boolean validateInput()
+    {
+
+        boolean validData = true;
+
+        String logKey = Objects.requireNonNull(tietInputLogIn.getText()).toString().trim();
+        String password = Objects.requireNonNull(tietInputPassword.getText()).toString().trim();
+
+        if (logKey.isEmpty())
+        {
+
+            tilInputLogIn.setErrorEnabled(true);
+            tilInputLogIn.setError("Empty field");
+            validData = false;
+
+        } else
+        {
+
+            tilInputLogIn.setErrorEnabled(false);
+
+        }
+
+        if (password.isEmpty())
+        {
+
+            tilInputPassword.setErrorEnabled(true);
+            tilInputPassword.setError("Empty field");
+            validData = false;
+
+        } else
+        {
+
+            tilInputPassword.setErrorEnabled(false);
+
+        }
+
+        return validData;
+
+    }
+
     private void login()
     {
-        hideKeyboard(LoginActivity.this);
-//        rlLoading.setVisibility(View.VISIBLE);
         DolphPireApp.initializeApi()
                 .login()
                 .withLoginKey(Objects.requireNonNull(tietInputLogIn.getText()).toString())
@@ -112,11 +177,17 @@ public class LoginActivity extends AppCompatActivity
                     public void onBadLogKey(@NonNull String error)
                     {
 
+                        tilInputLogIn.setErrorEnabled(true);
+                        tilInputLogIn.setError(error);
+
                     }
 
                     @Override
                     public void onBadPassword(@NonNull String error)
                     {
+
+                        tilInputPassword.setErrorEnabled(true);
+                        tilInputPassword.setError(error);
 
                     }
                 })
