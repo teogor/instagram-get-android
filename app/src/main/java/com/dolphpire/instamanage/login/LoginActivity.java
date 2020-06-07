@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -34,7 +33,8 @@ import butterknife.ButterKnife;
 
 import static com.dolphpire.instamanage.utils.Utils.hideKeyboard;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity
+{
 
     @BindView(R.id.tilInputLogIn)
     TextInputLayout tilInputLogIn;
@@ -52,7 +52,8 @@ public class LoginActivity extends AppCompatActivity {
     RelativeLayout rlLoading;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -61,7 +62,8 @@ public class LoginActivity extends AppCompatActivity {
         rlLoading.setVisibility(View.GONE);
 
         llLogin.setOnClickListener(v -> login());
-        llCreateAccount.setOnClickListener(v -> {
+        llCreateAccount.setOnClickListener(v ->
+        {
             Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent);
             finish();
@@ -69,7 +71,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void login() {
+    private void login()
+    {
 
         hideKeyboard(LoginActivity.this);
         rlLoading.setVisibility(View.VISIBLE);
@@ -78,35 +81,43 @@ public class LoginActivity extends AppCompatActivity {
                 .withLoginKey(Objects.requireNonNull(tietInputLogIn.getText()).toString())
                 .withPassword(Objects.requireNonNull(tietInputPassword.getText()).toString())
                 .set()
-                .addOnLoggedInListener(new ZFlowLoginListener.OnLoggedIn<ZeoFlowUser>() {
+                .addOnLoggedInListener(new ZFlowLoginListener.OnLoggedIn<ZeoFlowUser>()
+                {
                     @Override
-                    public void onLoggedIn(ZeoFlowUser userData) {
+                    public void onLoggedIn(ZeoFlowUser userData)
+                    {
 
                     }
                 })
-                .addOnFailureListener(new ZFlowLoginListener.OnLoginFailure() {
+                .addOnFailureListener(new ZFlowLoginListener.OnLoginFailure()
+                {
                     @Override
-                    public void onAccountClosed(@NonNull String error) {
+                    public void onAccountClosed(@NonNull String error)
+                    {
 
                     }
 
                     @Override
-                    public void onEmailNotVerified(@NonNull String error) {
+                    public void onEmailNotVerified(@NonNull String error)
+                    {
 
                     }
 
                     @Override
-                    public void onTwoStepsAuth(@NonNull String error) {
+                    public void onTwoStepsAuth(@NonNull String error)
+                    {
 
                     }
 
                     @Override
-                    public void onBadLogKey(@NonNull String error) {
+                    public void onBadLogKey(@NonNull String error)
+                    {
 
                     }
 
                     @Override
-                    public void onBadPassword(@NonNull String error) {
+                    public void onBadPassword(@NonNull String error)
+                    {
 
                     }
                 })
@@ -116,44 +127,54 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void loginWithIG() {
+    private void loginWithIG()
+    {
 
         hideKeyboard(LoginActivity.this);
         rlLoading.setVisibility(View.VISIBLE);
         getCsftoken();
 
         LoginRequest loginRequest = new LoginRequest(Objects.requireNonNull(tietInputLogIn.getText()).toString(), Objects.requireNonNull(tietInputPassword.getText()).toString());
-        loginRequest.execute(new InsRequestCallBack<LoginResponseData>() {
+        loginRequest.execute(new InsRequestCallBack<LoginResponseData>()
+        {
             @Override
-            public void onSuccess(int statusCode, LoginResponseData insBaseData) {
+            public void onSuccess(int statusCode, LoginResponseData insBaseData)
+            {
                 LoginResponseData.LoggedInUserBean loggedInUserBean;
-                if (insBaseData != null && (loggedInUserBean = insBaseData.getLogged_in_user()) != null) {
+                if (insBaseData != null && (loggedInUserBean = insBaseData.getLogged_in_user()) != null)
+                {
                     String pkId = loggedInUserBean.getPk() + "";
-                    if (!TextUtils.isEmpty(pkId)) {
+                    if (!TextUtils.isEmpty(pkId))
+                    {
                         IGCommonFieldsManager.getInstance().savePKID(pkId);
                     }
                 }
             }
 
             @Override
-            public void onFailure(int errorCode, String errorMsg) {
+            public void onFailure(int errorCode, String errorMsg)
+            {
                 LLog.d("failed", String.format("errorCode= %s , errorMsg = %s", errorCode, errorMsg));
             }
         });
 
     }
 
-    private void getCsftoken() {
+    private void getCsftoken()
+    {
         final GetHeaderRequest getHeaderRequest = new GetHeaderRequest();
-        getHeaderRequest.execute(new InsRequestCallBack() {
+        getHeaderRequest.execute(new InsRequestCallBack()
+        {
             @Override
-            public void onSuccess(int statusCode, InsBaseResponseData insBaseData) {
+            public void onSuccess(int statusCode, InsBaseResponseData insBaseData)
+            {
                 String csrfCookie = getHeaderRequest.getCsrfCookie();
                 Log.d("succeed", "get Csftoken onSuccess，csrfCookie =  " + csrfCookie);
             }
 
             @Override
-            public void onFailure(int errorCode, String errorMsg) {
+            public void onFailure(int errorCode, String errorMsg)
+            {
                 Log.d("error", "get Csftoken onFailure ");
             }
         });
@@ -161,19 +182,22 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         super.onBackPressed();
         finish();
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onDestroy()
+    {
         super.onDestroy();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }

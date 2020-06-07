@@ -1,7 +1,5 @@
 package com.dolphpire.api.action.user.check;
 
-import android.util.Log;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -17,8 +15,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.dolphpire.api.initializer.DolphPireApp.TAG;
 
 public class CheckCredentialsAction
 {
@@ -43,19 +39,29 @@ public class CheckCredentialsAction
             @Override
             public void onResponse(String response)
             {
-                Log.e(TAG, "response: " + response);
+//                Log.e(TAG, "response: " + response);
                 try
                 {
                     JSONObject responseObj = new JSONObject(response);
+                    boolean error = !responseObj.has("error") || responseObj.getBoolean("error");
+                    boolean onSuccess = responseObj.has("onSuccess") && responseObj.getBoolean("onSuccess");
+                    int errorID = responseObj.has("errorID") ? responseObj.getInt("errorID") : 0;
+                    String errorContent = responseObj.has("errorContent") ? responseObj.getString("errorContent") : "";
+
                     // check for error flag
-                    if (!responseObj.getBoolean("onSuccess") && responseObj.getBoolean("error"))
+                    if (onSuccess)
                     {
                         if (onFound != null)
                         {
                             onFound.onFound(false);
                         }
-
-                    } else if (responseObj.getBoolean("error"))
+                    } else if (error && errorID == 178)
+                    {
+                        if (onFound != null)
+                        {
+                            onFound.onFound(true);
+                        }
+                    } else if (error && errorID == 108)
                     {
                         if (onFound != null)
                         {
@@ -63,20 +69,10 @@ public class CheckCredentialsAction
                         }
                     } else
                     {
-                        JSONObject errorData = responseObj.getJSONObject("errorData");
-                        if (errorData.getInt("errorType") == 100)
+                        if (onFailureListener != null)
                         {
-                            if (mApiKeyError != null)
-                            {
-                                mApiKeyError.badApi();
-                            }
-                        } else
-                        {
-                            if (onFailureListener != null)
-                            {
-                                Exception exception = new Exception(errorData.getInt("errorType") + ", " + errorData.getInt("errorMessage"));
-                                onFailureListener.onFailure(exception);
-                            }
+                            Exception exception = new Exception(errorID + ", " + errorContent);
+                            onFailureListener.onFailure(exception);
                         }
                     }
 
