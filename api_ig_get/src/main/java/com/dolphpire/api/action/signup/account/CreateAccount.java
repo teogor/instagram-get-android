@@ -21,7 +21,8 @@ import java.util.Map;
 
 import static com.dolphpire.api.initializer.DolphPireApp.TAG;
 
-public class CreateAccount {
+public class CreateAccount
+{
 
     //class model
 
@@ -32,66 +33,86 @@ public class CreateAccount {
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
 
-    CreateAccount() {
+    CreateAccount()
+    {
 
     }
 
-    void setUsername(String username) {
+    void setUsername(String username)
+    {
         this.username = username;
     }
 
-    void setPassword(String password) {
+    void setPassword(String password)
+    {
         this.password = password;
     }
 
-    void setEmail(String email) {
+    void setEmail(String email)
+    {
         this.email = email;
     }
 
-    public void execute() {
+    public void execute()
+    {
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                EndPoints.SIGN_UP, new Response.Listener<String>() {
+                EndPoints.SIGN_UP, new Response.Listener<String>()
+        {
 
             @Override
-            public void onResponse(String response) {
+            public void onResponse(String response)
+            {
                 Log.e(TAG, "response: " + response);
-                try {
+                try
+                {
                     JSONObject responseObj = new JSONObject(response);
                     // check for error flag
-                    if (!responseObj.getBoolean("error")) {
-                        if (onComplete != null) {
+                    if (!responseObj.getBoolean("error"))
+                    {
+                        if (onComplete != null)
+                        {
                             onComplete.onCompleted();
                         }
-                    } else {
+                    } else
+                    {
                         JSONObject errorData = responseObj.getJSONObject("errorData");
-                        if (errorData.getInt("errorType") == 100) {
-                            if (mApiKeyError != null) {
+                        if (errorData.getInt("errorType") == 100)
+                        {
+                            if (mApiKeyError != null)
+                            {
                                 mApiKeyError.badApi();
                             }
-                        } else {
-                            if (onFailureListener != null) {
+                        } else
+                        {
+                            if (onFailureListener != null)
+                            {
                                 Exception exception = new Exception(errorData.getInt("errorType") + ", " + errorData.getInt("errorMessage"));
                                 onFailureListener.onFailure(exception);
                             }
                         }
                     }
 
-                } catch (JSONException ignored) {
+                } catch (JSONException ignored)
+                {
                     //empty method
                 }
             }
-        }, new Response.ErrorListener() {
+        }, new Response.ErrorListener()
+        {
 
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void onErrorResponse(VolleyError error)
+            {
                 NetworkResponse networkResponse = error.networkResponse;
                 //Log.e(TAG, "Volley error: " + error.getMessage() + ", code: " + networkResponse);
                 //Toast.makeText(getApplicationContext(), "Volley error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        }) {
+        })
+        {
 
             @Override
-            protected Map<String, String> getParams() {
+            protected Map<String, String> getParams()
+            {
                 Map<String, String> params = new HashMap<>();
                 params.put("api_key", DolphPireApp.getInstance().getApiKey());
                 params.put("secret_key", DolphPireApp.getInstance().getSecretKey());
@@ -108,17 +129,20 @@ public class CreateAccount {
 
     }
 
-    public CreateAccount addOnCompleteListener(ZFlowOnCompleteCallback.OnComplete onComplete) {
+    public CreateAccount addOnCompleteListener(ZFlowOnCompleteCallback.OnComplete onComplete)
+    {
         this.onComplete = onComplete;
         return this;
     }
 
-    public CreateAccount addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
+    public CreateAccount addOnFailureListener(FailureCallback.OnFailureListener onFailureListener)
+    {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public CreateAccount addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
+    public CreateAccount addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError)
+    {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

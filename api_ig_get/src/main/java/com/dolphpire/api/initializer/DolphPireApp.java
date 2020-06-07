@@ -6,7 +6,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -25,10 +24,9 @@ import androidx.core.util.Preconditions;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
 import com.dolphpire.api.instance.DolphPireInstance;
 import com.dolphpire.api.models.ZFlowSyncUser;
-import com.dolphpire.api.models.ZeoFlowUser;
+import com.dolphpire.api.models.UserModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,8 +42,6 @@ import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class DolphPireApp {
 
@@ -276,19 +272,19 @@ public class DolphPireApp {
         return this.mZFlowSyncUser;
     }
 
-    public ZeoFlowUser getUser() {
+    public UserModel getUser() {
         return this.mZFlowSyncUser.getUser();
     }
 
-    public void setUser(ZeoFlowUser user) {
+    public void setUser(UserModel user) {
         if (this.mZFlowSyncUser.getUser() != null) {
-            user.setLogKey(this.mZFlowSyncUser.getUser().getLogKey());
+//            user.setLogKey(this.mZFlowSyncUser.getUser().getLogKey());
         }
         this.mZFlowSyncUser.setUser(user);
     }
 
     public int getUserID() {
-        return this.mZFlowSyncUser.getUser().getUserId();
+        return this.mZFlowSyncUser.getUser().getUUID();
     }
 
     public String getApiKey() {

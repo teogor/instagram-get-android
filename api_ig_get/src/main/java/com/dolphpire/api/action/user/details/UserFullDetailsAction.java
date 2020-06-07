@@ -12,7 +12,7 @@ import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowUserCallback;
 import com.dolphpire.api.links.EndPoints;
-import com.dolphpire.api.models.ZeoFlowUser;
+import com.dolphpire.api.models.UserModel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,7 +24,7 @@ public class UserFullDetailsAction {
 
     private String user_id = null;
     private String username = null;
-    private ZFlowUserCallback.OnCompleteListener<ZeoFlowUser> onCompleteListener;
+    private ZFlowUserCallback.OnCompleteListener<UserModel> onCompleteListener;
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
 
@@ -51,15 +51,15 @@ public class UserFullDetailsAction {
                         JsonParser parser = new JsonParser();
                         JsonElement mJson = parser.parse(userData.toString());
                         Gson gson = new Gson();
-                        ZeoFlowUser mZeoFlowUser = gson.fromJson(mJson, ZeoFlowUser.class);
+                        UserModel mUserModel = gson.fromJson(mJson, UserModel.class);
 
-                        if (mZeoFlowUser.getUserId() == DolphPireApp.getInstance().getUserID()) {
-                            mZeoFlowUser.setLogKey(DolphPireApp.getInstance().getUser().getLogKey());
-                            DolphPireApp.getInstance().setUser(mZeoFlowUser);
-                        }
+//                        if (mUserModel.getUserId() == DolphPireApp.getInstance().getUserID()) {
+//                            mUserModel.setLogKey(DolphPireApp.getInstance().getUser().getLogKey());
+//                            DolphPireApp.getInstance().setUser(mUserModel);
+//                        }
 
                         if (onCompleteListener != null) {
-                            onCompleteListener.onComplete(mZeoFlowUser);
+                            onCompleteListener.onComplete(mUserModel);
                         }
 
                     } else {
@@ -106,7 +106,7 @@ public class UserFullDetailsAction {
 
     }
 
-    public UserFullDetailsAction addOnCompleteListener(ZFlowUserCallback.OnCompleteListener<ZeoFlowUser> onCompleteListener) {
+    public UserFullDetailsAction addOnCompleteListener(ZFlowUserCallback.OnCompleteListener<UserModel> onCompleteListener) {
         this.onCompleteListener = onCompleteListener;
         return this;
     }
