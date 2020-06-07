@@ -4,44 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginActivity"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    tools:context=".login.LoginActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
         android:clickable="false"
         android:focusable="false"
         android:fontFamily="@font/open_sans_semibold"
-        android:layout_centerHorizontal="true"
         android:text="Sign Up"
-        android:layout_marginTop="30dp"
         android:textColor="@color/colorTextLvl1"
         android:textSize="24sp"
-        tools:ignore="MissingPrefix"
-        android:layout_marginBottom="10dp"/>
+        tools:ignore="MissingPrefix" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_login_holder"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="90dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
+        android:background="@drawable/bg_login_holder"
         android:elevation="10dp">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingStart="20dp"
                 android:paddingTop="30dp"
                 android:paddingEnd="20dp"
-                android:paddingStart="20dp">
+                android:paddingBottom="40dp">
 
                 <com.dolphpire.android.material.textfield.TextInputLayout
                     android:id="@+id/tilInputEmail"
@@ -49,18 +51,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
-                    app:errorEnabled="false"
                     app:boxStrokeColor="#FFFFFF"
-                    app:boxStrokeWidth="1dp"
                     app:boxStrokeColorNormal="#FFFFFF"
+                    app:boxStrokeWidth="1dp"
+                    app:errorEnabled="false"
+                    app:errorTextColor="#F12756"
                     app:hintTextColor="#FFFFFF">
 
                     <com.dolphpire.android.material.textfield.TextInputEditText
                         android:id="@+id/tietInputEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:inputType="textEmailAddress"/>
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true" />
 
                 </com.dolphpire.android.material.textfield.TextInputLayout>
 
@@ -69,20 +72,21 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:hint="Username"
-                    app:errorEnabled="false"
                     app:boxStrokeColor="#FFFFFF"
-                    app:boxStrokeWidth="1dp"
                     app:boxStrokeColorNormal="#FFFFFF"
-                    app:hintTextColor="#FFFFFF"
-                    android:layout_marginTop="5dp">
+                    app:boxStrokeWidth="1dp"
+                    app:errorEnabled="false"
+                    app:errorTextColor="#F12756"
+                    app:hintTextColor="#FFFFFF">
 
                     <com.dolphpire.android.material.textfield.TextInputEditText
                         android:id="@+id/tietInputUsername"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:inputType="text"/>
+                        android:inputType="text"
+                        android:singleLine="true" />
 
                 </com.dolphpire.android.material.textfield.TextInputLayout>
 
@@ -91,22 +95,23 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:hint="Password"
-                    app:errorEnabled="false"
                     app:boxStrokeColor="#FFFFFF"
-                    app:boxStrokeWidth="1dp"
                     app:boxStrokeColorNormal="#FFFFFF"
+                    app:boxStrokeWidth="1dp"
+                    app:errorEnabled="false"
+                    app:errorTextColor="#F12756"
                     app:hintTextColor="#FFFFFF"
                     app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="#ffffff"
-                    android:layout_marginTop="5dp">
+                    app:passwordToggleTint="#ffffff">
 
                     <com.dolphpire.android.material.textfield.TextInputEditText
                         android:id="@+id/tietInputPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword"
+                        android:singleLine="true" />
 
                 </com.dolphpire.android.material.textfield.TextInputLayout>
 
@@ -115,22 +120,23 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:hint="Confirm Password"
-                    app:errorEnabled="false"
                     app:boxStrokeColor="#FFFFFF"
-                    app:boxStrokeWidth="1dp"
                     app:boxStrokeColorNormal="#FFFFFF"
+                    app:boxStrokeWidth="1dp"
+                    app:errorEnabled="false"
+                    app:errorTextColor="#F12756"
                     app:hintTextColor="#FFFFFF"
                     app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="#ffffff"
-                    android:layout_marginTop="5dp">
+                    app:passwordToggleTint="#ffffff">
 
                     <com.dolphpire.android.material.textfield.TextInputEditText
                         android:id="@+id/tietInputPasswordC"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword"
+                        android:singleLine="true" />
 
                 </com.dolphpire.android.material.textfield.TextInputLayout>
 
@@ -242,7 +248,7 @@
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/bg_get_coins_btn"
-                    android:backgroundTint="#071595"
+                    android:backgroundTint="#1021BD"
                     android:elevation="3dp"
                     android:orientation="vertical"
                     android:paddingStart="15dp"
@@ -272,11 +278,11 @@
         android:id="@+id/rlLoading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_login_holder"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
+        android:background="@drawable/bg_login_holder"
         android:elevation="10dp"
         android:visibility="gone">
 
@@ -285,8 +291,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginTop="2dp"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="2dp"
             android:layout_marginEnd="30dp"
             android:indeterminate="true"
             android:indeterminateTint="#ffffff" />
