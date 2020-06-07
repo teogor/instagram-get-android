@@ -20,7 +20,8 @@ import java.util.Map;
 
 import static com.dolphpire.api.initializer.DolphPireApp.TAG;
 
-public class CheckCredentialsAction {
+public class CheckCredentialsAction
+{
 
     //class model
     private String credential;
@@ -28,57 +29,76 @@ public class CheckCredentialsAction {
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
 
-    CheckCredentialsAction(String credential) {
+    CheckCredentialsAction(String credential)
+    {
         this.credential = String.valueOf(credential);
     }
 
-    public void execute() {
+    public void execute()
+    {
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                EndPoints.CHECK_CREDENTIALS, new Response.Listener<String>() {
+                EndPoints.CHECK_CREDENTIALS, new Response.Listener<String>()
+        {
 
             @Override
-            public void onResponse(String response) {
+            public void onResponse(String response)
+            {
                 Log.e(TAG, "response: " + response);
-                try {
+                try
+                {
                     JSONObject responseObj = new JSONObject(response);
                     // check for error flag
-                    if (!responseObj.getBoolean("error")) {
-                        if (onFound != null) {
+                    if (!responseObj.getBoolean("onSuccess") && responseObj.getBoolean("error"))
+                    {
+                        if (onFound != null)
+                        {
                             onFound.onFound(false);
                         }
 
-                    } else {
+                    } else if (responseObj.getBoolean("error"))
+                    {
+                        if (onFound != null)
+                        {
+                            onFound.onFound(true);
+                        }
+                    } else
+                    {
                         JSONObject errorData = responseObj.getJSONObject("errorData");
-                        if (errorData.getInt("errorType") == 100) {
-                            if (mApiKeyError != null) {
+                        if (errorData.getInt("errorType") == 100)
+                        {
+                            if (mApiKeyError != null)
+                            {
                                 mApiKeyError.badApi();
                             }
-                        } else if (errorData.getInt("errorType") == 109) {
-                            if (onFound != null) {
-                                onFound.onFound(true);
-                            }
-                        } else {
-                            if (onFailureListener != null) {
+                        } else
+                        {
+                            if (onFailureListener != null)
+                            {
                                 Exception exception = new Exception(errorData.getInt("errorType") + ", " + errorData.getInt("errorMessage"));
                                 onFailureListener.onFailure(exception);
                             }
                         }
                     }
 
-                } catch (JSONException ignored) {
+                } catch (JSONException ignored)
+                {
                     //empty method
                 }
             }
-        }, new Response.ErrorListener() {
+        }, new Response.ErrorListener()
+        {
 
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void onErrorResponse(VolleyError error)
+            {
 
             }
-        }) {
+        })
+        {
 
             @Override
-            protected Map<String, String> getParams() {
+            protected Map<String, String> getParams()
+            {
                 Map<String, String> params = new HashMap<>();
                 params.put("api_key", DolphPireApp.getInstance().getApiKey());
                 params.put("secret_key", DolphPireApp.getInstance().getSecretKey());
@@ -94,17 +114,20 @@ public class CheckCredentialsAction {
 
     }
 
-    public CheckCredentialsAction addOnFoundListener(OnFoundCallback.OnFound onFound) {
+    public CheckCredentialsAction addOnFoundListener(OnFoundCallback.OnFound onFound)
+    {
         this.onFound = onFound;
         return this;
     }
 
-    public CheckCredentialsAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
+    public CheckCredentialsAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener)
+    {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public CheckCredentialsAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
+    public CheckCredentialsAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError)
+    {
         this.mApiKeyError = mApiKeyError;
         return this;
     }
