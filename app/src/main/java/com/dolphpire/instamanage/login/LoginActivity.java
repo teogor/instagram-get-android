@@ -73,9 +73,8 @@ public class LoginActivity extends AppCompatActivity
 
     private void login()
     {
-
         hideKeyboard(LoginActivity.this);
-        rlLoading.setVisibility(View.VISIBLE);
+//        rlLoading.setVisibility(View.VISIBLE);
         DolphPireApp.initializeApi()
                 .login()
                 .withLoginKey(Objects.requireNonNull(tietInputLogIn.getText()).toString())
