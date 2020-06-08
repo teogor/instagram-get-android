@@ -61,6 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email or username"
+            android:textColorHint="@color/colorTextLvl3"
             app:boxStrokeColor="@color/colorIGLogin1"
             app:boxStrokeColorNormal="@color/colorIGLogin1"
             app:boxStrokeWidth="1dp"
@@ -72,7 +73,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@color/colorTextLvl1" />
 
         </com.dolphpire.android.material.textfield.TextInputLayout>
 
@@ -83,6 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:hint="Password"
+            android:textColorHint="@color/colorTextLvl3"
             app:boxStrokeColor="@color/colorIGLogin1"
             app:boxStrokeWidth="1dp"
             app:boxStrokeColorNormal="@color/colorIGLogin1"
@@ -96,7 +99,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@color/colorTextLvl1"/>
 
         </com.dolphpire.android.material.textfield.TextInputLayout>
 

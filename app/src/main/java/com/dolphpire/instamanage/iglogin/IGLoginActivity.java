@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.dolphpire.android.material.textfield.TextInputEditText;
 import com.dolphpire.android.material.textfield.TextInputLayout;
+import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.insapi.manager.IGCommonFieldsManager;
 import com.dolphpire.insapi.request.InsRequestCallBack;
 import com.dolphpire.insapi.request.api.follower.FollowersResponseData;
@@ -110,8 +111,16 @@ public class IGLoginActivity extends AppCompatActivity
                         if (!TextUtils.isEmpty(pkId))
                         {
                             IGCommonFieldsManager.getInstance().savePKID(pkId);
+                            DolphPireApp.initializeApi()
+                                    .igAccount()
+                                    .addAccount()
+                                    .withIGID(loggedInUserBean.getPk())
+                                    .withPassword(password)
+                                    .withUsername(loggedInUserBean.getUsername())
+                                    .withProfilePicture(loggedInUserBean.getProfile_pic_url())
+                                    .set()
+                                    .execute();
                         }
-                        Log.d("login", "pkId = " + pkId);
                     }
                     llLoadingHolder.setVisibility(View.GONE);
                     llLoginHolder.setVisibility(View.VISIBLE);
