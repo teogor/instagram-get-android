@@ -62,21 +62,19 @@ public class HomeActivity extends AppCompatActivity {
                 new SpaceItem(14),
                 createItemFor(POS_LOG_OUT)));
 
-        adapter.setListener(new DrawerAdapter.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(int position) {
+        adapter.setListener(position ->
+        {
 
-                slidingRootNav.closeMenu(true);
+            slidingRootNav.closeMenu(true);
 
-                Fragment selectedScreen;
-                if(position == POS_HOME) {
+            Fragment selectedScreen;
+            if(position == POS_HOME) {
 
-                    selectedScreen = new HomeFragment();
-                    showFragment(selectedScreen);
-
-                }
+                selectedScreen = new HomeFragment();
+                showFragment(selectedScreen);
 
             }
+
         });
 
         RecyclerView list = findViewById(R.id.list);
