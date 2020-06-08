@@ -76,7 +76,7 @@ public class CreateAccount
                     } else
                     {
                         JSONObject errorData = responseObj.getJSONObject("errorData");
-                        if (errorData.getInt("errorType") == 100)
+                        if (errorData.getInt("errorID") == 511)
                         {
                             if (mApiKeyError != null)
                             {
