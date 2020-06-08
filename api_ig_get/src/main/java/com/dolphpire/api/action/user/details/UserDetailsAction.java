@@ -25,20 +25,14 @@ import static com.dolphpire.api.initializer.DolphPireApp.TAG;
 public class UserDetailsAction
 {
 
-    private String user_id = null;
-    private String username = null;
+    private String uuid;
     private ZFlowUserCallback.OnCompleteListener<UserModel> onCompleteListener;
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
 
     UserDetailsAction(int user_id)
     {
-        this.user_id = String.valueOf(user_id);
-    }
-
-    UserDetailsAction(String username)
-    {
-        this.username = username;
+        this.uuid = String.valueOf(user_id);
     }
 
     public void execute()
@@ -59,10 +53,10 @@ public class UserDetailsAction
                     Gson gson = new Gson();
                     UserModel mUserModel = gson.fromJson(mJson, UserModel.class);
 
-//                        if (mUserModel.getUserId() == DolphPireApp.getInstance().getUserID()) {
-//                            mUserModel.setLogKey(DolphPireApp.getInstance().getUser().getLogKey());
-//                            DolphPireApp.getInstance().setUser(mUserModel);
-//                        }
+                    if (mUserModel.getUUID() == DolphPireApp.getInstance().getUUID())
+                    {
+                        DolphPireApp.getInstance().setUser(mUserModel);
+                    }
 
                     if (onCompleteListener != null)
                     {
@@ -106,8 +100,7 @@ public class UserDetailsAction
                 params.put("secret_key", DolphPireApp.getInstance().getSecretKey());
                 params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUUID()));
 
-                params.put("user_id", user_id == null ? "null" : user_id);
-                params.put("username", username == null ? "null" : username);
+                params.put("uuid", uuid == null ? "0" : uuid);
                 return params;
             }
         };

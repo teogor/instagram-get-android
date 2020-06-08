@@ -10,8 +10,4 @@ public class DetailsAction {
         return new UserDetailsAction(user_id);
     }
 
-    public UserDetailsAction withUsername(String username) {
-        return new UserDetailsAction(username);
-    }
-
 }

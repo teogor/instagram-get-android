@@ -27,7 +27,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.dolphpire.api.instance.DolphPireInstance;
 import com.dolphpire.api.models.UserModel;
-import com.dolphpire.api.models.ZFlowSyncUser;
+import com.dolphpire.api.models.SyncUserModel;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -66,7 +66,7 @@ public class DolphPireApp
     private final String name;
     private final DolphPireOptions options;
     private final AtomicBoolean automaticResourceManagementEnabled = new AtomicBoolean(false);
-    private ZFlowSyncUser mZFlowSyncUser;
+    private SyncUserModel mSyncUserModel;
     private RequestQueue mRequestQueue;
 
     @SuppressLint("RestrictedApi")
@@ -175,7 +175,7 @@ public class DolphPireApp
             INSTANCES.put(normalizedName, dolphpireApp);
         }
         INSTANCES.put(normalizedName, dolphpireApp);
-        getInstance().mZFlowSyncUser = new ZFlowSyncUser();
+        getInstance().mSyncUserModel = new SyncUserModel();
         return dolphpireApp;
     }
 
@@ -313,6 +313,10 @@ public class DolphPireApp
         prefsEditor.apply();
     }
 
+    public SyncUserModel syncUser() {
+        return this.mSyncUserModel;
+    }
+
     public UserModel getUser()
     {
         SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
@@ -325,6 +329,7 @@ public class DolphPireApp
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         prefsEditor.putString(DPIRE_SP_USER_ACCOUNT, new Gson().toJson(user));
         prefsEditor.apply();
+        this.mSyncUserModel.setUser(user);
     }
 
     public int getUUID()

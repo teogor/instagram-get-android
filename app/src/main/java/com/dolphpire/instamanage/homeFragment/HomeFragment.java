@@ -17,6 +17,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.dolphpire.api.initializer.DolphPireApp;
+import com.dolphpire.api.models.SyncUserModel;
+import com.dolphpire.api.models.UserModel;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getcoinsfragment.GetCoinsFragment;
 import com.dolphpire.instamanage.getfollowersfragment.GetFollowersFragment;
@@ -118,7 +120,9 @@ public class HomeFragment extends Fragment {
             mContext.startActivity(intent);
         });
 
-        txt_coins.setText(DolphPireApp.getInstance().getUser().getCoins());
+        txt_coins.setText(String.valueOf(DolphPireApp.getInstance().getUser().getCoins()));
+        DolphPireApp.getInstance().syncUser()
+                .setListener(user -> txt_coins.setText(String.valueOf(user.getCoins())), "HOME_FRAGMENT");
 
     }
 
