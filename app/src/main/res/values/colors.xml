@@ -13,7 +13,6 @@
     <color name="colorRipple">#CFCFCF</color>
     <color name="colorTransparentAccent">#B3000000</color>
 
-
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorToolbar">#ebffffff</color>
@@ -55,7 +54,7 @@
 
     <color name="colorSelected">#3217EB</color>
     <color name="colorSelectedBackground">#CC00BCD4</color>
-    <color name="colorUnselected">#5037fc</color>
+    <color name="colorUnselected">#000000</color>
 
     <color name="colorLinkImage">#3217EB</color>
 

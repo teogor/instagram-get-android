@@ -52,9 +52,9 @@
     <color name="colorIGLogin1">#1098E1</color>
     <color name="colorIGLogin2">#4EB8F1</color>
 
-    <color name="colorSelected">#2575fc</color>
+    <color name="colorSelected">#3217EB</color>
     <color name="colorSelectedBackground">#CC00BCD4</color>
-    <color name="colorUnselected">#0947AF</color>
+    <color name="colorUnselected">#000000</color>
 
     <color name="colorLinkImage">#3217EB</color>
 
