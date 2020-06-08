@@ -10,9 +10,9 @@
 
     <array name="ld_activityScreenIcons">
         <item>@drawable/ic_nav_home</item>
-        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/ic_nav_account</item>
         <item />
-        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/ic_nav_logout</item>
     </array>
 
 </resources>
