@@ -100,7 +100,7 @@ public class UserConnectionAction {
                 Map<String, String> params = new HashMap<>();
                 params.put("api_key", DolphPireApp.getInstance().getApiKey());
                 params.put("package_name", DolphPireApp.getInstance().getPackage());
-                params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUserID()));
+                params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUUID()));
 
                 params.put("user_id", id == null ? "null" : id);
                 params.put("post_id", "null");

@@ -98,7 +98,7 @@ public class CheckCredentialsAction
                 Map<String, String> params = new HashMap<>();
                 params.put("api_key", DolphPireApp.getInstance().getApiKey());
                 params.put("secret_key", DolphPireApp.getInstance().getSecretKey());
-                params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUser() == null ? 0 : DolphPireApp.getInstance().getUserID()));
+                params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUser() == null ? 0 : DolphPireApp.getInstance().getUUID()));
 
                 params.put("credential", credential.equals("0") ? "null" : credential);
                 return params;

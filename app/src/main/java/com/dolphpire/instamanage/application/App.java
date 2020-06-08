@@ -2,7 +2,11 @@ package com.dolphpire.instamanage.application;
 
 import android.app.Application;
 
+import androidx.annotation.NonNull;
+
 import com.dolphpire.api.initializer.DolphPireApp;
+import com.dolphpire.api.interfaces.ZFlowUserCallback;
+import com.dolphpire.api.models.UserModel;
 
 public class App extends Application
 {
@@ -16,7 +20,9 @@ public class App extends Application
         {
             DolphPireApp.initializeApi()
                     .user()
-                    .details();
+                    .details()
+                    .withUUID(DolphPireApp.getInstance().getUUID())
+                    .execute();
         }
 
     }
