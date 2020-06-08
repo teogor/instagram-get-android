@@ -26,11 +26,16 @@ import java.util.Arrays;
 
 public class HomeActivity extends AppCompatActivity {
 
+
+    private HomeFragment mHomeFragment = new HomeFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.dolphpire.instamanage.R.layout.activity_home);
         setDrawer(savedInstanceState);
+
+
+
     }
 
     private int POS_HOME = 0;
@@ -67,11 +72,9 @@ public class HomeActivity extends AppCompatActivity {
 
             slidingRootNav.closeMenu(true);
 
-            Fragment selectedScreen;
             if(position == POS_HOME) {
 
-                selectedScreen = new HomeFragment();
-                showFragment(selectedScreen);
+                showFragment(mHomeFragment);
 
             }
 

@@ -4,13 +4,20 @@ import android.app.Application;
 
 import com.dolphpire.api.initializer.DolphPireApp;
 
-public class App extends Application {
+public class App extends Application
+{
 
     @Override
-    public void onCreate() {
+    public void onCreate()
+    {
         super.onCreate();
 
-        DolphPireApp.initializeApi();
+        if (DolphPireApp.getInstance().getUser() != null)
+        {
+            DolphPireApp.initializeApi()
+                    .user()
+                    .details();
+        }
 
     }
 
