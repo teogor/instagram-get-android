@@ -26,8 +26,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.dolphpire.api.instance.DolphPireInstance;
-import com.dolphpire.api.models.ZFlowSyncUser;
 import com.dolphpire.api.models.UserModel;
+import com.dolphpire.api.models.ZFlowSyncUser;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -49,7 +49,8 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_APP_DATA;
 import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_USER_ACCOUNT;
 
-public class DolphPireApp {
+public class DolphPireApp
+{
 
     public static final String TAG = DolphPireApp.class
             .getSimpleName();
@@ -69,31 +70,38 @@ public class DolphPireApp {
     private RequestQueue mRequestQueue;
 
     @SuppressLint("RestrictedApi")
-    protected DolphPireApp(Context applicationContext, String name, DolphPireOptions options) {
+    protected DolphPireApp(Context applicationContext, String name, DolphPireOptions options)
+    {
         this.applicationContext = Preconditions.checkNotNull(applicationContext);
         this.options = Preconditions.checkNotNull(options);
         this.name = null;
     }
 
     @SuppressLint("RestrictedApi")
-    protected DolphPireApp(Context applicationContext, String name) {
+    protected DolphPireApp(Context applicationContext, String name)
+    {
         this.applicationContext = Preconditions.checkNotNull(applicationContext);
         this.options = null;
         this.name = null;
     }
 
     @NonNull
-    public static List<DolphPireApp> getApps(@NonNull Context context) {
-        synchronized (LOCK) {
+    public static List<DolphPireApp> getApps(@NonNull Context context)
+    {
+        synchronized (LOCK)
+        {
             return new ArrayList<>(INSTANCES.values());
         }
     }
 
     @NonNull
-    public static DolphPireApp getInstance() {
-        synchronized (LOCK) {
+    public static DolphPireApp getInstance()
+    {
+        synchronized (LOCK)
+        {
             DolphPireApp defaultApp = INSTANCES.get(DEFAULT_APP_NAME);
-            if (defaultApp == null) {
+            if (defaultApp == null)
+            {
                 throw new IllegalStateException(
                         "Default DolphPireApp is not initialized in this "
                                 + "process "
@@ -104,9 +112,12 @@ public class DolphPireApp {
         }
     }
 
-    public static DolphPireAPI initializeApi() {
-        synchronized (LOCK) {
-            if (getInstance().getApplicationContext().getPackageName().equals(getInstance().getApplicationContext().getPackageName())) {
+    public static DolphPireAPI initializeApi()
+    {
+        synchronized (LOCK)
+        {
+            if (getInstance().getApplicationContext().getPackageName().equals(getInstance().getApplicationContext().getPackageName()))
+            {
                 return new DolphPireAPI();
             }
             throw new IllegalStateException("The package is different than the one from the dolphpire-services.json");
@@ -114,18 +125,23 @@ public class DolphPireApp {
     }
 
     @NonNull
-    public static DolphPireApp getInstance(@NonNull String name) {
-        synchronized (LOCK) {
+    public static DolphPireApp getInstance(@NonNull String name)
+    {
+        synchronized (LOCK)
+        {
             DolphPireApp dolphpireApp = INSTANCES.get(normalize(name));
-            if (dolphpireApp != null) {
+            if (dolphpireApp != null)
+            {
                 return dolphpireApp;
             }
 
             List<String> availableAppNames = getAllAppNames();
             String availableAppNamesMessage;
-            if (availableAppNames.isEmpty()) {
+            if (availableAppNames.isEmpty())
+            {
                 availableAppNamesMessage = "";
-            } else {
+            } else
+            {
                 availableAppNamesMessage =
                         "Available app names: " + TextUtils.join(", ", availableAppNames);
             }
@@ -137,18 +153,22 @@ public class DolphPireApp {
     }
 
     @SuppressLint("RestrictedApi")
-    public static DolphPireApp initializeAppB(@NonNull Context context) {
+    public static DolphPireApp initializeAppB(@NonNull Context context)
+    {
         String normalizedName = normalize(DEFAULT_APP_NAME);
         initializeApiData(context);
         Context applicationContext;
-        if (context.getApplicationContext() == null) {
+        if (context.getApplicationContext() == null)
+        {
             applicationContext = context;
-        } else {
+        } else
+        {
             applicationContext = context.getApplicationContext();
         }
 
         DolphPireApp dolphpireApp;
-        synchronized (LOCK) {
+        synchronized (LOCK)
+        {
             Preconditions.checkState(!INSTANCES.containsKey(normalizedName), "DolphPireApp name " + normalizedName + " already exists!");
             Preconditions.checkNotNull(applicationContext, "Application context cannot be null.");
             dolphpireApp = new DolphPireApp(applicationContext, normalizedName);
@@ -160,13 +180,17 @@ public class DolphPireApp {
     }
 
     @Nullable
-    public static DolphPireApp initializeApp(@NonNull Context context) {
-        synchronized (LOCK) {
-            if (INSTANCES.containsKey(DEFAULT_APP_NAME)) {
+    public static DolphPireApp initializeApp(@NonNull Context context)
+    {
+        synchronized (LOCK)
+        {
+            if (INSTANCES.containsKey(DEFAULT_APP_NAME))
+            {
                 return getInstance();
             }
             DolphPireOptions zeoflowOptions = DolphPireOptions.fromResource(context);
-            if (zeoflowOptions == null) {
+            if (zeoflowOptions == null)
+            {
                 Log.w(
                         LOG_TAG,
                         "Default DolphPireApp failed to initialize because no default "
@@ -180,18 +204,21 @@ public class DolphPireApp {
     }
 
     @KeepForApi
-    private static void initializeApiData(Context mContext) {
+    private static void initializeApiData(Context mContext)
+    {
 
         mDolphPireInstance = new DolphPireInstance();
 
-        try {
+        try
+        {
             InputStream is = mContext.getAssets().open("dolphpire-services.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
             String json = new String(buffer, StandardCharsets.UTF_8);
-            try {
+            try
+            {
                 JSONObject obj = new JSONObject(json);
                 JSONArray mObj = obj.getJSONArray("client");
                 String packageAppApi = mObj.getJSONObject(0).getJSONObject("client_info").getJSONObject("android_client_info").getString("package_name");
@@ -199,33 +226,40 @@ public class DolphPireApp {
                 String apiKey = mObj.getJSONObject(0).getString("api_key");
                 String secret_key = mObj.getJSONObject(0).getString("secret_key");
                 mDolphPireInstance.initialize(packageAppApi, packageApp, apiKey, secret_key);
-            } catch (JSONException e) {
+            } catch (JSONException e)
+            {
                 e.printStackTrace();
             }
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             e.printStackTrace();
         }
 
     }
 
     @NonNull
-    public static DolphPireApp initializeApp(@NonNull Context context, @NonNull DolphPireOptions options) {
+    public static DolphPireApp initializeApp(@NonNull Context context, @NonNull DolphPireOptions options)
+    {
         return initializeApp(context, options, "[DEFAULT]");
     }
 
     @SuppressLint("RestrictedApi")
     @NonNull
-    public static DolphPireApp initializeApp(@NonNull Context context, @NonNull DolphPireOptions options, @NonNull String name) {
+    public static DolphPireApp initializeApp(@NonNull Context context, @NonNull DolphPireOptions options, @NonNull String name)
+    {
         String normalizedName = normalize(name);
         Context applicationContext;
-        if (context.getApplicationContext() == null) {
+        if (context.getApplicationContext() == null)
+        {
             applicationContext = context;
-        } else {
+        } else
+        {
             applicationContext = context.getApplicationContext();
         }
 
         DolphPireApp dolphpireApp;
-        synchronized (LOCK) {
+        synchronized (LOCK)
+        {
             Preconditions.checkState(!INSTANCES.containsKey(normalizedName), "DolphPireApp name " + normalizedName + " already exists!");
             Preconditions.checkNotNull(applicationContext, "Application context cannot be null.");
             dolphpireApp = new DolphPireApp(applicationContext, normalizedName, options);
@@ -237,22 +271,28 @@ public class DolphPireApp {
     }
 
     @SuppressLint("RestrictedApi")
-    private static void checkNotDeleted() {
+    private static void checkNotDeleted()
+    {
         Preconditions.checkState(!deleted.get(), "DolphPireApp was deleted");
     }
 
     @VisibleForTesting
-    public static void clearInstancesForTest() {
+    public static void clearInstancesForTest()
+    {
         // TODO: also delete, once functionality is implemented.
-        synchronized (LOCK) {
+        synchronized (LOCK)
+        {
             INSTANCES.clear();
         }
     }
 
-    private static List<String> getAllAppNames() {
+    private static List<String> getAllAppNames()
+    {
         List<String> allAppNames = new ArrayList<>();
-        synchronized (LOCK) {
-            for (DolphPireApp app : INSTANCES.values()) {
+        synchronized (LOCK)
+        {
+            for (DolphPireApp app : INSTANCES.values())
+            {
                 allAppNames.add(app.getName());
             }
         }
@@ -260,28 +300,28 @@ public class DolphPireApp {
         return allAppNames;
     }
 
-    private static String normalize(@NonNull String name) {
+    private static String normalize(@NonNull String name)
+    {
         return name.trim();
     }
 
-    public int getNewUID() {
+    public int getNewUID()
+    {
         return DolphPireAPI.presence().newUser().getNewUID();
     }
 
-    public void setNewUID(int user_id) {
+    public void setNewUID(int user_id)
+    {
 
         DolphPireAPI.presence().newUser().setNewUID(user_id);
 
     }
 
-    public ZFlowSyncUser getZFlowSyncUser() {
-        return this.mZFlowSyncUser;
-    }
-
-    public void setUser(UserModel user) {
+    public void deleteUser()
+    {
         SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
-        prefsEditor.putString(DPIRE_SP_USER_ACCOUNT, new Gson().toJson(user));
+        prefsEditor.putString(DPIRE_SP_USER_ACCOUNT, null);
         prefsEditor.apply();
     }
 
@@ -291,127 +331,165 @@ public class DolphPireApp {
         return new Gson().fromJson(mPrefs.getString(DPIRE_SP_USER_ACCOUNT, null), UserModel.class);
     }
 
-    public int getUserID() {
+    public void setUser(UserModel user)
+    {
+        SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        prefsEditor.putString(DPIRE_SP_USER_ACCOUNT, new Gson().toJson(user));
+        prefsEditor.apply();
+    }
+
+    public int getUserID()
+    {
         return this.getUser().getUUID();
     }
 
-    public String getApiKey() {
+    public String getApiKey()
+    {
         return mDolphPireInstance.getKey();
     }
 
-    public String getSecretKey() {
+    public String getSecretKey()
+    {
         return mDolphPireInstance.getSecretKey();
     }
 
-    private String getJsonPackage() {
+    private String getJsonPackage()
+    {
         return mDolphPireInstance.getJsonPackage();
     }
 
-    public String getPackage() {
+    public String getPackage()
+    {
         return getApplicationContext().getPackageName();
     }
 
     @SuppressLint("HardwareIds")
-    public String getDeviceID() {
+    public String getDeviceID()
+    {
         return Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
     @NonNull
-    public Context getApplicationContext() {
+    public Context getApplicationContext()
+    {
         checkNotDeleted();
         return applicationContext;
     }
 
     @NonNull
-    public String getName() {
+    public String getName()
+    {
         checkNotDeleted();
         return name;
     }
 
     @NonNull
-    public DolphPireOptions getOptions() {
+    public DolphPireOptions getOptions()
+    {
         this.checkNotDeleted();
         return this.options;
     }
 
-    public RequestQueue getRequestQueue() {
-        if (mRequestQueue == null) {
+    public RequestQueue getRequestQueue()
+    {
+        if (mRequestQueue == null)
+        {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         }
 
         return mRequestQueue;
     }
 
-    public <T> void addToRequestQueue(Request<T> req, String tag) {
+    public <T> void addToRequestQueue(Request<T> req, String tag)
+    {
         req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
         getRequestQueue().add(req);
     }
 
-    public <T> void addToRequestQueue(Request<T> req) {
+    public <T> void addToRequestQueue(Request<T> req)
+    {
         req.setTag(TAG);
         getRequestQueue().add(req);
     }
 
-    public void cancelPendingRequests(Object tag) {
-        if (mRequestQueue != null) {
+    public void cancelPendingRequests(Object tag)
+    {
+        if (mRequestQueue != null)
+        {
             mRequestQueue.cancelAll(tag);
         }
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof DolphPireApp)) {
+    public boolean equals(Object o)
+    {
+        if (!(o instanceof DolphPireApp))
+        {
             return false;
         }
         return name.equals(((DolphPireApp) o).getName());
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return name.hashCode();
     }
 
-    public void delete() {
+    public void delete()
+    {
         boolean valueChanged = deleted.compareAndSet(false /* expected */, true);
-        if (!valueChanged) {
+        if (!valueChanged)
+        {
             return;
         }
 
-        synchronized (LOCK) {
+        synchronized (LOCK)
+        {
             INSTANCES.remove(this.name);
         }
     }
 
     @KeepForApi
     @VisibleForTesting
-    public boolean isDefaultApp() {
+    public boolean isDefaultApp()
+    {
         return DEFAULT_APP_NAME.equals(getName());
     }
 
-    private void initializeAllApis() {
+    private void initializeAllApis()
+    {
         boolean inDirectBoot = !UserManagerCompat.isUserUnlocked(applicationContext);
-        if (inDirectBoot) {
+        if (inDirectBoot)
+        {
             // Ensure that all APIs are initialized once the user unlocks the phone.
             UserUnlockReceiver.ensureReceiverRegistered(applicationContext);
-        } else {
+        } else
+        {
             //componentRuntime.initializeEagerComponents(isDefaultApp());
         }
     }
 
     @TargetApi(Build.VERSION_CODES.N)
-    private static class UserUnlockReceiver extends BroadcastReceiver {
+    private static class UserUnlockReceiver extends BroadcastReceiver
+    {
 
         private static AtomicReference<UserUnlockReceiver> INSTANCE = new AtomicReference<>();
         private final Context applicationContext;
 
-        public UserUnlockReceiver(Context applicationContext) {
+        public UserUnlockReceiver(Context applicationContext)
+        {
             this.applicationContext = applicationContext;
         }
 
-        private static void ensureReceiverRegistered(Context applicationContext) {
-            if (INSTANCE.get() == null) {
+        private static void ensureReceiverRegistered(Context applicationContext)
+        {
+            if (INSTANCE.get() == null)
+            {
                 UserUnlockReceiver receiver = new UserUnlockReceiver(applicationContext);
-                if (INSTANCE.compareAndSet(null /* expected */, receiver)) {
+                if (INSTANCE.compareAndSet(null /* expected */, receiver))
+                {
                     IntentFilter intentFilter = new IntentFilter(Intent.ACTION_USER_UNLOCKED);
                     applicationContext.registerReceiver(receiver, intentFilter);
                 }
@@ -419,26 +497,32 @@ public class DolphPireApp {
         }
 
         @Override
-        public void onReceive(Context context, Intent intent) {
+        public void onReceive(Context context, Intent intent)
+        {
             // API initialization is idempotent.
-            synchronized (LOCK) {
-                for (DolphPireApp app : INSTANCES.values()) {
+            synchronized (LOCK)
+            {
+                for (DolphPireApp app : INSTANCES.values())
+                {
                     app.initializeAllApis();
                 }
             }
             unregister();
         }
 
-        public void unregister() {
+        public void unregister()
+        {
             applicationContext.unregisterReceiver(this);
         }
     }
 
-    private static class UiExecutor implements Executor {
+    private static class UiExecutor implements Executor
+    {
         private static final Handler HANDLER = new Handler(Looper.getMainLooper());
 
         @Override
-        public void execute(@NonNull Runnable command) {
+        public void execute(@NonNull Runnable command)
+        {
             HANDLER.post(command);
         }
     }
