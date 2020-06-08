@@ -1,7 +1,5 @@
 package com.dolphpire.api.action.user.details;
 
-import android.util.Log;
-
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
@@ -19,8 +17,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.dolphpire.api.initializer.DolphPireApp.TAG;
 
 public class UserDetailsAction
 {
@@ -40,14 +36,14 @@ public class UserDetailsAction
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 EndPoints.USER_DETAILS, response ->
         {
-            Log.e(TAG, "response: " + response);
+//            Log.e(TAG, "response: " + response);
             try
             {
                 JSONObject responseObj = new JSONObject(response);
                 // check for error flag
                 if (!responseObj.getBoolean("error"))
                 {
-                    JSONObject userData = responseObj.getJSONObject("data").getJSONObject("userData");
+                    JSONObject userData = responseObj.getJSONObject("userData");
                     JsonParser parser = new JsonParser();
                     JsonElement mJson = parser.parse(userData.toString());
                     Gson gson = new Gson();
@@ -65,8 +61,7 @@ public class UserDetailsAction
 
                 } else
                 {
-                    JSONObject errorData = responseObj.getJSONObject("errorData");
-                    if (errorData.getInt("errorType") == 100)
+                    if (responseObj.getInt("errorID") == 100)
                     {
                         if (mApiKeyError != null)
                         {
@@ -76,7 +71,7 @@ public class UserDetailsAction
                     {
                         if (onFailureListener != null)
                         {
-                            Exception exception = new Exception(errorData.getInt("errorType") + ", " + errorData.getInt("errorMessage"));
+                            Exception exception = new Exception(responseObj.getInt("errorType") + ", " + responseObj.getInt("errorMessage"));
                             onFailureListener.onFailure(exception);
                         }
                     }

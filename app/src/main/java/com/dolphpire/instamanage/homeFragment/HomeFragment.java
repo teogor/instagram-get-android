@@ -29,6 +29,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.dolphpire.api.utils.NumberFormat.numberFormat;
+
 public class HomeFragment extends Fragment {
 
     private View mView;
@@ -119,10 +121,10 @@ public class HomeFragment extends Fragment {
             Intent intent = new Intent(mContext, IGAccountActivity.class);
             mContext.startActivity(intent);
         });
-
-        txt_coins.setText(String.valueOf(DolphPireApp.getInstance().getUser().getCoins()));
+        
+        txt_coins.setText(numberFormat(DolphPireApp.getInstance().getUser().getCoins()));
         DolphPireApp.getInstance().syncUser()
-                .setListener(user -> txt_coins.setText(String.valueOf(user.getCoins())), "HOME_FRAGMENT");
+                .setListener(user -> txt_coins.setText(numberFormat(user.getCoins())), "HOME_FRAGMENT");
 
     }
 
