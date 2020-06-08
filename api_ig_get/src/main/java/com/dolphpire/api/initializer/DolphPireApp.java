@@ -26,6 +26,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.dolphpire.api.instance.DolphPireInstance;
+import com.dolphpire.api.models.IGAccountModel;
+import com.dolphpire.api.models.SyncIGAccount;
 import com.dolphpire.api.models.UserModel;
 import com.dolphpire.api.models.SyncUserModel;
 import com.google.gson.Gson;
@@ -47,6 +49,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_APP_DATA;
+import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_IG_ACCOUNT;
 import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_USER_ACCOUNT;
 
 public class DolphPireApp
@@ -67,6 +70,7 @@ public class DolphPireApp
     private final DolphPireOptions options;
     private final AtomicBoolean automaticResourceManagementEnabled = new AtomicBoolean(false);
     private SyncUserModel mSyncUserModel;
+    private SyncIGAccount mSyncIGAccount;
     private RequestQueue mRequestQueue;
 
     @SuppressLint("RestrictedApi")
@@ -176,6 +180,7 @@ public class DolphPireApp
         }
         INSTANCES.put(normalizedName, dolphpireApp);
         getInstance().mSyncUserModel = new SyncUserModel();
+        getInstance().mSyncIGAccount = new SyncIGAccount();
         return dolphpireApp;
     }
 
@@ -313,8 +318,27 @@ public class DolphPireApp
         prefsEditor.apply();
     }
 
+    public void setCurrentAccount(IGAccountModel ig_account) {
+
+        SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        prefsEditor.putString(DPIRE_SP_IG_ACCOUNT, new Gson().toJson(ig_account));
+        prefsEditor.apply();
+        this.syncIGAccount().setIGAccount(ig_account);
+    }
+
+    public IGAccountModel getIGAccount()
+    {
+        SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
+        return new Gson().fromJson(mPrefs.getString(DPIRE_SP_IG_ACCOUNT, null), IGAccountModel.class);
+    }
+
     public SyncUserModel syncUser() {
         return this.mSyncUserModel;
+    }
+
+    public SyncIGAccount syncIGAccount() {
+        return this.mSyncIGAccount;
     }
 
     public UserModel getUser()

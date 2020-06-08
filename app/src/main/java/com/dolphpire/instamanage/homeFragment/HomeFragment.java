@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.models.SyncUserModel;
 import com.dolphpire.api.models.UserModel;
@@ -31,12 +32,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.dolphpire.api.utils.NumberFormat.numberFormat;
 
-public class HomeFragment extends Fragment {
-
-    private View mView;
-    private RelativeLayout rlToolbar;
-    private Context mContext;
-    private Activity mActivity;
+public class HomeFragment extends Fragment
+{
 
     @BindView(R.id.btnLikes)
     TextView btnLikes;
@@ -50,14 +47,20 @@ public class HomeFragment extends Fragment {
     TextView txt_coins;
     @BindView(R.id.imvIGUser)
     CircleImageView imvIGUser;
+    private View mView;
+    private RelativeLayout rlToolbar;
+    private Context mContext;
+    private Activity mActivity;
 
-    public HomeFragment() {
+    public HomeFragment()
+    {
 
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    {
         mView = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, mView);
 
@@ -67,48 +70,56 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
+    public void onStart()
+    {
         super.onStart();
     }
 
     @Override
-    public void onDestroyView() {
+    public void onDestroyView()
+    {
         super.onDestroyView();
     }
 
     @Override
-    public void onDetach() {
+    public void onDetach()
+    {
         super.onDetach();
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
+    public void onAttach(@NonNull Context context)
+    {
         super.onAttach(context);
         mContext = context;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
 
         GetCoinsFragment getCoinsFragment = new GetCoinsFragment();
         GetLikesFragment getLikesFragment = new GetLikesFragment();
         GetFollowersFragment getFollowersFragment = new GetFollowersFragment();
 
-        btnLikes.setOnClickListener(v -> {
+        btnLikes.setOnClickListener(v ->
+        {
             showFragment(getLikesFragment);
             btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
             btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
             title_toolbar.setText("Get Likes");
         });
 
-        btnFollowers.setOnClickListener(v -> {
+        btnFollowers.setOnClickListener(v ->
+        {
             showFragment(getFollowersFragment);
             btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
             btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
             title_toolbar.setText("Get Followers");
         });
 
-        btnCoins.setOnClickListener(v -> {
+        btnCoins.setOnClickListener(v ->
+        {
             showFragment(getCoinsFragment);
             btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
             btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
@@ -117,18 +128,45 @@ public class HomeFragment extends Fragment {
 
         showFragment(getCoinsFragment);
 
-        imvIGUser.setOnClickListener(v -> {
+        imvIGUser.setOnClickListener(v ->
+        {
             Intent intent = new Intent(mContext, IGAccountActivity.class);
             mContext.startActivity(intent);
         });
-        
+
+        txt_coins.setOnClickListener(v -> DolphPireApp.initializeApi()
+                .user()
+                .details()
+                .withUUID(DolphPireApp.getInstance().getUUID())
+                .execute());
+
         txt_coins.setText(numberFormat(DolphPireApp.getInstance().getUser().getCoins()));
         DolphPireApp.getInstance().syncUser()
-                .setListener(user -> txt_coins.setText(numberFormat(user.getCoins())), "HOME_FRAGMENT");
+                .setListener(this::onSyncUser, "HOME_FRAGMENT");
+
+        setIGAccountData();
+        DolphPireApp.getInstance().syncIGAccount()
+                .setListener(user -> setIGAccountData(), "HOME_FRAGMENT");
 
     }
 
-    private void showFragment(Fragment fragment) {
+    private void setIGAccountData()
+    {
+        if (DolphPireApp.getInstance().getIGAccount() != null)
+        {
+            Glide.with(this)
+                    .load(DolphPireApp.getInstance().getIGAccount().getProfilePicture())
+                    .into(imvIGUser);
+        }
+    }
+
+    private void onSyncUser(UserModel user)
+    {
+        txt_coins.setText(numberFormat(user.getCoins()));
+    }
+
+    private void showFragment(Fragment fragment)
+    {
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment)
                 .commit();

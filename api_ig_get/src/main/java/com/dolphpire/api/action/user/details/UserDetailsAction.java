@@ -1,5 +1,7 @@
 package com.dolphpire.api.action.user.details;
 
+import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
@@ -17,6 +19,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.dolphpire.api.initializer.DolphPireApp.TAG;
 
 public class UserDetailsAction
 {

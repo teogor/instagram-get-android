@@ -13,7 +13,7 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        android:paddingStart="15dp"
+        android:paddingStart="5dp"
         android:paddingEnd="15dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -23,10 +23,11 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/bg_circle"
             android:elevation="10dp"
             app:civ_border_color="@color/colorAccent"
-            app:civ_border_width="0dp" />
+            app:civ_border_width="1dp" />
 
         <TextView
             android:id="@+id/txtIGUsername"
@@ -38,7 +39,6 @@
             android:clickable="false"
             android:focusable="false"
             android:fontFamily="@font/open_sans_semibold"
-            android:text="unknown"
             android:textAlignment="textStart"
             android:textColor="@color/colorTextLvl1"
             android:textSize="18sp"
