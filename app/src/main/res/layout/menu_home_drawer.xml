@@ -31,8 +31,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/igUserImage"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
                     android:layout_marginStart="8dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/ic_nav_account"
