@@ -3,8 +3,6 @@ package com.dolphpire.api.action.user.details;
 import android.util.Log;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ApiCallback;
@@ -24,7 +22,7 @@ import java.util.Map;
 
 import static com.dolphpire.api.initializer.DolphPireApp.TAG;
 
-public class UserFullDetailsAction
+public class UserDetailsAction
 {
 
     private String user_id = null;
@@ -33,12 +31,12 @@ public class UserFullDetailsAction
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
 
-    UserFullDetailsAction(int user_id)
+    UserDetailsAction(int user_id)
     {
         this.user_id = String.valueOf(user_id);
     }
 
-    UserFullDetailsAction(String username)
+    UserDetailsAction(String username)
     {
         this.username = username;
     }
@@ -105,8 +103,8 @@ public class UserFullDetailsAction
             {
                 Map<String, String> params = new HashMap<>();
                 params.put("api_key", DolphPireApp.getInstance().getApiKey());
-                params.put("package_name", DolphPireApp.getInstance().getPackage());
-                params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUserID()));
+                params.put("secret_key", DolphPireApp.getInstance().getSecretKey());
+                params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUUID()));
 
                 params.put("user_id", user_id == null ? "null" : user_id);
                 params.put("username", username == null ? "null" : username);
@@ -119,19 +117,19 @@ public class UserFullDetailsAction
 
     }
 
-    public UserFullDetailsAction addOnCompleteListener(ZFlowUserCallback.OnCompleteListener<UserModel> onCompleteListener)
+    public UserDetailsAction addOnCompleteListener(ZFlowUserCallback.OnCompleteListener<UserModel> onCompleteListener)
     {
         this.onCompleteListener = onCompleteListener;
         return this;
     }
 
-    public UserFullDetailsAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener)
+    public UserDetailsAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener)
     {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public UserFullDetailsAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError)
+    public UserDetailsAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError)
     {
         this.mApiKeyError = mApiKeyError;
         return this;

@@ -77,7 +77,7 @@ public class ExecuteAction {
                 Map<String, String> params = new HashMap<>();
                 params.put("api_key", DolphPireApp.getInstance().getApiKey());
                 params.put("package_name", DolphPireApp.getInstance().getPackage());
-                params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUserID()));
+                params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUUID()));
 
                 params.put("user_id", user_id);
                 params.put("action", action);

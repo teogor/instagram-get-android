@@ -6,12 +6,12 @@ public class DetailsAction {
 
     }
 
-    public UserFullDetailsAction withUUID(int user_id) {
-        return new UserFullDetailsAction(user_id);
+    public UserDetailsAction withUUID(int user_id) {
+        return new UserDetailsAction(user_id);
     }
 
-    public UserFullDetailsAction withUsername(String username) {
-        return new UserFullDetailsAction(username);
+    public UserDetailsAction withUsername(String username) {
+        return new UserDetailsAction(username);
     }
 
 }

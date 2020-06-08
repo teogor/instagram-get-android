@@ -17,7 +17,7 @@ public class App extends Application
             DolphPireApp.initializeApi()
                     .user()
                     .details()
-                    .withUUID(DolphPireApp.getInstance().getUserID());
+                    .withUUID(DolphPireApp.getInstance().getUUID());
         }
 
     }

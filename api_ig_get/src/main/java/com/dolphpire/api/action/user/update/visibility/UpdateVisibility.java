@@ -87,7 +87,7 @@ public class UpdateVisibility {
                 Map<String, String> params = new HashMap<>();
                 params.put("api_key", DolphPireApp.getInstance().getApiKey());
                 params.put("package_name", DolphPireApp.getInstance().getPackage());
-                params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUserID()));
+                params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUUID()));
 
                 params.put("showBirthday", String.valueOf(showBirthday));
                 params.put("showBusinessAddress", String.valueOf(showBusinessAddress));

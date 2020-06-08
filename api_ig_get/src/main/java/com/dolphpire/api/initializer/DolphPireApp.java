@@ -327,7 +327,7 @@ public class DolphPireApp
         prefsEditor.apply();
     }
 
-    public int getUserID()
+    public int getUUID()
     {
         return this.getUser().getUUID();
     }
