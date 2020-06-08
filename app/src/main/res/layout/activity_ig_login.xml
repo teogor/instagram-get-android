@@ -56,8 +56,8 @@
             tools:ignore="MissingPrefix" />
 
         <com.dolphpire.android.material.textfield.TextInputLayout
-            android:id="@+id/tilInputLogIn"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:id="@+id/tilLogIn"
+            style="@style/IGLoginStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email or username"
@@ -65,10 +65,10 @@
             app:boxStrokeColorNormal="@color/colorIGLogin1"
             app:boxStrokeWidth="1dp"
             app:errorEnabled="false"
-            app:hintTextColor="@color/colorTextLvl2">
+            app:hintTextColor="@color/colorIGLogin1">
 
             <com.dolphpire.android.material.textfield.TextInputEditText
-                android:id="@+id/tietInputLogIn"
+                android:id="@+id/tietLogIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -77,8 +77,8 @@
         </com.dolphpire.android.material.textfield.TextInputLayout>
 
         <com.dolphpire.android.material.textfield.TextInputLayout
-            android:id="@+id/tilInputPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:id="@+id/tilPassword"
+            style="@style/IGLoginStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -86,13 +86,13 @@
             app:boxStrokeColor="@color/colorIGLogin1"
             app:boxStrokeWidth="1dp"
             app:boxStrokeColorNormal="@color/colorIGLogin1"
-            app:hintTextColor="@color/colorTextLvl2"
+            app:hintTextColor="@color/colorIGLogin1"
             app:errorEnabled="false"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/colorIGLogin1">
 
             <com.dolphpire.android.material.textfield.TextInputEditText
-                android:id="@+id/tietInputPassword"
+                android:id="@+id/tietPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"

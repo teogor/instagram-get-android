@@ -44,10 +44,10 @@ public class IGLoginActivity extends AppCompatActivity
     RelativeLayout llLoadingHolder;
     @BindView(R.id.llLoginButton)
     LinearLayout llLoginButton;
-    @BindView(R.id.tilInputLogIn)
-    TextInputLayout tilInputLogIn;
-    @BindView(R.id.tietInputLogIn)
-    TextInputEditText tietInputLogIn;
+    @BindView(R.id.tilLogIn)
+    TextInputLayout tilLogIn;
+    @BindView(R.id.tietLogIn)
+    TextInputEditText tietLogIn;
     @BindView(R.id.tilPassword)
     TextInputLayout tilPassword;
     @BindView(R.id.tietPassword)
@@ -92,7 +92,7 @@ public class IGLoginActivity extends AppCompatActivity
         llTermsPolicy.setVisibility(View.GONE);
         if (validateInput())
         {
-            String inputData = Objects.requireNonNull(tietInputLogIn.getText()).toString().trim();
+            String inputData = Objects.requireNonNull(tietLogIn.getText()).toString().trim();
             String password = Objects.requireNonNull(tietPassword.getText()).toString().trim();
 
             getCsftoken();
@@ -103,7 +103,7 @@ public class IGLoginActivity extends AppCompatActivity
                 @Override
                 public void onSuccess(int statusCode, LoginResponseData insBaseData)
                 {
-                    LoginResponseData.LoggedInUserBean loggedInUserBean = null;
+                    LoginResponseData.LoggedInUserBean loggedInUserBean;
                     if (insBaseData != null && (loggedInUserBean = insBaseData.getLogged_in_user()) != null)
                     {
                         String pkId = loggedInUserBean.getPk() + "";
@@ -123,8 +123,8 @@ public class IGLoginActivity extends AppCompatActivity
                 {
                     if (errorMsg.contains("username"))
                     {
-                        tilInputLogIn.setErrorEnabled(true);
-                        tilInputLogIn.setError("Bad login key");
+                        tilLogIn.setErrorEnabled(true);
+                        tilLogIn.setError("Bad login key");
                     } else if (errorMsg.contains("password"))
                     {
                         tilPassword.setErrorEnabled(true);
@@ -188,20 +188,20 @@ public class IGLoginActivity extends AppCompatActivity
 
         boolean validData = true;
 
-        String inputData = Objects.requireNonNull(tietInputLogIn.getText()).toString().trim();
+        String inputData = Objects.requireNonNull(tietLogIn.getText()).toString().trim();
         String password = Objects.requireNonNull(tietPassword.getText()).toString().trim();
 
         if (inputData.isEmpty())
         {
 
-            tilInputLogIn.setErrorEnabled(true);
-            tilInputLogIn.setError("Empty field");
+            tilLogIn.setErrorEnabled(true);
+            tilLogIn.setError("Empty field");
             validData = false;
 
         } else
         {
 
-            tilInputLogIn.setErrorEnabled(false);
+            tilLogIn.setErrorEnabled(false);
 
         }
 
