@@ -56,7 +56,6 @@
             android:clickable="false"
             android:focusable="false"
             android:fontFamily="@font/open_sans_semibold"
-            android:text="0"
             android:textColor="#fcc62d"
             android:textSize="16sp"
             android:textStyle="bold"
