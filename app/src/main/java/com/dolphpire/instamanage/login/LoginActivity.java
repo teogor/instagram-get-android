@@ -24,6 +24,7 @@ import com.dolphpire.insapi.request.api.login.LoginRequest;
 import com.dolphpire.insapi.request.api.login.LoginResponseData;
 import com.dolphpire.insapi.response.InsBaseResponseData;
 import com.dolphpire.instamanage.R;
+import com.dolphpire.instamanage.home.HomeActivity;
 import com.dolphpire.instamanage.signup.SignUpActivity;
 import com.joy.libok.test.log.LLog;
 
@@ -146,7 +147,9 @@ public class LoginActivity extends AppCompatActivity
                 .set()
                 .addOnLoggedInListener(userData ->
                 {
-                    Log.d("userModel", String.valueOf(userData.getUUID()));
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
                     rlLoading.setVisibility(View.GONE);
                 })
                 .addOnFailureListener(new ZFlowLoginListener.OnLoginFailure()

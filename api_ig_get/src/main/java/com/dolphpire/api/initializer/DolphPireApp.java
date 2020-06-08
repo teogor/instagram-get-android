@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -27,6 +28,7 @@ import com.android.volley.toolbox.Volley;
 import com.dolphpire.api.instance.DolphPireInstance;
 import com.dolphpire.api.models.ZFlowSyncUser;
 import com.dolphpire.api.models.UserModel;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +44,10 @@ import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_APP_DATA;
+import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_USER_ACCOUNT;
 
 public class DolphPireApp {
 
@@ -272,19 +278,21 @@ public class DolphPireApp {
         return this.mZFlowSyncUser;
     }
 
-    public UserModel getUser() {
-        return this.mZFlowSyncUser.getUser();
+    public void setUser(UserModel user) {
+        SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        prefsEditor.putString(DPIRE_SP_USER_ACCOUNT, new Gson().toJson(user));
+        prefsEditor.apply();
     }
 
-    public void setUser(UserModel user) {
-        if (this.mZFlowSyncUser.getUser() != null) {
-//            user.setLogKey(this.mZFlowSyncUser.getUser().getLogKey());
-        }
-        this.mZFlowSyncUser.setUser(user);
+    public UserModel getUser()
+    {
+        SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
+        return new Gson().fromJson(mPrefs.getString(DPIRE_SP_USER_ACCOUNT, null), UserModel.class);
     }
 
     public int getUserID() {
-        return this.mZFlowSyncUser.getUser().getUUID();
+        return this.getUser().getUUID();
     }
 
     public String getApiKey() {

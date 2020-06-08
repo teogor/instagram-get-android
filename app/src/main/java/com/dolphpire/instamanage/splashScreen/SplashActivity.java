@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.insapi.manager.IGCommonFieldsManager;
+import com.dolphpire.instamanage.home.HomeActivity;
 import com.dolphpire.instamanage.login.LoginActivity;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
@@ -26,10 +27,17 @@ public class SplashActivity extends AppCompatActivity
         initOkManager();
         initInsFiledManger();
 
-        DolphPireApp.getInstance().getUser();
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
+        if (DolphPireApp.getInstance().getUser() != null)
+        {
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        } else
+        {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
     }
 
