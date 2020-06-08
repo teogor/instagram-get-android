@@ -3,8 +3,6 @@ package com.dolphpire.api.action.igaccount.addAccount;
 import android.util.Log;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ApiCallback;
@@ -24,7 +22,6 @@ public class LinkIGAccount
 {
 
     //class model
-
     private String igid = "null";
     private String username = "null";
     private String password = "null";
@@ -103,14 +100,9 @@ public class LinkIGAccount
             {
                 //empty method
             }
-        }, new Response.ErrorListener()
+        }, error ->
         {
 
-            @Override
-            public void onErrorResponse(VolleyError error)
-            {
-
-            }
         })
         {
 
