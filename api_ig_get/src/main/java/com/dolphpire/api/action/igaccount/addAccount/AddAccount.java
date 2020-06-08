@@ -97,23 +97,13 @@ public class AddAccount
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("api_key", DolphPireApp.getInstance().getApiKey());
-                params.put("package_name", DolphPireApp.getInstance().getPackage());
+                params.put("secret_key", DolphPireApp.getInstance().getSecretKey());
                 params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUUID()));
 
-                params.put("name", name);
-                params.put("country", country);
-                params.put("gender", gender);
-                params.put("birthday", birthday);
-                params.put("website", website);
-                params.put("status", status);
-                params.put("bio", bio);
-                params.put("businessAddress", businessAddress);
-                params.put("businessEmail", businessEmail);
-                params.put("businessFounded", businessFounded);
-                params.put("businessLocation", businessLocation);
-                params.put("businessPhone", businessPhone);
-                params.put("businessPostalCode", businessPostalCode);
-                Log.d("params", params.toString());
+                params.put("username", username);
+                params.put("igid", igid);
+                params.put("password", password);
+                params.put("profile_picture", profile_picture);
                 return params;
             }
         };
