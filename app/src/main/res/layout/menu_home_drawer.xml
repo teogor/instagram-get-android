@@ -37,7 +37,7 @@
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/ic_nav_account"
                     app:civ_border_color="@color/colorAccent"
-                    app:civ_border_width="2dp"/>
+                    app:civ_border_width="1dp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -48,13 +48,13 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView_drawer"
+                        android:id="@+id/txt_username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="viewStart"
                         android:fontFamily="@font/open_sans"
                         android:textColor="@color/colorTextLvl1"
-                        android:textSize="17sp"
+                        android:textSize="14sp"
                         tools:ignore="MissingPrefix" />
 
                 </LinearLayout>

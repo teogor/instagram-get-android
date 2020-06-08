@@ -1,6 +1,7 @@
 package com.dolphpire.api.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class UserModel implements Serializable
 {
@@ -10,6 +11,7 @@ public class UserModel implements Serializable
     private String email = "";
     private String username = "";
     private String password = "";
+    private ArrayList<IGAccountModel> ig_accounts = new ArrayList<>();
 
     private int coins = 0;
 
@@ -43,4 +45,8 @@ public class UserModel implements Serializable
         return username;
     }
 
+    public ArrayList<IGAccountModel> getIGAccounts()
+    {
+        return ig_accounts;
+    }
 }

@@ -9,6 +9,7 @@ import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
 import com.dolphpire.api.links.EndPoints;
+import com.dolphpire.api.models.IGAccountModel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -64,15 +65,26 @@ public class LinkIGAccount
     public void execute()
     {
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                EndPoints.USER_DETAILS_UPDATE, response ->
+                EndPoints.LINK_IG_ACCOUNT, response ->
         {
-            Log.e(TAG, "response: " + response);
+//            Log.e(TAG, "response: " + response);
             try
             {
                 JSONObject responseObj = new JSONObject(response);
                 // check for error flag
                 if (!responseObj.getBoolean("error"))
                 {
+                    DolphPireApp.initializeApi()
+                            .user()
+                            .details()
+                            .withUUID(DolphPireApp.getInstance().getUUID())
+                            .execute();
+                    IGAccountModel mIGAccount = new IGAccountModel();
+                    mIGAccount.setIg_account_id(Integer.parseInt(igid));
+                    mIGAccount.setPassword(password);
+                    mIGAccount.setUsername(username);
+                    mIGAccount.setProfile_picture(profile_picture);
+                    DolphPireApp.getInstance().setCurrentAccount(mIGAccount);
                     if (onComplete != null)
                     {
                         onComplete.onCompleted();

@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.dolphpire.android.material.textfield.TextInputEditText;
 import com.dolphpire.android.material.textfield.TextInputLayout;
 import com.dolphpire.api.initializer.DolphPireApp;
+import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
 import com.dolphpire.insapi.manager.IGCommonFieldsManager;
 import com.dolphpire.insapi.request.InsRequestCallBack;
 import com.dolphpire.insapi.request.api.follower.FollowersResponseData;
@@ -61,8 +62,6 @@ public class IGLoginActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ig_login);
 
-        getFollowers(true, "");
-
         ButterKnife.bind(this);
 
         imvBack.setOnClickListener(view -> finish());
@@ -107,7 +106,7 @@ public class IGLoginActivity extends AppCompatActivity
                     LoginResponseData.LoggedInUserBean loggedInUserBean;
                     if (insBaseData != null && (loggedInUserBean = insBaseData.getLogged_in_user()) != null)
                     {
-                        String pkId = loggedInUserBean.getPk() + "";
+                        String pkId = String.valueOf(loggedInUserBean.getPk());
                         if (!TextUtils.isEmpty(pkId))
                         {
                             IGCommonFieldsManager.getInstance().savePKID(pkId);
@@ -120,12 +119,22 @@ public class IGLoginActivity extends AppCompatActivity
                                     .withProfilePicture(loggedInUserBean.getProfile_pic_url())
                                     .isPrivate(loggedInUserBean.isIs_private())
                                     .set()
+                                    .addOnCompleteListener(() -> finish())
+                                    .addOnFailureListener(e ->
+                                    {
+                                        llLoadingHolder.setVisibility(View.GONE);
+                                        llLoginHolder.setVisibility(View.VISIBLE);
+                                        llTermsPolicy.setVisibility(View.VISIBLE);
+
+                                    })
                                     .execute();
+                        } else
+                        {
+                            llLoadingHolder.setVisibility(View.GONE);
+                            llLoginHolder.setVisibility(View.VISIBLE);
+                            llTermsPolicy.setVisibility(View.VISIBLE);
                         }
                     }
-                    llLoadingHolder.setVisibility(View.GONE);
-                    llLoginHolder.setVisibility(View.VISIBLE);
-                    llTermsPolicy.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -152,44 +161,6 @@ public class IGLoginActivity extends AppCompatActivity
             llLoginHolder.setVisibility(View.VISIBLE);
             llTermsPolicy.setVisibility(View.VISIBLE);
         }
-
-    }
-
-    private void getFollowers(boolean isFirstPage, String nextMaxId)
-    {
-
-        if (isFirstPage)
-        {
-            mFollowersResponseData.getUsers().clear();
-        }
-        String userId = IGCommonFieldsManager.getInstance().getPKID();
-        GetFollowersRequest getFollowersRequest = new GetFollowersRequest(isFirstPage, userId,
-                nextMaxId);
-        getFollowersRequest.execute(new InsRequestCallBack<FollowersResponseData>()
-        {
-            @Override
-            public void onSuccess(int statusCode, FollowersResponseData response)
-            {
-                mFollowersResponseData.setBig_list(response.isBig_list());
-                mFollowersResponseData.setNext_max_id(response.getNext_max_id());
-                mFollowersResponseData
-                        .setPage_size(mFollowersResponseData.getPage_size() + response.getPage_size());
-                mFollowersResponseData.getUsers().addAll(response.getUsers());
-
-                if (!TextUtils.isEmpty(response.getNext_max_id()))
-                {
-                    getFollowers(false, mFollowersResponseData.getNext_max_id());
-                }
-
-            }
-
-            @Override
-            public void onFailure(int errorCode, String errorMsg)
-            {
-
-            }
-        });
-
 
     }
 

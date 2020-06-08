@@ -1,5 +1,10 @@
 package com.dolphpire.instamanage.home;
 
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.widget.TextView;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,10 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-
+import com.bumptech.glide.Glide;
+import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.home.drawer.DrawerAdapter;
 import com.dolphpire.instamanage.home.drawer.DrawerItem;
@@ -24,20 +27,16 @@ import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
 import java.util.Arrays;
 
-public class HomeActivity extends AppCompatActivity {
+import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
+public class HomeActivity extends AppCompatActivity
+{
+
+    CircleImageView igUserImage;
+    TextView txt_username;
 
     private HomeFragment mHomeFragment = new HomeFragment();
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(com.dolphpire.instamanage.R.layout.activity_home);
-        setDrawer(savedInstanceState);
-
-
-
-    }
-
     private int POS_HOME = 0;
     private int POS_ACCOUNT = 1;
     private int POS_LOG_OUT = 3;
@@ -45,7 +44,51 @@ public class HomeActivity extends AppCompatActivity {
     private Drawable[] screenIcons;
     private SlidingRootNav slidingRootNav;
     private DrawerAdapter adapter;
-    private void setDrawer(Bundle savedInstanceState) {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+
+        ButterKnife.bind(this);
+
+        setContentView(R.layout.activity_home);
+        setDrawer(savedInstanceState);
+
+        setIGAccount();
+
+    }
+
+    private void setIGAccount()
+    {
+        igUserImage = findViewById(R.id.igUserImage);
+        txt_username = findViewById(R.id.txt_username);
+        if (DolphPireApp.getInstance().getIGAccount() != null)
+        {
+            Glide.with(this)
+                    .load(DolphPireApp.getInstance().getIGAccount().getProfilePicture())
+                    .into(igUserImage);
+            txt_username.setText(DolphPireApp.getInstance().getIGAccount().getUsername());
+        }
+
+        DolphPireApp.getInstance().syncIGAccount()
+                .setListener(user -> setIGAccountData(), "IG_ACCOUNT_ACTIVITY");
+    }
+
+    private void setIGAccountData()
+    {
+
+        if (DolphPireApp.getInstance().getIGAccount() != null)
+        {
+            Glide.with(this)
+                    .load(DolphPireApp.getInstance().getIGAccount().getProfilePicture())
+                    .into(igUserImage);
+            txt_username.setText(DolphPireApp.getInstance().getIGAccount().getUsername());
+        }
+    }
+
+    private void setDrawer(Bundle savedInstanceState)
+    {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -72,7 +115,8 @@ public class HomeActivity extends AppCompatActivity {
 
             slidingRootNav.closeMenu(true);
 
-            if(position == POS_HOME) {
+            if (position == POS_HOME)
+            {
 
                 showFragment(mHomeFragment);
 
@@ -88,13 +132,15 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    private void showFragment(Fragment fragment) {
+    private void showFragment(Fragment fragment)
+    {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment)
                 .commit();
     }
 
-    private DrawerItem createItemFor(int position) {
+    private DrawerItem createItemFor(int position)
+    {
         return new SimpleItem(screenIcons[position], screenTitles[position])
                 .withIconTint(color(R.color.colorUnselected))
                 .withTextTint(color(R.color.colorUnselected))
@@ -106,16 +152,20 @@ public class HomeActivity extends AppCompatActivity {
                 .withSelectedIconSize(48);
     }
 
-    private String[] loadScreenTitles() {
+    private String[] loadScreenTitles()
+    {
         return getResources().getStringArray(R.array.ld_activityScreenTitles);
     }
 
-    private Drawable[] loadScreenIcons() {
+    private Drawable[] loadScreenIcons()
+    {
         TypedArray ta = getResources().obtainTypedArray(R.array.ld_activityScreenIcons);
         Drawable[] icons = new Drawable[ta.length()];
-        for (int i = 0; i < ta.length(); i++) {
+        for (int i = 0; i < ta.length(); i++)
+        {
             int id = ta.getResourceId(i, 0);
-            if (id != 0) {
+            if (id != 0)
+            {
                 icons[i] = ContextCompat.getDrawable(this, id);
             }
         }
@@ -124,18 +174,21 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @ColorInt
-    private int color(@ColorRes int res) {
+    private int color(@ColorRes int res)
+    {
         return ContextCompat.getColor(this, res);
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onDestroy()
+    {
         super.onDestroy();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }

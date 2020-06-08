@@ -75,20 +75,10 @@ public class CreateAccount
                         }
                     } else
                     {
-                        JSONObject errorData = responseObj.getJSONObject("errorData");
-                        if (errorData.getInt("errorID") == 511)
+                        if (onFailureListener != null)
                         {
-                            if (mApiKeyError != null)
-                            {
-                                mApiKeyError.badApi();
-                            }
-                        } else
-                        {
-                            if (onFailureListener != null)
-                            {
-                                Exception exception = new Exception(errorData.getInt("errorType") + ", " + errorData.getInt("errorMessage"));
-                                onFailureListener.onFailure(exception);
-                            }
+                            Exception exception = new Exception("server error");
+                            onFailureListener.onFailure(exception);
                         }
                     }
 

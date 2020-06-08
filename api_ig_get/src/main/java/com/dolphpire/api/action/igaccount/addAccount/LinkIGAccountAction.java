@@ -30,7 +30,7 @@ public class LinkIGAccountAction
     }
 
     public LinkIGAccountAction isPrivate(boolean is_private) {
-        this.mLinkIGAccount.setIsPrivate(String.valueOf(is_private));
+        this.mLinkIGAccount.setIsPrivate(String.valueOf(is_private ? 1 : 0));
         return this;
     }
 
