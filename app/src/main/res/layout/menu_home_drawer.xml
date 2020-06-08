@@ -30,12 +30,12 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/userImage"
+                    android:id="@+id/igUserImage"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_marginStart="8dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/ic_launcher_background"
+                    android:src="@drawable/ic_nav_account"
                     app:civ_border_color="@color/colorAccent"
                     app:civ_border_width="2dp"/>
 
