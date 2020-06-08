@@ -305,18 +305,6 @@ public class DolphPireApp
         return name.trim();
     }
 
-    public int getNewUID()
-    {
-        return DolphPireAPI.presence().newUser().getNewUID();
-    }
-
-    public void setNewUID(int user_id)
-    {
-
-        DolphPireAPI.presence().newUser().setNewUID(user_id);
-
-    }
-
     public void deleteUser()
     {
         SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
