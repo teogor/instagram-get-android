@@ -1,18 +1,20 @@
 package com.dolphpire.api.action.user.details;
 
+import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowUserCallback;
 import com.dolphpire.api.links.EndPoints;
 import com.dolphpire.api.models.UserModel;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +22,10 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserFullDetailsAction {
+import static com.dolphpire.api.initializer.DolphPireApp.TAG;
+
+public class UserFullDetailsAction
+{
 
     private String user_id = null;
     private String username = null;
@@ -28,68 +33,76 @@ public class UserFullDetailsAction {
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
 
-    UserFullDetailsAction(int user_id) {
+    UserFullDetailsAction(int user_id)
+    {
         this.user_id = String.valueOf(user_id);
     }
 
-    UserFullDetailsAction(String username) {
+    UserFullDetailsAction(String username)
+    {
         this.username = username;
     }
 
-    public void execute() {
+    public void execute()
+    {
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                EndPoints.USER_FULL_DETAILS, new Response.Listener<String>() {
-
-            @Override
-            public void onResponse(String response) {
-                //Log.e(TAG, "response: " + response);
-                try {
-                    JSONObject responseObj = new JSONObject(response);
-                    // check for error flag
-                    if (!responseObj.getBoolean("error")) {
-                        JSONObject userData = responseObj.getJSONObject("data").getJSONObject("userData");
-                        JsonParser parser = new JsonParser();
-                        JsonElement mJson = parser.parse(userData.toString());
-                        Gson gson = new Gson();
-                        UserModel mUserModel = gson.fromJson(mJson, UserModel.class);
+                EndPoints.USER_DETAILS, response ->
+        {
+            Log.e(TAG, "response: " + response);
+            try
+            {
+                JSONObject responseObj = new JSONObject(response);
+                // check for error flag
+                if (!responseObj.getBoolean("error"))
+                {
+                    JSONObject userData = responseObj.getJSONObject("data").getJSONObject("userData");
+                    JsonParser parser = new JsonParser();
+                    JsonElement mJson = parser.parse(userData.toString());
+                    Gson gson = new Gson();
+                    UserModel mUserModel = gson.fromJson(mJson, UserModel.class);
 
 //                        if (mUserModel.getUserId() == DolphPireApp.getInstance().getUserID()) {
 //                            mUserModel.setLogKey(DolphPireApp.getInstance().getUser().getLogKey());
 //                            DolphPireApp.getInstance().setUser(mUserModel);
 //                        }
 
-                        if (onCompleteListener != null) {
-                            onCompleteListener.onComplete(mUserModel);
-                        }
-
-                    } else {
-                        JSONObject errorData = responseObj.getJSONObject("errorData");
-                        if (errorData.getInt("errorType") == 100) {
-                            if (mApiKeyError != null) {
-                                mApiKeyError.badApi();
-                            }
-                        } else {
-                            if (onFailureListener != null) {
-                                Exception exception = new Exception(errorData.getInt("errorType") + ", " + errorData.getInt("errorMessage"));
-                                onFailureListener.onFailure(exception);
-                            }
-                        }
+                    if (onCompleteListener != null)
+                    {
+                        onCompleteListener.onComplete(mUserModel);
                     }
 
-                } catch (JSONException ignored) {
-                    //empty method
+                } else
+                {
+                    JSONObject errorData = responseObj.getJSONObject("errorData");
+                    if (errorData.getInt("errorType") == 100)
+                    {
+                        if (mApiKeyError != null)
+                        {
+                            mApiKeyError.badApi();
+                        }
+                    } else
+                    {
+                        if (onFailureListener != null)
+                        {
+                            Exception exception = new Exception(errorData.getInt("errorType") + ", " + errorData.getInt("errorMessage"));
+                            onFailureListener.onFailure(exception);
+                        }
+                    }
                 }
+
+            } catch (JSONException ignored)
+            {
+                //empty method
             }
-        }, new Response.ErrorListener() {
+        }, error ->
+        {
+
+        })
+        {
 
             @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }) {
-
-            @Override
-            protected Map<String, String> getParams() {
+            protected Map<String, String> getParams()
+            {
                 Map<String, String> params = new HashMap<>();
                 params.put("api_key", DolphPireApp.getInstance().getApiKey());
                 params.put("package_name", DolphPireApp.getInstance().getPackage());
@@ -106,17 +119,20 @@ public class UserFullDetailsAction {
 
     }
 
-    public UserFullDetailsAction addOnCompleteListener(ZFlowUserCallback.OnCompleteListener<UserModel> onCompleteListener) {
+    public UserFullDetailsAction addOnCompleteListener(ZFlowUserCallback.OnCompleteListener<UserModel> onCompleteListener)
+    {
         this.onCompleteListener = onCompleteListener;
         return this;
     }
 
-    public UserFullDetailsAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener) {
+    public UserFullDetailsAction addOnFailureListener(FailureCallback.OnFailureListener onFailureListener)
+    {
         this.onFailureListener = onFailureListener;
         return this;
     }
 
-    public UserFullDetailsAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError) {
+    public UserFullDetailsAction addOnFailedListener(ApiCallback.ApiKeyError mApiKeyError)
+    {
         this.mApiKeyError = mApiKeyError;
         return this;
     }

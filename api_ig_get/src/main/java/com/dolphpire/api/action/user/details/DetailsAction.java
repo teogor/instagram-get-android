@@ -6,16 +6,12 @@ public class DetailsAction {
 
     }
 
-    public UserFullDetailsAction advanced(int user_id) {
+    public UserFullDetailsAction withUUID(int user_id) {
         return new UserFullDetailsAction(user_id);
     }
 
-    public UserFullDetailsAction advanced(String username) {
+    public UserFullDetailsAction withUsername(String username) {
         return new UserFullDetailsAction(username);
-    }
-
-    public UserProfilePicturesAction profilePictures(int user_id) {
-        return new UserProfilePicturesAction(user_id);
     }
 
 }
