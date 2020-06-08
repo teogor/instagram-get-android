@@ -48,13 +48,9 @@
         <item name="android:textColor">@color/colorIGLogin2</item>
     </style>
 
-    <style name="RegisterInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="IGLoginStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="colorAccent">@color/loginGradientStart</item>
         <item name="boxStrokeColor">@color/loginGradientStart</item>
-
-        <!-- Hint color and label color in FALSE state -->
-        <item name="android:textColorHint">@color/colorAccent</item>
-        <item name="android:textSize">10sp</item>
 
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
         <item name="android:colorAccent">@color/loginGradientStart</item>

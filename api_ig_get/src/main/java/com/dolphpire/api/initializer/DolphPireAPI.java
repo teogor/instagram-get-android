@@ -4,6 +4,7 @@ import com.dolphpire.api.action.autocomplete.AutocompleteAction;
 import com.dolphpire.api.action.comments.CommentsAction;
 import com.dolphpire.api.action.discover.DiscoverAction;
 import com.dolphpire.api.action.hashtag.HashtagAction;
+import com.dolphpire.api.action.igaccount.IGAccountAction;
 import com.dolphpire.api.action.login.LoginAction;
 import com.dolphpire.api.action.notifications.Notifications;
 import com.dolphpire.api.action.posts.PostsAction;
@@ -35,6 +36,12 @@ public class DolphPireAPI
     public UserAction user()
     {
         return new UserAction();
+    }
+
+    @KeepForApi
+    public IGAccountAction igAccount()
+    {
+        return new IGAccountAction();
     }
 
     @KeepForApi
