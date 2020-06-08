@@ -120,6 +120,18 @@ public class HomeFragment extends Fragment {
             mContext.startActivity(intent);
         });
 
+        txt_coins.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                DolphPireApp.initializeApi()
+                        .user()
+                        .details()
+                        .withUUID(DolphPireApp.getInstance().getUUID())
+                        .execute();
+            }
+        });
         txt_coins.setText(String.valueOf(DolphPireApp.getInstance().getUser().getCoins()));
         DolphPireApp.getInstance().syncUser()
                 .setListener(user -> txt_coins.setText(String.valueOf(user.getCoins())), "HOME_FRAGMENT");

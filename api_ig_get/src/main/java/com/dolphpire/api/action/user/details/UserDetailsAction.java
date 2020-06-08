@@ -47,7 +47,8 @@ public class UserDetailsAction
                 // check for error flag
                 if (!responseObj.getBoolean("error"))
                 {
-                    JSONObject userData = responseObj.getJSONObject("data").getJSONObject("userData");
+                    JSONObject userData = responseObj.getJSONObject("userData");
+                    Log.d("userData", String.valueOf(userData) + "2435");
                     JsonParser parser = new JsonParser();
                     JsonElement mJson = parser.parse(userData.toString());
                     Gson gson = new Gson();
