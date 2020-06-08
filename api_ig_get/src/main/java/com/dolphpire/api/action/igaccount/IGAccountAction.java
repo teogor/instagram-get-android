@@ -1,6 +1,6 @@
 package com.dolphpire.api.action.igaccount;
 
-import com.dolphpire.api.action.igaccount.addAccount.AddAccountAction;
+import com.dolphpire.api.action.igaccount.addAccount.LinkIGAccountAction;
 
 public class IGAccountAction
 {
@@ -10,9 +10,9 @@ public class IGAccountAction
 
     }
 
-    public AddAccountAction addAccount()
+    public LinkIGAccountAction linkAccount()
     {
-        return new AddAccountAction();
+        return new LinkIGAccountAction();
     }
 
 }

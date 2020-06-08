@@ -113,11 +113,12 @@ public class IGLoginActivity extends AppCompatActivity
                             IGCommonFieldsManager.getInstance().savePKID(pkId);
                             DolphPireApp.initializeApi()
                                     .igAccount()
-                                    .addAccount()
+                                    .linkAccount()
                                     .withIGID(loggedInUserBean.getPk())
                                     .withPassword(password)
                                     .withUsername(loggedInUserBean.getUsername())
                                     .withProfilePicture(loggedInUserBean.getProfile_pic_url())
+                                    .isPrivate(loggedInUserBean.isIs_private())
                                     .set()
                                     .execute();
                         }
