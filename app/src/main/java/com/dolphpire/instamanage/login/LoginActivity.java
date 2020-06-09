@@ -2,8 +2,6 @@ package com.dolphpire.instamanage.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -17,16 +15,9 @@ import com.dolphpire.android.material.textfield.TextInputEditText;
 import com.dolphpire.android.material.textfield.TextInputLayout;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ZFlowLoginListener;
-import com.dolphpire.insapi.manager.IGCommonFieldsManager;
-import com.dolphpire.insapi.request.InsRequestCallBack;
-import com.dolphpire.insapi.request.api.header.GetHeaderRequest;
-import com.dolphpire.insapi.request.api.login.LoginRequest;
-import com.dolphpire.insapi.request.api.login.LoginResponseData;
-import com.dolphpire.insapi.response.InsBaseResponseData;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.home.HomeActivity;
 import com.dolphpire.instamanage.signup.SignUpActivity;
-import com.joy.libok.test.log.LLog;
 
 import java.util.Objects;
 
@@ -147,10 +138,13 @@ public class LoginActivity extends AppCompatActivity
                 .set()
                 .addOnLoggedInListener(userData ->
                 {
+                    if (DolphPireApp.getInstance().getUser().getIGAccounts() != null)
+                    {
+                        DolphPireApp.getInstance().setCurrentAccount(DolphPireApp.getInstance().getUser().getIGAccounts().get(0));
+                    }
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
-                    rlLoading.setVisibility(View.GONE);
                 })
                 .addOnFailureListener(new ZFlowLoginListener.OnLoginFailure()
                 {
@@ -194,60 +188,6 @@ public class LoginActivity extends AppCompatActivity
                 })
                 .addOnFailureListener(e -> rlLoading.setVisibility(View.GONE))
                 .execute();
-
-    }
-
-    private void loginWithIG()
-    {
-
-        hideKeyboard(LoginActivity.this);
-        rlLoading.setVisibility(View.VISIBLE);
-        getCsftoken();
-
-        LoginRequest loginRequest = new LoginRequest(Objects.requireNonNull(tietInputLogIn.getText()).toString(), Objects.requireNonNull(tietInputPassword.getText()).toString());
-        loginRequest.execute(new InsRequestCallBack<LoginResponseData>()
-        {
-            @Override
-            public void onSuccess(int statusCode, LoginResponseData insBaseData)
-            {
-                LoginResponseData.LoggedInUserBean loggedInUserBean;
-                if (insBaseData != null && (loggedInUserBean = insBaseData.getLogged_in_user()) != null)
-                {
-                    String pkId = loggedInUserBean.getPk() + "";
-                    if (!TextUtils.isEmpty(pkId))
-                    {
-                        IGCommonFieldsManager.getInstance().savePKID(pkId);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(int errorCode, String errorMsg)
-            {
-                LLog.d("failed", String.format("errorCode= %s , errorMsg = %s", errorCode, errorMsg));
-            }
-        });
-
-    }
-
-    private void getCsftoken()
-    {
-        final GetHeaderRequest getHeaderRequest = new GetHeaderRequest();
-        getHeaderRequest.execute(new InsRequestCallBack()
-        {
-            @Override
-            public void onSuccess(int statusCode, InsBaseResponseData insBaseData)
-            {
-                String csrfCookie = getHeaderRequest.getCsrfCookie();
-                Log.d("succeed", "get Csftoken onSuccess，csrfCookie =  " + csrfCookie);
-            }
-
-            @Override
-            public void onFailure(int errorCode, String errorMsg)
-            {
-                Log.d("error", "get Csftoken onFailure ");
-            }
-        });
 
     }
 

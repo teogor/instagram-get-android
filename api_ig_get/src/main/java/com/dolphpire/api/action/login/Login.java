@@ -69,6 +69,10 @@ public class Login
                     Gson gson = new Gson();
                     UserModel mUserModel = gson.fromJson(mJson, UserModel.class);
                     DolphPireApp.getInstance().setUser(mUserModel);
+                    if (DolphPireApp.getInstance().getUser().getIGAccounts() != null)
+                    {
+                        DolphPireApp.getInstance().setCurrentAccount(mUserModel.getIGAccounts().get(0));
+                    }
 
                     if (onLoggedIn != null)
                     {
