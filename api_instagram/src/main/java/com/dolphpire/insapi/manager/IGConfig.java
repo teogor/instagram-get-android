@@ -29,6 +29,7 @@ public class IGConfig {
   public static final String ACTION_GET_MEDIA_UNLIKE = "media/%s/unlike/";//unlike某条post
   public static final String ACTION_GET_USER_INFO_WITH_ID = "users/%s/info/";//根据userId获取用户信息
   public static final String ACTION_GET_USER_INFO_WITH_USER_NAME = "users/%s/usernameinfo/";//根据userName获取用户信息
+  public static final String ACTION_GET_USER_INFO = "https://www.instagram.com/%s/?__a=1";//根据userName获取用户信息
 
 
   public static final String SIG_KEY_VERSION = "4";
