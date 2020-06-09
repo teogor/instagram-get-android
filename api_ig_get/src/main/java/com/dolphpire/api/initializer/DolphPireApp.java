@@ -28,8 +28,8 @@ import com.android.volley.toolbox.Volley;
 import com.dolphpire.api.instance.DolphPireInstance;
 import com.dolphpire.api.models.IGAccountModel;
 import com.dolphpire.api.models.SyncIGAccount;
-import com.dolphpire.api.models.UserModel;
 import com.dolphpire.api.models.SyncUserModel;
+import com.dolphpire.api.models.UserModel;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -318,7 +318,8 @@ public class DolphPireApp
         prefsEditor.apply();
     }
 
-    public void setCurrentAccount(IGAccountModel ig_account) {
+    public void setCurrentAccount(IGAccountModel ig_account)
+    {
 
         SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
@@ -333,12 +334,23 @@ public class DolphPireApp
         return new Gson().fromJson(mPrefs.getString(DPIRE_SP_IG_ACCOUNT, null), IGAccountModel.class);
     }
 
-    public SyncUserModel syncUser() {
+    public SyncUserModel syncUser()
+    {
         return this.mSyncUserModel;
     }
 
-    public SyncIGAccount syncIGAccount() {
+    public SyncIGAccount syncIGAccount()
+    {
         return this.mSyncIGAccount;
+    }
+
+    public void clearUserInstance()
+    {
+        SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        prefsEditor.putString(DPIRE_SP_USER_ACCOUNT, null);
+        prefsEditor.putString(DPIRE_SP_IG_ACCOUNT, null);
+        prefsEditor.apply();
     }
 
     public UserModel getUser()

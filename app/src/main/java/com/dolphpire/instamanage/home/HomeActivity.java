@@ -1,5 +1,6 @@
 package com.dolphpire.instamanage.home;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.dolphpire.instamanage.home.drawer.DrawerItem;
 import com.dolphpire.instamanage.home.drawer.SimpleItem;
 import com.dolphpire.instamanage.home.drawer.SpaceItem;
 import com.dolphpire.instamanage.homeFragment.HomeFragment;
+import com.dolphpire.instamanage.login.LoginActivity;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
@@ -120,8 +122,16 @@ public class HomeActivity extends AppCompatActivity
 
                 showFragment(mHomeFragment);
 
-            }
+            } else if (position == POS_ACCOUNT)
+            {
 
+            } else if (position == POS_LOG_OUT)
+            {
+                DolphPireApp.getInstance().clearUserInstance();
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
 
         RecyclerView list = findViewById(R.id.list);

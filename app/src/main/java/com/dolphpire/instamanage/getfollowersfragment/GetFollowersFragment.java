@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dolphpire.api.initializer.DolphPireApp;
+import com.dolphpire.insapi.request.InsRequestCallBack;
+import com.dolphpire.insapi.request.api.userinfo.UserInfoResponseData;
+import com.dolphpire.insapi.request.api.userinfo.UserInfoWebRequest;
+import com.dolphpire.insapi.request.api.userinfo.UserInfoWithIDRequest;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getfollowersfragment.adapter.AdapterGetFollowers;
 import com.dolphpire.instamanage.getfollowersfragment.model.ModelGetFollowers;
@@ -30,6 +36,8 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.dolphpire.api.initializer.DolphPireApp.TAG;
 
 public class GetFollowersFragment extends Fragment {
 
