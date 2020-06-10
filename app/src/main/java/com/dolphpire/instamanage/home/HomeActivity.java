@@ -70,7 +70,7 @@ public class HomeActivity extends AppCompatActivity
             Glide.with(this)
                     .load(DolphPireApp.getInstance().getIGAccount().getProfilePicture())
                     .into(igUserImage);
-            txt_username.setText(DolphPireApp.getInstance().getIGAccount().getUsername());
+            txt_username.setText("@" + DolphPireApp.getInstance().getIGAccount().getUsername());
         }
 
         DolphPireApp.getInstance().syncIGAccount()
@@ -85,7 +85,7 @@ public class HomeActivity extends AppCompatActivity
             Glide.with(this)
                     .load(DolphPireApp.getInstance().getIGAccount().getProfilePicture())
                     .into(igUserImage);
-            txt_username.setText(DolphPireApp.getInstance().getIGAccount().getUsername());
+            txt_username.setText("@" + DolphPireApp.getInstance().getIGAccount().getUsername());
         }
     }
 

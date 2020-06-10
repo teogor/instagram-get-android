@@ -21,7 +21,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.insapi.request.InsRequestCallBack;
 import com.dolphpire.insapi.request.api.userinfo.GetUserDetails;
@@ -34,6 +36,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class GetFollowersFragment extends Fragment
 {
@@ -50,6 +53,14 @@ public class GetFollowersFragment extends Fragment
     TextView txtAmountCoins;
     @BindView(R.id.txtAmountFollowers)
     TextView txtAmountFollowers;
+    @BindView(R.id.imvIGUser)
+    CircleImageView imvIGUser;
+    @BindView(R.id.txt_username)
+    TextView txt_username;
+    @BindView(R.id.txt_followers)
+    TextView txt_followers;
+    @BindView(R.id.srlRefreshFollowers)
+    SwipeRefreshLayout srlRefreshFollowers;
     private View mView;
     private Context mContext;
     private Activity mActivity;
@@ -133,6 +144,43 @@ public class GetFollowersFragment extends Fragment
             }
         });
 
+        setIGAccount();
+
+        srlRefreshFollowers.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+        {
+            @Override
+            public void onRefresh()
+            {
+                srlRefreshFollowers.setRefreshing(false);
+            }
+        });
+
+    }
+
+    private void setIGAccount()
+    {
+        if (DolphPireApp.getInstance().getIGAccount() != null)
+        {
+            Glide.with(this)
+                    .load(DolphPireApp.getInstance().getIGAccount().getProfilePicture())
+                    .into(imvIGUser);
+            txt_username.setText("@" + DolphPireApp.getInstance().getIGAccount().getUsername());
+        }
+
+        DolphPireApp.getInstance().syncIGAccount()
+                .setListener(user -> setIGAccountData(), "IG_GET_FOLLOWERS_FRAGMENT");
+    }
+
+    private void setIGAccountData()
+    {
+
+        if (DolphPireApp.getInstance().getIGAccount() != null)
+        {
+            Glide.with(this)
+                    .load(DolphPireApp.getInstance().getIGAccount().getProfilePicture())
+                    .into(imvIGUser);
+            txt_username.setText("@" + DolphPireApp.getInstance().getIGAccount().getUsername());
+        }
     }
 
     private void setAnimation()
