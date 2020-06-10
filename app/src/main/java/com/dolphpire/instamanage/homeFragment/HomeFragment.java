@@ -20,6 +20,9 @@ import com.bumptech.glide.Glide;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.models.SyncUserModel;
 import com.dolphpire.api.models.UserModel;
+import com.dolphpire.insapi.request.InsRequestCallBack;
+import com.dolphpire.insapi.request.api.userinfo.GetUserDetails;
+import com.dolphpire.insapi.request.api.userinfo.UserInfoResponseData;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getcoinsfragment.GetCoinsFragment;
 import com.dolphpire.instamanage.getfollowersfragment.GetFollowersFragment;
@@ -134,11 +137,28 @@ public class HomeFragment extends Fragment
             mContext.startActivity(intent);
         });
 
-        txt_coins.setOnClickListener(v -> DolphPireApp.initializeApi()
-                .user()
-                .details()
-                .withUUID(DolphPireApp.getInstance().getUUID())
-                .execute());
+        txt_coins.setOnClickListener(v ->
+        {
+
+            if (DolphPireApp.getInstance().getIGAccount() != null)
+            {
+                GetUserDetails mGetUserDetails = new GetUserDetails(DolphPireApp.getInstance().getIGAccount().getUsername());
+                mGetUserDetails.execute(new InsRequestCallBack<UserInfoResponseData>()
+                {
+                    @Override
+                    public void onSuccess(int statusCode, UserInfoResponseData insBaseData)
+                    {
+
+                    }
+
+                    @Override
+                    public void onFailure(int errorCode, String errorMsg)
+                    {
+
+                    }
+                });
+            }
+        });
 
         txt_coins.setText(numberFormat(DolphPireApp.getInstance().getUser().getCoins()));
         DolphPireApp.getInstance().syncUser()

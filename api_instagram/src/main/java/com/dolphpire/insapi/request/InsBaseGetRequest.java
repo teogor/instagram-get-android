@@ -27,14 +27,12 @@ public abstract class InsBaseGetRequest<R extends InsBaseResponseData> extends I
 					@Override
 					public void onFailure(int errorCode, String errorMsg) {
 						super.onFailure(errorCode, errorMsg);
-						Log.d(TAG, String.format("request %s success ,errorCode= %s , errorMsg = %s", getActionUrl(), errorCode,
+						Log.d(TAG, String.format("request %s success, errorCode= %s , errorMsg = %s", getActionUrl(), errorCode,
 								errorMsg));
 						if (null != mInsRequestCallBack) {
 							mInsRequestCallBack.onFailure(errorCode, errorMsg);
 						}
 					}
-
-
 
 					@Override
 					public void onSuccess(int statusCode, R insBaseData) {
