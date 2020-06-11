@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getlikesfragment.adapter.AdapterGetLikes;
 import com.dolphpire.instamanage.getlikesfragment.model.ModelGetLikes;
@@ -111,12 +112,14 @@ public class GetLikesFragment extends Fragment {
 
         llCancelOrder.setOnClickListener(v -> llBottomPlaceOrder.setVisibility(View.GONE));
 
-        llPlaceOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                llBottomPlaceOrder.setVisibility(View.GONE);
-                Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getLikes() + " likes", Toast.LENGTH_SHORT).show();
-            }
+        llPlaceOrder.setOnClickListener(v ->
+        {
+            llBottomPlaceOrder.setVisibility(View.GONE);
+            DolphPireApp.initializeApi()
+                    .user().order()
+                    .likes(DolphPireApp.getInstance().getIGAccount().getIGID(), itemChose)
+                    .execute();
+            Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getLikes() + " likes", Toast.LENGTH_SHORT).show();
         });
 
     }
