@@ -6,7 +6,7 @@ import com.dolphpire.api.action.user.businessAccount.BusinessAccount;
 import com.dolphpire.api.action.user.check.DataCheckAction;
 import com.dolphpire.api.action.user.connections.ConnectionsAction;
 import com.dolphpire.api.action.user.details.DetailsAction;
-import com.dolphpire.api.action.user.interact.UserInteractAction;
+import com.dolphpire.api.action.user.order.OrderIGAction;
 import com.dolphpire.api.action.user.password.PasswordAction;
 import com.dolphpire.api.action.user.searchHistory.SearchHistory;
 import com.dolphpire.api.action.user.update.UserUpdateAction;
@@ -30,8 +30,8 @@ public class UserAction {
         return new ConnectionsAction();
     }
 
-    public UserInteractAction interact() {
-        return new UserInteractAction();
+    public OrderIGAction order() {
+        return new OrderIGAction();
     }
 
     public PasswordAction changePassword() {

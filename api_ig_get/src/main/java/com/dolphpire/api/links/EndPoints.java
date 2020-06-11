@@ -9,6 +9,9 @@ public class EndPoints {
     public final static String CHECK_CREDENTIALS = BASE_URL + "/mobile/credentials/check";
     public final static String USER_DETAILS = BASE_URL + "/mobile/user/details";
     public final static String LINK_IG_ACCOUNT = BASE_URL + "/mobile/ig/link";
+    public final static String LINK_IG_FOLLOWERS_COUNT = BASE_URL + "/mobile/ig/followers/count";
+    public final static String LINK_IG_POSTS_DETAILS = BASE_URL + "/mobile/ig/posts/details";
+    public final static String LINK_USER_ORDER = BASE_URL + "/mobile/user/order";
 
     public final static String USER_FULL_DETAILS = BASE_URL + "/user/full_details";
     public final static String USER_QUICK_DETAILS = BASE_URL + "/user/quick_details";
