@@ -25,6 +25,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.dolphpire.api.initializer.DolphPireApp;
+import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
 import com.dolphpire.insapi.request.InsRequestCallBack;
 import com.dolphpire.insapi.request.api.userinfo.GetUserDetails;
 import com.dolphpire.insapi.request.api.userinfo.UserInfoResponseData;
@@ -146,15 +147,31 @@ public class GetFollowersFragment extends Fragment
 
         setIGAccount();
 
-        srlRefreshFollowers.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+        getFollowersCount();
+        srlRefreshFollowers.setOnRefreshListener(() ->
         {
-            @Override
-            public void onRefresh()
-            {
-                srlRefreshFollowers.setRefreshing(false);
-            }
+            getFollowersCount();
+            srlRefreshFollowers.setRefreshing(false);
         });
 
+    }
+
+    private void getFollowersCount()
+    {
+
+        DolphPireApp.initializeApi()
+                .igAccount().followersCount()
+                .withUsername(DolphPireApp.getInstance().getIGAccount().getUsername())
+                .set()
+                .addOnCompleteListener(new ZFlowOnCompleteCallback.OnComplete()
+                {
+                    @Override
+                    public void onCompleted()
+                    {
+
+                    }
+                })
+                .execute();
     }
 
     private void setIGAccount()
