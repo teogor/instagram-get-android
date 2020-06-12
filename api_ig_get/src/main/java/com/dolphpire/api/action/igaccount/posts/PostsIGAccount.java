@@ -7,21 +7,15 @@ import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.FailureCallback;
-import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
+import com.dolphpire.api.interfaces.OnIGPostsRetrieved;
 import com.dolphpire.api.links.EndPoints;
 import com.dolphpire.api.models.IGPostsModel;
-import com.dolphpire.api.models.ZeoFlowNotification;
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static com.dolphpire.api.initializer.DolphPireApp.TAG;
@@ -31,7 +25,7 @@ public class PostsIGAccount
 
     //class model
     private String ig_userid = "null";
-    private ZFlowOnCompleteCallback.OnComplete onComplete;
+    private OnIGPostsRetrieved.OnCompleteListener<IGPostsModel> onComplete;
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
 
@@ -50,18 +44,17 @@ public class PostsIGAccount
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 EndPoints.LINK_IG_POSTS_DETAILS, response ->
         {
-            Log.e(TAG, "response: " + response);
+//            Log.e(TAG, "response: " + response);
             try
             {
                 JSONObject responseObj = new JSONObject(response);
                 IGPostsModel mIGPostsModel = new Gson().fromJson(responseObj.toString(), IGPostsModel.class);
-                Log.d("data", String.valueOf(mIGPostsModel.getPosts().size()));
                 // check for error flag
-                if (!responseObj.getBoolean("error"))
+                if (mIGPostsModel != null)
                 {
                     if (onComplete != null)
                     {
-                        onComplete.onCompleted();
+                        onComplete.onRetrieved(mIGPostsModel);
                     }
                 } else
                 {
@@ -110,7 +103,7 @@ public class PostsIGAccount
 
     }
 
-    public PostsIGAccount addOnCompleteListener(ZFlowOnCompleteCallback.OnComplete onComplete)
+    public PostsIGAccount addOnCompleteListener(OnIGPostsRetrieved.OnCompleteListener<IGPostsModel> onComplete)
     {
         this.onComplete = onComplete;
         return this;

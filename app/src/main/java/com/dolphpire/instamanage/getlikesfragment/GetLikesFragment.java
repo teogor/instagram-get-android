@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.dolphpire.api.initializer.DolphPireApp;
+import com.dolphpire.api.models.IGPostsModel;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getlikesfragment.adapter.AdapterGetLikes;
 import com.dolphpire.instamanage.getlikesfragment.model.ModelGetLikes;
