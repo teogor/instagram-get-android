@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="refresher_offset">40dp</dimen>
+    <dimen name="refresher_offset_end">80dp</dimen>
+</resources>

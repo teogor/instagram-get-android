@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.models.IGPostModel;
@@ -26,6 +27,8 @@ public class IGPostsActivity extends AppCompatActivity
     ImageView imvBack;
     @BindView(R.id.rvIGPosts)
     RecyclerView rvIGPosts;
+    @BindView(R.id.srlRefreshPosts)
+    SwipeRefreshLayout srlRefreshPosts;
     private GridLayoutManager gridLayoutManager;
     private ArrayList<IGPostModel> mDataList;
     private AdapterIGPosts mAdapter;
@@ -59,8 +62,25 @@ public class IGPostsActivity extends AppCompatActivity
             }
         });
 
-        if (DolphPireApp.getInstance().getIGAccount() != null) {
-            if (DolphPireApp.getInstance().getIGAccount().getIGPosts() != null) {
+        srlRefreshPosts.setProgressViewOffset(
+                false,
+                getResources().getDimensionPixelSize(R.dimen.refresher_offset),
+                getResources().getDimensionPixelSize(R.dimen.refresher_offset_end)
+        );
+
+        srlRefreshPosts.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+        {
+            @Override
+            public void onRefresh()
+            {
+                retrieveUserPosts();
+            }
+        });
+
+        if (DolphPireApp.getInstance().getIGAccount() != null)
+        {
+            if (DolphPireApp.getInstance().getIGAccount().getIGPosts() != null)
+            {
                 mDataList.clear();
 
                 mDataList.addAll(DolphPireApp.getInstance().getIGAccount().getIGPosts().getPosts());
@@ -75,6 +95,7 @@ public class IGPostsActivity extends AppCompatActivity
     private void retrieveUserPosts()
     {
 
+        srlRefreshPosts.setRefreshing(true);
         DolphPireApp.initializeApi().igAccount().posts()
                 .withUserID(DolphPireApp.getInstance().getIGAccount().getIGID())
                 .set()
@@ -88,6 +109,8 @@ public class IGPostsActivity extends AppCompatActivity
 
                     DolphPireApp.getInstance()
                             .setIGPosts(mIGPostsModel);
+
+                    srlRefreshPosts.setRefreshing(false);
 
                 })
                 .execute();
