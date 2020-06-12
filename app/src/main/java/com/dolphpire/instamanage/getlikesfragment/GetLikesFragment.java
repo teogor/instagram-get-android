@@ -125,7 +125,7 @@ public class GetLikesFragment extends Fragment {
         {
 
             DolphPireApp.initializeApi().igAccount().posts()
-                    .withUserID(DolphPireApp.getInstance().getIGAccount().getUsername())
+                    .withUserID(DolphPireApp.getInstance().getIGAccount().getIGID())
                     .set()
                     .execute();
             llBottomPlaceOrder.setVisibility(View.GONE);

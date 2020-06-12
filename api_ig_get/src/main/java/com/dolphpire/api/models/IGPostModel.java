@@ -6,8 +6,8 @@ public class IGPostModel implements Serializable
 {
 
     private boolean is_video;
-    private int id;
-    private int likes;
+    private long id;
+    private long likes;
     private String img150x150;
     private String img240x240;
     private String img480x480;
@@ -18,12 +18,12 @@ public class IGPostModel implements Serializable
 
     }
 
-    public int getId()
+    public long getId()
     {
         return id;
     }
 
-    public int getLikes()
+    public long getLikes()
     {
         return likes;
     }
