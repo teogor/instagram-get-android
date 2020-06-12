@@ -26,7 +26,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.dolphpire.api.initializer.DolphPireApp;
+import com.dolphpire.api.models.IGPostModel;
 import com.dolphpire.api.models.IGPostsModel;
+import com.dolphpire.api.models.SyncIGPost;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getlikesfragment.adapter.AdapterGetLikes;
 import com.dolphpire.instamanage.getlikesfragment.model.ModelGetLikes;
@@ -151,6 +153,17 @@ public class GetLikesFragment extends Fragment {
                 srlRefreshLikes.setRefreshing(false);
             }
         });
+
+
+        DolphPireApp.getInstance().syncIGPost()
+                .setListener(new SyncIGPost.SyncListener()
+                {
+                    @Override
+                    public void onChange(IGPostModel mIGPostModel)
+                    {
+                        
+                    }
+                }, "IG_POST_LIKES_FRAGMENT");
 
     }
 
