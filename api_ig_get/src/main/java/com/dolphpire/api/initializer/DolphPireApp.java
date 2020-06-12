@@ -184,6 +184,7 @@ public class DolphPireApp
         INSTANCES.put(normalizedName, dolphpireApp);
         getInstance().mSyncUserModel = new SyncUserModel();
         getInstance().mSyncIGAccount = new SyncIGAccount();
+        getInstance().mSyncIGPost = new SyncIGPost();
         return dolphpireApp;
     }
 
