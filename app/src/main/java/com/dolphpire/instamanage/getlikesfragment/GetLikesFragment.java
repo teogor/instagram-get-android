@@ -25,20 +25,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.models.IGPostsModel;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getlikesfragment.adapter.AdapterGetLikes;
 import com.dolphpire.instamanage.getlikesfragment.model.ModelGetLikes;
-import com.dolphpire.instamanage.igaccounts.IGAccountActivity;
 import com.dolphpire.instamanage.igposts.IGPostsActivity;
+import com.dolphpire.instamanage.views.DolphPireIS;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class GetLikesFragment extends Fragment {
+import static com.dolphpire.api.utils.NumberFormat.numberFormat;
+
+public class GetLikesFragment extends Fragment
+{
 
     @BindView(R.id.rvGetLikes)
     RecyclerView rvGetLikes;
@@ -56,6 +59,10 @@ public class GetLikesFragment extends Fragment {
     RelativeLayout rlPostHolder;
     @BindView(R.id.srlRefreshLikes)
     SwipeRefreshLayout srlRefreshLikes;
+    @BindView(R.id.txtNoLikes)
+    TextView txtNoLikes;
+    @BindView(R.id.imvPostPreview)
+    DolphPireIS imvPostPreview;
     private View mView;
     private Context mContext;
     private Activity mActivity;
@@ -65,13 +72,15 @@ public class GetLikesFragment extends Fragment {
     private ModelGetLikes mModelGetLikes;
     private int itemChose = -1;
 
-    public GetLikesFragment() {
+    public GetLikesFragment()
+    {
 
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    {
         mView = inflater.inflate(R.layout.fragment_get_likes, container, false);
         ButterKnife.bind(this, mView);
 
@@ -81,28 +90,33 @@ public class GetLikesFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
+    public void onStart()
+    {
         super.onStart();
     }
 
     @Override
-    public void onDestroyView() {
+    public void onDestroyView()
+    {
         super.onDestroyView();
     }
 
     @Override
-    public void onDetach() {
+    public void onDetach()
+    {
         super.onDetach();
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
+    public void onAttach(@NonNull Context context)
+    {
         super.onAttach(context);
         mContext = context;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
 
         mDataList = new ArrayList<>();
         mAdapter = new AdapterGetLikes(mDataList, mActivity);
@@ -152,9 +166,105 @@ public class GetLikesFragment extends Fragment {
             }
         });
 
+        DolphPireApp.getInstance().syncIGPost()
+                .setListener(mIGPostModel ->
+                {
+
+                    Glide.with(mActivity)
+                            .load(mIGPostModel.getImg150x150())
+                            .into(imvPostPreview);
+
+                    txtNoLikes.setText(numberFormat(mIGPostModel.getLikes()));
+
+                }, "IG_POST_LIKES_FRAGMENT");
+
+        if (DolphPireApp.getInstance().getUser().getIGPostModel() != null)
+        {
+
+            Glide.with(mActivity)
+                    .load(DolphPireApp.getInstance().getUser().getIGPostModel().getImg150x150())
+                    .into(imvPostPreview);
+
+            txtNoLikes.setText(numberFormat(DolphPireApp.getInstance().getUser().getIGPostModel().getLikes()));
+            refreshImageData();
+
+        } else
+        {
+            getIGImage();
+        }
+        DolphPireApp.getInstance().syncIGAccount()
+                .setListener(mIGAccount -> getIGImage(), "IG_POST_LIKES_FRAGMENT");
+
     }
 
-    private void setAnimation() {
+    private void refreshImageData()
+    {
+
+        DolphPireApp.initializeApi().igAccount().posts()
+                .withUserID(DolphPireApp.getInstance().getIGAccount().getIGID())
+                .set()
+                .addOnCompleteListener(mIGPostsModel ->
+                {
+
+                    boolean found = false;
+                    int i = 0;
+                    while (!found && i < mIGPostsModel.getPosts().size())
+                    {
+                        if (mIGPostsModel.getPosts().get(i).getId() == DolphPireApp.getInstance().getUser().getIGPostModel().getId())
+                        {
+                            found = true;
+                        } else
+                        {
+                            i++;
+                        }
+                    }
+                    if (!found) {
+                        i = 0;
+                    }
+                    
+                    Glide.with(mActivity)
+                            .load(mIGPostsModel.getPosts().get(i).getImg150x150())
+                            .into(imvPostPreview);
+
+                    txtNoLikes.setText(numberFormat(mIGPostsModel.getPosts().get(i).getLikes()));
+
+                    DolphPireApp.getInstance()
+                            .setIGPosts(mIGPostsModel);
+
+                    DolphPireApp.getInstance()
+                            .setPost(mIGPostsModel.getPosts().get(i));
+
+                })
+                .execute();
+
+    }
+
+    private void getIGImage()
+    {
+        DolphPireApp.initializeApi().igAccount().posts()
+                .withUserID(DolphPireApp.getInstance().getIGAccount().getIGID())
+                .set()
+                .addOnCompleteListener(mIGPostsModel ->
+                {
+
+                    Glide.with(mActivity)
+                            .load(mIGPostsModel.getPosts().get(0).getImg150x150())
+                            .into(imvPostPreview);
+
+                    txtNoLikes.setText(numberFormat(mIGPostsModel.getPosts().get(0).getLikes()));
+
+                    DolphPireApp.getInstance()
+                            .setIGPosts(mIGPostsModel);
+
+                    DolphPireApp.getInstance()
+                            .setPost(mIGPostsModel.getPosts().get(0));
+
+                })
+                .execute();
+    }
+
+    private void setAnimation()
+    {
 
         final ArgbEvaluator evaluator = new ArgbEvaluator();
         final int start = ContextCompat.getColor(mContext, R.color.colorBgPlaceOrder1);
@@ -165,7 +275,8 @@ public class GetLikesFragment extends Fragment {
         animator.setDuration(1500);
         animator.setRepeatCount(ValueAnimator.INFINITE);
         animator.setRepeatMode(ValueAnimator.REVERSE);
-        animator.addUpdateListener(valueAnimator -> {
+        animator.addUpdateListener(valueAnimator ->
+        {
             float fraction = valueAnimator.getAnimatedFraction();
             int newStrat = (int) evaluator.evaluate(fraction, start, end);
             int newEnd = (int) evaluator.evaluate(fraction, end, start);
@@ -177,7 +288,8 @@ public class GetLikesFragment extends Fragment {
 
     }
 
-    private void showDialogOrder(int pos) {
+    private void showDialogOrder(int pos)
+    {
 
         itemChose = pos;
 
@@ -188,7 +300,8 @@ public class GetLikesFragment extends Fragment {
 
     }
 
-    private void populateRecyclerView() {
+    private void populateRecyclerView()
+    {
 
         mModelGetLikes = new ModelGetLikes(20, 10);
         mDataList.add(mModelGetLikes);

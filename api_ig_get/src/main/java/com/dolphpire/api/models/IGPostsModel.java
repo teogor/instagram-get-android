@@ -7,7 +7,6 @@ public class IGPostsModel implements Serializable
 {
 
     private boolean has_next_page;
-
     private String end_cursor = "";
     private ArrayList<IGPostModel> posts = new ArrayList<>();
 

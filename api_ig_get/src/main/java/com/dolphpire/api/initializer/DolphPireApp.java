@@ -27,8 +27,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.dolphpire.api.instance.DolphPireInstance;
 import com.dolphpire.api.models.IGAccountModel;
+import com.dolphpire.api.models.IGPostModel;
 import com.dolphpire.api.models.IGPostsModel;
 import com.dolphpire.api.models.SyncIGAccount;
+import com.dolphpire.api.models.SyncIGPost;
 import com.dolphpire.api.models.SyncUserModel;
 import com.dolphpire.api.models.UserModel;
 import com.google.gson.Gson;
@@ -72,6 +74,7 @@ public class DolphPireApp
     private final AtomicBoolean automaticResourceManagementEnabled = new AtomicBoolean(false);
     private SyncUserModel mSyncUserModel;
     private SyncIGAccount mSyncIGAccount;
+    private SyncIGPost mSyncIGPost;
     private RequestQueue mRequestQueue;
 
     @SuppressLint("RestrictedApi")
@@ -182,6 +185,7 @@ public class DolphPireApp
         INSTANCES.put(normalizedName, dolphpireApp);
         getInstance().mSyncUserModel = new SyncUserModel();
         getInstance().mSyncIGAccount = new SyncIGAccount();
+        getInstance().mSyncIGPost = new SyncIGPost();
         return dolphpireApp;
     }
 
@@ -355,6 +359,11 @@ public class DolphPireApp
         return this.mSyncIGAccount;
     }
 
+    public SyncIGPost syncIGPost()
+    {
+        return this.mSyncIGPost;
+    }
+
     public void clearUserInstance()
     {
         SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
@@ -368,6 +377,17 @@ public class DolphPireApp
     {
         SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
         return new Gson().fromJson(mPrefs.getString(DPIRE_SP_USER_ACCOUNT, null), UserModel.class);
+    }
+
+    public void setPost(IGPostModel mIGPostModel)
+    {
+        UserModel mUserModel = this.getUser();
+        mUserModel.setIGPostModel(mIGPostModel);
+        SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        prefsEditor.putString(DPIRE_SP_USER_ACCOUNT, new Gson().toJson(mUserModel));
+        prefsEditor.apply();
+        this.mSyncUserModel.setUser(mUserModel);
     }
 
     public void setUser(UserModel user)

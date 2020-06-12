@@ -53,13 +53,14 @@ public class IGPostsActivity extends AppCompatActivity
         rvIGPosts.setHasFixedSize(false);
         rvIGPosts.setAdapter(mAdapter);
 
-        mAdapter.setListener(new AdapterIGPosts.OnItem()
+        mAdapter.setListener(pos ->
         {
-            @Override
-            public void onSelected(int pos)
-            {
+            DolphPireApp.getInstance()
+                    .syncIGPost()
+                    .setNewPost(mDataList.get(pos));
 
-            }
+            finish();
+
         });
 
         srlRefreshPosts.setProgressViewOffset(
