@@ -17,6 +17,7 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
+                android:id="@+id/rlPostHolder"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:layout_margin="10dp"

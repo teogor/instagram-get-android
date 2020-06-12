@@ -5,12 +5,14 @@ import android.animation.TimeAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,11 +23,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getlikesfragment.adapter.AdapterGetLikes;
 import com.dolphpire.instamanage.getlikesfragment.model.ModelGetLikes;
+import com.dolphpire.instamanage.igaccounts.IGAccountActivity;
+import com.dolphpire.instamanage.igposts.IGPostsActivity;
 
 import java.util.ArrayList;
 
@@ -46,6 +51,10 @@ public class GetLikesFragment extends Fragment {
     TextView txtAmountCoins;
     @BindView(R.id.txtAmountLikes)
     TextView txtAmountLikes;
+    @BindView(R.id.rlPostHolder)
+    RelativeLayout rlPostHolder;
+    @BindView(R.id.srlRefreshLikes)
+    SwipeRefreshLayout srlRefreshLikes;
     private View mView;
     private Context mContext;
     private Activity mActivity;
@@ -125,6 +134,21 @@ public class GetLikesFragment extends Fragment {
                     .likes(DolphPireApp.getInstance().getIGAccount().getIGID(), itemChose)
                     .execute();
             Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getLikes() + " likes", Toast.LENGTH_SHORT).show();
+        });
+
+        rlPostHolder.setOnClickListener(v ->
+        {
+            Intent intent = new Intent(mContext, IGPostsActivity.class);
+            mContext.startActivity(intent);
+        });
+
+        srlRefreshLikes.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+        {
+            @Override
+            public void onRefresh()
+            {
+                srlRefreshLikes.setRefreshing(false);
+            }
         });
 
     }
