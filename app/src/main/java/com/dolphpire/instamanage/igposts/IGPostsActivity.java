@@ -60,7 +60,7 @@ public class IGPostsActivity extends AppCompatActivity
             @Override
             public void onSelected(int pos)
             {
-                
+
             }
         });
 

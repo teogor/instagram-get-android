@@ -9,11 +9,19 @@ import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
 import com.dolphpire.api.links.EndPoints;
+import com.dolphpire.api.models.IGPostsModel;
+import com.dolphpire.api.models.ZeoFlowNotification;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.dolphpire.api.initializer.DolphPireApp.TAG;
@@ -46,10 +54,11 @@ public class PostsIGAccount
             try
             {
                 JSONObject responseObj = new JSONObject(response);
+                IGPostsModel mIGPostsModel = new Gson().fromJson(responseObj.toString(), IGPostsModel.class);
+                Log.d("data", String.valueOf(mIGPostsModel.getPosts().size()));
                 // check for error flag
                 if (!responseObj.getBoolean("error"))
                 {
-                    Log.d("data", "nonnull");
                     if (onComplete != null)
                     {
                         onComplete.onCompleted();
