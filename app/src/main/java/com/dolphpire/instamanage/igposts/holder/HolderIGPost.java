@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dolphpire.api.models.IGPostModel;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.igposts.adapter.AdapterIGPosts;
 import com.dolphpire.instamanage.igposts.model.ModelIGPost;
@@ -23,7 +24,7 @@ public class HolderIGPost extends RecyclerView.ViewHolder
 
 //    @BindView(R.id.rlIGAccount)
 //    RelativeLayout rlIGAccount;
-    private ModelIGPost mModelIGPost;
+    private IGPostModel mIGPostModel;
     private AdapterIGPosts.OnItem listener;
     private int position;
     private Activity activity;
@@ -35,10 +36,10 @@ public class HolderIGPost extends RecyclerView.ViewHolder
     }
 
     @SuppressLint("SetTextI18n")
-    public void setContent(ModelIGPost mModelIGPost, AdapterIGPosts.OnItem listener, int position, Activity activity)
+    public void setContent(IGPostModel mIGPostModel, AdapterIGPosts.OnItem listener, int position, Activity activity)
     {
 
-        this.mModelIGPost = mModelIGPost;
+        this.mIGPostModel = mIGPostModel;
         this.listener = listener;
         this.position = position;
         this.activity = activity;

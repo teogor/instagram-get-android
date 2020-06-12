@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dolphpire.api.models.IGPostModel;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.igposts.holder.HolderIGPost;
 import com.dolphpire.instamanage.igposts.model.ModelIGPost;
@@ -17,10 +18,10 @@ import java.util.ArrayList;
 public class AdapterIGPosts extends RecyclerView.Adapter<HolderIGPost> {
 
     private Activity activity;
-    private ArrayList<ModelIGPost> mDataList;
+    private ArrayList<IGPostModel> mDataList;
     private OnItem listener;
 
-    public AdapterIGPosts(ArrayList<ModelIGPost> mDataList, Activity activity) {
+    public AdapterIGPosts(ArrayList<IGPostModel> mDataList, Activity activity) {
         this.mDataList = mDataList;
         this.activity = activity;
     }
