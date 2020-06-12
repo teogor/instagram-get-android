@@ -2,9 +2,52 @@
 <com.dolphpire.instamanage.views.DolphPireRL xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@color/colorSelected">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorSelected"
+    android:layout_margin="3dp">
 
+    <com.dolphpire.instamanage.views.DolphPireIS
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="#FFFFFF"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:background="#66000000">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/txtNoLikes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="3645"
+                android:layout_alignParentStart="true"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                tools:ignore="MissingPrefix"
+                android:layout_centerVertical="true" />
+
+            <ImageView
+                android:id="@+id/imgLikes"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_toEndOf="@+id/txtNoLikes"
+                android:layout_marginStart="2dp"
+                android:src="@drawable/ic_ig_like"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </com.dolphpire.instamanage.views.DolphPireRL>
