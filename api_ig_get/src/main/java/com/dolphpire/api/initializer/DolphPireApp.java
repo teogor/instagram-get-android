@@ -27,6 +27,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.dolphpire.api.instance.DolphPireInstance;
 import com.dolphpire.api.models.IGAccountModel;
+import com.dolphpire.api.models.IGPostsModel;
 import com.dolphpire.api.models.SyncIGAccount;
 import com.dolphpire.api.models.SyncUserModel;
 import com.dolphpire.api.models.UserModel;
@@ -318,9 +319,19 @@ public class DolphPireApp
         prefsEditor.apply();
     }
 
+    public void setIGPosts(IGPostsModel mIGPostsModel)
+    {
+        IGAccountModel mIGAccountModel = this.getIGAccount();
+        mIGAccountModel.setIGPostsModel(mIGPostsModel);
+        SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        prefsEditor.putString(DPIRE_SP_IG_ACCOUNT, new Gson().toJson(mIGAccountModel));
+        prefsEditor.apply();
+        this.syncIGAccount().setIGAccount(mIGAccountModel);
+    }
+
     public void setCurrentAccount(IGAccountModel ig_account)
     {
-
         SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         prefsEditor.putString(DPIRE_SP_IG_ACCOUNT, new Gson().toJson(ig_account));
