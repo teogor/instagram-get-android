@@ -130,6 +130,7 @@ public class IGAccountActivity extends AppCompatActivity
         {
             for (int i = 0; i < DolphPireApp.getInstance().getUser().getIGAccounts().size(); i++)
             {
+                Log.d("igUserID", String.valueOf(DolphPireApp.getInstance().getUser().getIGAccounts().get(i).getIGID()));
                 mModelIGAccount = new ModelIGAccount(0);
                 mModelIGAccount.setIGAccount(DolphPireApp.getInstance().getUser().getIGAccounts().get(i));
                 mDataList.add(mModelIGAccount);

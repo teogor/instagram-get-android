@@ -9,7 +9,7 @@ public class PostsIGAccountAction
         this.mPostsIGAccount = new PostsIGAccount();
     }
 
-    public PostsIGAccountAction withUserID(int igUserID) {
+    public PostsIGAccountAction withUserID(long igUserID) {
         this.mPostsIGAccount.setUserID(String.valueOf(igUserID));
         return this;
     }

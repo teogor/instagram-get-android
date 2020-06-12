@@ -7,11 +7,11 @@ public class OrderIGAction
 
     }
 
-    public OrderIG likes(int userID, int order) {
+    public OrderIG likes(long userID, int order) {
         return new OrderIG(String.valueOf(userID), String.valueOf(order), 0);
     }
 
-    public OrderIG followers(int userID, int order) {
+    public OrderIG followers(long userID, int order) {
         return new OrderIG(String.valueOf(userID), String.valueOf(order), 1);
     }
 
