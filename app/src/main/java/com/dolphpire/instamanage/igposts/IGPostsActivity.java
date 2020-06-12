@@ -1,23 +1,16 @@
 package com.dolphpire.instamanage.igposts;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.OnIGPostsRetrieved;
 import com.dolphpire.api.models.IGPostModel;
-import com.dolphpire.api.models.IGPostsModel;
-import com.dolphpire.insapi.manager.IGCommonFieldsManager;
-import com.dolphpire.insapi.request.InsRequestCallBack;
-import com.dolphpire.insapi.request.api.login.LoginRequest;
-import com.dolphpire.insapi.request.api.login.LoginResponseData;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.igposts.adapter.AdapterIGPosts;
 import com.dolphpire.instamanage.igposts.model.ModelIGPost;
@@ -34,6 +27,8 @@ public class IGPostsActivity extends AppCompatActivity
     ImageView imvBack;
     @BindView(R.id.rvIGPosts)
     RecyclerView rvIGPosts;
+    @BindView(R.id.srlRefreshPosts)
+    SwipeRefreshLayout srlRefreshPosts;
     private GridLayoutManager gridLayoutManager;
     private ArrayList<IGPostModel> mDataList;
     private AdapterIGPosts mAdapter;
@@ -67,6 +62,32 @@ public class IGPostsActivity extends AppCompatActivity
             }
         });
 
+        srlRefreshPosts.setProgressViewOffset(
+                false,
+                getResources().getDimensionPixelSize(R.dimen.refresher_offset),
+                getResources().getDimensionPixelSize(R.dimen.refresher_offset_end)
+        );
+
+        srlRefreshPosts.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+        {
+            @Override
+            public void onRefresh()
+            {
+                retrieveUserPosts();
+            }
+        });
+
+        if (DolphPireApp.getInstance().getIGAccount() != null)
+        {
+            if (DolphPireApp.getInstance().getIGAccount().getIGPosts() != null)
+            {
+                mDataList.clear();
+
+                mDataList.addAll(DolphPireApp.getInstance().getIGAccount().getIGPosts().getPosts());
+
+                mAdapter.notifyDataSetChanged();
+            }
+        }
         retrieveUserPosts();
 
     }
@@ -74,6 +95,7 @@ public class IGPostsActivity extends AppCompatActivity
     private void retrieveUserPosts()
     {
 
+        srlRefreshPosts.setRefreshing(true);
         DolphPireApp.initializeApi().igAccount().posts()
                 .withUserID(DolphPireApp.getInstance().getIGAccount().getIGID())
                 .set()
@@ -84,6 +106,11 @@ public class IGPostsActivity extends AppCompatActivity
                     mDataList.addAll(mIGPostsModel.getPosts());
 
                     mAdapter.notifyDataSetChanged();
+
+                    DolphPireApp.getInstance()
+                            .setIGPosts(mIGPostsModel);
+
+                    srlRefreshPosts.setRefreshing(false);
 
                 })
                 .execute();

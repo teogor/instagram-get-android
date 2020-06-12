@@ -10,6 +10,7 @@ public class IGAccountModel implements Serializable
     private String profile_picture = "";
     private String username = "";
     private String password = "";
+    private IGPostsModel mIGPostsModel;
 
     public IGAccountModel()
     {
@@ -56,4 +57,13 @@ public class IGAccountModel implements Serializable
         return username;
     }
 
+    public void setIGPostsModel(IGPostsModel mIGPostsModel)
+    {
+        this.mIGPostsModel = mIGPostsModel;
+    }
+
+    public IGPostsModel getIGPosts()
+    {
+        return mIGPostsModel;
+    }
 }
