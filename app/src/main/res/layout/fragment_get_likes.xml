@@ -4,24 +4,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    android:paddingTop="64dp">
+    android:paddingTop="54dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvIGAccounts"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srlRefreshLikes"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_alignParentTop="true"
-        android:clipToPadding="false"
-        android:overScrollMode="never" />
+        android:layout_height="160dp">
+
+        <RelativeLayout
+            android:id="@+id/rlIGUserData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_margin="10dp"
+                android:layout_centerHorizontal="true"
+                android:background="#000000"
+                android:elevation="10dp">
+
+                <com.dolphpire.instamanage.views.DolphPireIS
+                    android:id="@+id/imgPostPreview"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="#5C3C3C"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#66000000">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:orientation="horizontal"
+                        android:layout_centerHorizontal="true">
+
+                        <TextView
+                            android:id="@+id/txtNoLikes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:fontFamily="@font/open_sans_semibold"
+                            android:text="3645"
+                            android:layout_alignParentStart="true"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            android:layout_centerVertical="true" />
+
+                        <ImageView
+                            android:id="@+id/imgLikes"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toEndOf="@+id/txtNoLikes"
+                            android:layout_marginStart="2dp"
+                            android:src="@drawable/ic_ig_like"
+                            android:layout_centerVertical="true"/>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <LinearLayout
         android:id="@+id/rlBottomControls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rvIGAccounts"
+        android:layout_below="@+id/srlRefreshLikes"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/bg_get_followers_holder"
         android:elevation="20dp"
@@ -42,10 +102,10 @@
         android:id="@+id/llBottomPlaceOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rvIGAccounts"
+        android:layout_below="@+id/srlRefreshLikes"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="20dp"
         android:clickable="true"
         android:focusable="true"
