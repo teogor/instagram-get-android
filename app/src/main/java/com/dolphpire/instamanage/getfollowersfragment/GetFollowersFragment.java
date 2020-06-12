@@ -135,14 +135,14 @@ public class GetFollowersFragment extends Fragment
 
         llCancelOrder.setOnClickListener(v -> llBottomPlaceOrder.setVisibility(View.GONE));
 
-        llPlaceOrder.setOnClickListener(new View.OnClickListener()
+        llPlaceOrder.setOnClickListener(v ->
         {
-            @Override
-            public void onClick(View v)
-            {
-                llBottomPlaceOrder.setVisibility(View.GONE);
-                Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getFollowers() + " followers", Toast.LENGTH_SHORT).show();
-            }
+            llBottomPlaceOrder.setVisibility(View.GONE);
+            DolphPireApp.initializeApi()
+                    .user().order()
+                    .followers(DolphPireApp.getInstance().getIGAccount().getIGID(), itemChose)
+                    .execute();
+            Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getFollowers() + " followers", Toast.LENGTH_SHORT).show();
         });
 
         setIGAccount();
