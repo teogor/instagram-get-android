@@ -4,13 +4,16 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dolphpire.api.initializer.DolphPireApp;
+import com.dolphpire.api.interfaces.OnIGPostsRetrieved;
 import com.dolphpire.api.models.IGPostModel;
+import com.dolphpire.api.models.IGPostsModel;
 import com.dolphpire.insapi.manager.IGCommonFieldsManager;
 import com.dolphpire.insapi.request.InsRequestCallBack;
 import com.dolphpire.insapi.request.api.login.LoginRequest;
@@ -64,7 +67,6 @@ public class IGPostsActivity extends AppCompatActivity
             }
         });
 
-        populateRecyclerView();
         retrieveUserPosts();
 
     }
@@ -75,18 +77,16 @@ public class IGPostsActivity extends AppCompatActivity
         DolphPireApp.initializeApi().igAccount().posts()
                 .withUserID(DolphPireApp.getInstance().getIGAccount().getIGID())
                 .set()
+                .addOnCompleteListener(mIGPostsModel ->
+                {
+                    mDataList.clear();
+
+                    mDataList.addAll(mIGPostsModel.getPosts());
+
+                    mAdapter.notifyDataSetChanged();
+
+                })
                 .execute();
-
-    }
-
-    private void populateRecyclerView()
-    {
-
-        mDataList.clear();
-
-
-
-        mAdapter.notifyDataSetChanged();
 
     }
 

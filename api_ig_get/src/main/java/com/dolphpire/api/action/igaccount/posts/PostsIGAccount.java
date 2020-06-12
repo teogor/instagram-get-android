@@ -44,14 +44,13 @@ public class PostsIGAccount
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 EndPoints.LINK_IG_POSTS_DETAILS, response ->
         {
-            Log.e(TAG, "response: " + response);
+//            Log.e(TAG, "response: " + response);
             try
             {
                 JSONObject responseObj = new JSONObject(response);
                 IGPostsModel mIGPostsModel = new Gson().fromJson(responseObj.toString(), IGPostsModel.class);
-                Log.d("data", String.valueOf(mIGPostsModel.getPosts().size()));
                 // check for error flag
-                if (!responseObj.getBoolean("error"))
+                if (mIGPostsModel != null)
                 {
                     if (onComplete != null)
                     {
