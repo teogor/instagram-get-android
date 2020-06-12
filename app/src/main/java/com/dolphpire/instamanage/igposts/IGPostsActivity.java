@@ -61,7 +61,6 @@ public class IGPostsActivity extends AppCompatActivity
             @Override
             public void onSelected(int pos)
             {
-                getCsftoken();
                 DolphPireApp.getInstance().setCurrentAccount(mDataList.get(pos).getIgAccountModel());
 
                 LoginRequest loginRequest = new LoginRequest(mDataList.get(pos).getIgAccountModel().getUsername(), mDataList.get(pos).getIgAccountModel().getPassword());
@@ -92,29 +91,6 @@ public class IGPostsActivity extends AppCompatActivity
         });
 
         populateRecyclerView();
-
-        DolphPireApp.getInstance().syncUser()
-                .setListener(user -> populateRecyclerView(), "IG_ACCOUNT_ACTIVITY");
-
-    }
-
-    private void getCsftoken()
-    {
-        final GetHeaderRequest getHeaderRequest = new GetHeaderRequest();
-        getHeaderRequest.execute(new InsRequestCallBack()
-        {
-            @Override
-            public void onSuccess(int statusCode, InsBaseResponseData insBaseData)
-            {
-                String csrfCookie = getHeaderRequest.getCsrfCookie();
-            }
-
-            @Override
-            public void onFailure(int errorCode, String errorMsg)
-            {
-
-            }
-        });
 
     }
 
