@@ -6,22 +6,59 @@
     android:background="@color/colorBackground"
     android:paddingTop="64dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvIGAccounts"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srlRefreshLikes"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_alignParentTop="true"
-        android:clipToPadding="false"
-        android:overScrollMode="never" />
+        android:layout_height="100dp">
+
+        <RelativeLayout
+            android:id="@+id/rlIGUserData"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/imvIGUser"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:singleLine="true"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textColor="@color/colorTextLvl1"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/txt_followers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textColor="@color/colorTextLvl1"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <LinearLayout
         android:id="@+id/rlBottomControls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rvIGAccounts"
+        android:layout_below="@+id/srlRefreshLikes"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/bg_get_followers_holder"
         android:elevation="20dp"
@@ -42,10 +79,10 @@
         android:id="@+id/llBottomPlaceOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rvIGAccounts"
+        android:layout_below="@+id/srlRefreshLikes"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="20dp"
         android:clickable="true"
         android:focusable="true"
