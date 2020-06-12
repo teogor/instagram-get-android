@@ -1,9 +1,13 @@
 package com.dolphpire.api.interfaces;
 
-public interface ZFlowHashtagSizeCallback<T> {
+import androidx.annotation.NonNull;
 
-    interface OnCompleteListener {
-        void onComplete(int size);
+public interface OnIGPostsRetrieved<T>
+{
+
+    interface OnCompleteListener<IGPostsModel>
+    {
+        void onRetrieved(@NonNull IGPostsModel mIGPostsModel);
     }
 
 }
