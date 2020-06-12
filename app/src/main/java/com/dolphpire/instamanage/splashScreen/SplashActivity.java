@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.insapi.manager.IGCommonFieldsManager;
 import com.dolphpire.instamanage.home.HomeActivity;
+import com.dolphpire.instamanage.igposts.IGPostsActivity;
 import com.dolphpire.instamanage.login.LoginActivity;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
@@ -29,7 +30,7 @@ public class SplashActivity extends AppCompatActivity
 
         if (DolphPireApp.getInstance().getUser() != null)
         {
-            Intent intent = new Intent(this, HomeActivity.class);
+            Intent intent = new Intent(this, IGPostsActivity.class);
             startActivity(intent);
             finish();
         } else
