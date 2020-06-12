@@ -331,7 +331,6 @@ public class DolphPireApp
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         prefsEditor.putString(DPIRE_SP_IG_ACCOUNT, new Gson().toJson(mIGAccountModel));
         prefsEditor.apply();
-        this.syncIGAccount().setIGAccount(mIGAccountModel);
     }
 
     public void setCurrentAccount(IGAccountModel ig_account)
@@ -387,7 +386,7 @@ public class DolphPireApp
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         prefsEditor.putString(DPIRE_SP_USER_ACCOUNT, new Gson().toJson(mUserModel));
         prefsEditor.apply();
-        this.mSyncUserModel.setUser(mUserModel);
+        this.mSyncIGPost.setNewPost(mIGPostModel);
     }
 
     public void setUser(UserModel user)
