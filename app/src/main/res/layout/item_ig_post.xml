@@ -11,27 +11,39 @@
         android:layout_height="wrap_content"
         android:src="#47AFA6"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:background="#212121">
+        android:background="#4DFFFFFF">
 
-        <TextView
-            android:id="@+id/title_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="false"
-            android:focusable="false"
-            android:fontFamily="@font/open_sans_semibold"
-            android:text="3645"
-            android:textAlignment="textStart"
-            android:textColor="@color/colorTextLvl1"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:ignore="MissingPrefix" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:background="#A6FFFFFF">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/title_toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="3645"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                tools:ignore="MissingPrefix" />
+
+            <ImageView
+                android:id="@+id/imgLikes"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:src="@drawable/ic_ig_like"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </com.dolphpire.instamanage.views.DolphPireRL>
