@@ -9,8 +9,8 @@ public class PostsIGAccountAction
         this.mPostsIGAccount = new PostsIGAccount();
     }
 
-    public PostsIGAccountAction withUserID(int userID) {
-        this.mPostsIGAccount.setUserID(String.valueOf(userID));
+    public PostsIGAccountAction withUserID(String username) {
+        this.mPostsIGAccount.setUserID(username.equals("") ? "null" : username);
         return this;
     }
 
