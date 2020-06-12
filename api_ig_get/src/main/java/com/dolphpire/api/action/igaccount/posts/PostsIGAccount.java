@@ -49,6 +49,7 @@ public class PostsIGAccount
                 // check for error flag
                 if (!responseObj.getBoolean("error"))
                 {
+                    Log.d("data", "nonnull");
                     if (onComplete != null)
                     {
                         onComplete.onCompleted();
