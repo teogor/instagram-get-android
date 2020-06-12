@@ -97,7 +97,7 @@ public class IGPostsActivity extends AppCompatActivity
     {
 
         DolphPireApp.initializeApi().igAccount().posts()
-                .withUserID(DolphPireApp.getInstance().getIGAccount().getIGID())
+                .withUserID(DolphPireApp.getInstance().getIGAccount().getUsername())
                 .set()
                 .execute();
 

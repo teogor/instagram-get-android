@@ -22,7 +22,7 @@ public class PostsIGAccount
 {
 
     //class model
-    private String userID = "null";
+    private String username = "null";
     private ZFlowOnCompleteCallback.OnComplete onComplete;
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
@@ -32,9 +32,9 @@ public class PostsIGAccount
 
     }
 
-    void setUserID(String userID)
+    void setUserID(String username)
     {
-        this.userID = userID;
+        this.username = username;
     }
 
     public void execute()
@@ -90,7 +90,7 @@ public class PostsIGAccount
                 params.put("secret_key", DolphPireApp.getInstance().getSecretKey());
                 params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUUID()));
 
-                params.put("userID", userID);
+                params.put("username", username);
                 return params;
             }
         };
