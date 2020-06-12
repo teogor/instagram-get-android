@@ -178,9 +178,64 @@ public class GetLikesFragment extends Fragment
 
                 }, "IG_POST_LIKES_FRAGMENT");
 
-        getIGImage();
+        if (DolphPireApp.getInstance().getUser().getIGPostModel() != null)
+        {
+
+            Glide.with(mActivity)
+                    .load(DolphPireApp.getInstance().getUser().getIGPostModel().getImg150x150())
+                    .into(imvPostPreview);
+
+            txtNoLikes.setText(numberFormat(DolphPireApp.getInstance().getUser().getIGPostModel().getLikes()));
+            refreshImageData();
+
+        } else
+        {
+            getIGImage();
+        }
         DolphPireApp.getInstance().syncIGAccount()
                 .setListener(mIGAccount -> getIGImage(), "IG_POST_LIKES_FRAGMENT");
+
+    }
+
+    private void refreshImageData()
+    {
+
+        DolphPireApp.initializeApi().igAccount().posts()
+                .withUserID(DolphPireApp.getInstance().getIGAccount().getIGID())
+                .set()
+                .addOnCompleteListener(mIGPostsModel ->
+                {
+
+                    boolean found = false;
+                    int i = 0;
+                    while (!found && i < mIGPostsModel.getPosts().size())
+                    {
+                        if (mIGPostsModel.getPosts().get(i).getId() == DolphPireApp.getInstance().getUser().getIGPostModel().getId())
+                        {
+                            found = true;
+                        } else
+                        {
+                            i++;
+                        }
+                    }
+                    if (!found) {
+                        i = 0;
+                    }
+                    
+                    Glide.with(mActivity)
+                            .load(mIGPostsModel.getPosts().get(i).getImg150x150())
+                            .into(imvPostPreview);
+
+                    txtNoLikes.setText(numberFormat(mIGPostsModel.getPosts().get(i).getLikes()));
+
+                    DolphPireApp.getInstance()
+                            .setIGPosts(mIGPostsModel);
+
+                    DolphPireApp.getInstance()
+                            .setPost(mIGPostsModel.getPosts().get(i));
+
+                })
+                .execute();
 
     }
 
@@ -200,6 +255,9 @@ public class GetLikesFragment extends Fragment
 
                     DolphPireApp.getInstance()
                             .setIGPosts(mIGPostsModel);
+
+                    DolphPireApp.getInstance()
+                            .setPost(mIGPostsModel.getPosts().get(0));
 
                 })
                 .execute();

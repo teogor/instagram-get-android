@@ -12,6 +12,7 @@ public class UserModel implements Serializable
     private String username = "";
     private String password = "";
     private ArrayList<IGAccountModel> ig_accounts = new ArrayList<>();
+    private IGPostModel mIGPostModel;
 
     private int coins = 0;
 
@@ -49,4 +50,15 @@ public class UserModel implements Serializable
     {
         return ig_accounts;
     }
+
+    public void setIGPostModel(IGPostModel mIGPostModel)
+    {
+        this.mIGPostModel = mIGPostModel;
+    }
+
+    public IGPostModel getIGPostModel()
+    {
+        return mIGPostModel;
+    }
+
 }
