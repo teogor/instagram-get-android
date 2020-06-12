@@ -29,6 +29,7 @@ import com.dolphpire.api.instance.DolphPireInstance;
 import com.dolphpire.api.models.IGAccountModel;
 import com.dolphpire.api.models.IGPostsModel;
 import com.dolphpire.api.models.SyncIGAccount;
+import com.dolphpire.api.models.SyncIGPost;
 import com.dolphpire.api.models.SyncUserModel;
 import com.dolphpire.api.models.UserModel;
 import com.google.gson.Gson;
@@ -72,6 +73,7 @@ public class DolphPireApp
     private final AtomicBoolean automaticResourceManagementEnabled = new AtomicBoolean(false);
     private SyncUserModel mSyncUserModel;
     private SyncIGAccount mSyncIGAccount;
+    private SyncIGPost mSyncIGPost;
     private RequestQueue mRequestQueue;
 
     @SuppressLint("RestrictedApi")
@@ -353,6 +355,11 @@ public class DolphPireApp
     public SyncIGAccount syncIGAccount()
     {
         return this.mSyncIGAccount;
+    }
+
+    public SyncIGPost syncIGPost()
+    {
+        return this.mSyncIGPost;
     }
 
     public void clearUserInstance()
