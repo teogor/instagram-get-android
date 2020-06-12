@@ -7,16 +7,13 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.insapi.manager.IGCommonFieldsManager;
 import com.dolphpire.insapi.request.InsRequestCallBack;
-import com.dolphpire.insapi.request.api.header.GetHeaderRequest;
 import com.dolphpire.insapi.request.api.login.LoginRequest;
 import com.dolphpire.insapi.request.api.login.LoginResponseData;
-import com.dolphpire.insapi.response.InsBaseResponseData;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.igposts.adapter.AdapterIGPosts;
 import com.dolphpire.instamanage.igposts.model.ModelIGPost;
@@ -92,6 +89,17 @@ public class IGPostsActivity extends AppCompatActivity
         });
 
         populateRecyclerView();
+        retrieveUserPosts();
+
+    }
+
+    private void retrieveUserPosts()
+    {
+
+        DolphPireApp.initializeApi().igAccount().posts()
+                .withUserID(DolphPireApp.getInstance().getIGAccount().getIGID())
+                .set()
+                .execute();
 
     }
 
@@ -103,6 +111,15 @@ public class IGPostsActivity extends AppCompatActivity
         {
             for (int i = 0; i < DolphPireApp.getInstance().getUser().getIGAccounts().size(); i++)
             {
+                mModelIGPost = new ModelIGPost(0);
+                mModelIGPost.setIGAccount(DolphPireApp.getInstance().getUser().getIGAccounts().get(i));
+                mDataList.add(mModelIGPost);
+                mModelIGPost = new ModelIGPost(0);
+                mModelIGPost.setIGAccount(DolphPireApp.getInstance().getUser().getIGAccounts().get(i));
+                mDataList.add(mModelIGPost);
+                mModelIGPost = new ModelIGPost(0);
+                mModelIGPost.setIGAccount(DolphPireApp.getInstance().getUser().getIGAccounts().get(i));
+                mDataList.add(mModelIGPost);
                 mModelIGPost = new ModelIGPost(0);
                 mModelIGPost.setIGAccount(DolphPireApp.getInstance().getUser().getIGAccounts().get(i));
                 mDataList.add(mModelIGPost);
