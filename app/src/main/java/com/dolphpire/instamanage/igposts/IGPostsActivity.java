@@ -30,8 +30,8 @@ public class IGPostsActivity extends AppCompatActivity
 
     @BindView(R.id.imvBack)
     ImageView imvBack;
-    @BindView(R.id.rvIGAccounts)
-    RecyclerView rvIGAccounts;
+    @BindView(R.id.rvIGPosts)
+    RecyclerView rvIGPosts;
     private LinearLayoutManager linearLayoutManager;
     private ArrayList<ModelIGPost> mDataList;
     private AdapterIGPosts mAdapter;
@@ -41,7 +41,7 @@ public class IGPostsActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ig_account);
+        setContentView(R.layout.activity_ig_posts);
 
         ButterKnife.bind(this);
 
@@ -50,11 +50,11 @@ public class IGPostsActivity extends AppCompatActivity
         mDataList = new ArrayList<>();
         mAdapter = new AdapterIGPosts(mDataList, this);
 
-        rvIGAccounts.setItemAnimator(new DefaultItemAnimator());
+        rvIGPosts.setItemAnimator(new DefaultItemAnimator());
         linearLayoutManager = new LinearLayoutManager(this);
-        rvIGAccounts.setLayoutManager(linearLayoutManager);
-        rvIGAccounts.setHasFixedSize(false);
-        rvIGAccounts.setAdapter(mAdapter);
+        rvIGPosts.setLayoutManager(linearLayoutManager);
+        rvIGPosts.setHasFixedSize(false);
+        rvIGPosts.setAdapter(mAdapter);
 
         mAdapter.setListener(new AdapterIGPosts.OnItem()
         {
