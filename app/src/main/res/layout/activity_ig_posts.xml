@@ -13,7 +13,9 @@
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:paddingTop="64dp"
-        android:paddingBottom="10dp" />
+        android:paddingBottom="10dp"
+        android:paddingEnd="2dp"
+        android:paddingStart="2dp"/>
 
     <RelativeLayout
         android:id="@+id/rlToolbar"

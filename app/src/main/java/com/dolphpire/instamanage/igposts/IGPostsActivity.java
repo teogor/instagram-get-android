@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,7 +33,7 @@ public class IGPostsActivity extends AppCompatActivity
     ImageView imvBack;
     @BindView(R.id.rvIGPosts)
     RecyclerView rvIGPosts;
-    private LinearLayoutManager linearLayoutManager;
+    private GridLayoutManager gridLayoutManager;
     private ArrayList<ModelIGPost> mDataList;
     private AdapterIGPosts mAdapter;
     private ModelIGPost mModelIGPost;
@@ -51,8 +52,8 @@ public class IGPostsActivity extends AppCompatActivity
         mAdapter = new AdapterIGPosts(mDataList, this);
 
         rvIGPosts.setItemAnimator(new DefaultItemAnimator());
-        linearLayoutManager = new LinearLayoutManager(this);
-        rvIGPosts.setLayoutManager(linearLayoutManager);
+        gridLayoutManager = new GridLayoutManager(this, 3);
+        rvIGPosts.setLayoutManager(gridLayoutManager);
         rvIGPosts.setHasFixedSize(false);
         rvIGPosts.setAdapter(mAdapter);
 
