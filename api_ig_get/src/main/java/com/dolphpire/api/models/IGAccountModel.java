@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class IGAccountModel implements Serializable
 {
 
-    private int ig_account_id = 0;
+    private long ig_account_id = 0;
     private String profile_picture = "";
     private String username = "";
     private String password = "";
@@ -41,7 +41,7 @@ public class IGAccountModel implements Serializable
         return profile_picture;
     }
 
-    public int getIGID()
+    public long getIGID()
     {
         return ig_account_id;
     }
