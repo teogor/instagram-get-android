@@ -156,12 +156,12 @@ public class HomeActivity extends AppCompatActivity
         return new SimpleItem(screenIcons[position], screenTitles[position])
                 .withIconTint(color(R.color.colorUnselected))
                 .withTextTint(color(R.color.colorUnselected))
-                .withTextSize(14)
-                .withIconSize(40)
+                .withTextSize((int) getResources().getDimension(R.dimen.nav_drawer_text_size))
+                .withIconSize((int) getResources().getDimension(R.dimen.nav_drawer_icon_size))
                 .withSelectedIconTint(color(R.color.colorSelected))
                 .withSelectedTextTint(color(R.color.colorSelected))
-                .withSelectedTextSize(16)
-                .withSelectedIconSize(48);
+                .withSelectedTextSize((int) getResources().getDimension(R.dimen.nav_drawer_text_size_selected))
+                .withSelectedIconSize((int) getResources().getDimension(R.dimen.nav_drawer_icon_size_selected));
     }
 
     private String[] loadScreenTitles()
