@@ -186,7 +186,7 @@ public class GetLikesFragment extends Fragment
             @Override
             public void onRefresh()
             {
-                srlRefreshLikes.setRefreshing(false);
+                refreshImageData();
             }
         });
 
@@ -195,7 +195,7 @@ public class GetLikesFragment extends Fragment
                 {
 
                     Glide.with(mActivity)
-                            .load(mIGPostModel.getImg150x150())
+                            .load(mIGPostModel.getImg240x240())
                             .into(imvPostPreview);
 
                     txtNoLikes.setText(numberFormat(mIGPostModel.getLikes()));
@@ -205,7 +205,7 @@ public class GetLikesFragment extends Fragment
         if (DolphPireApp.getInstance().getUser().getIGPostModel() != null)
         {
             Glide.with(mActivity)
-                    .load(DolphPireApp.getInstance().getUser().getIGPostModel().getImg150x150())
+                    .load(DolphPireApp.getInstance().getUser().getIGPostModel().getImg240x240())
                     .into(imvPostPreview);
 
             txtNoLikes.setText(numberFormat(DolphPireApp.getInstance().getUser().getIGPostModel().getLikes()));
@@ -221,6 +221,7 @@ public class GetLikesFragment extends Fragment
 
     private void refreshImageData()
     {
+        srlRefreshLikes.setRefreshing(true);
 
         DolphPireApp.initializeApi().igAccount().posts()
                 .withUserID(DolphPireApp.getInstance().getIGAccount().getIGID())
@@ -246,7 +247,7 @@ public class GetLikesFragment extends Fragment
                     }
 
                     Glide.with(mActivity)
-                            .load(mIGPostsModel.getPosts().get(i).getImg150x150())
+                            .load(mIGPostsModel.getPosts().get(i).getImg240x240())
                             .into(imvPostPreview);
 
                     txtNoLikes.setText(numberFormat(mIGPostsModel.getPosts().get(i).getLikes()));
@@ -257,6 +258,8 @@ public class GetLikesFragment extends Fragment
                     DolphPireApp.getInstance()
                             .setPost(mIGPostsModel.getPosts().get(i));
 
+                    srlRefreshLikes.setRefreshing(false);
+
                 })
                 .execute();
 
@@ -264,6 +267,7 @@ public class GetLikesFragment extends Fragment
 
     private void getIGImage()
     {
+        srlRefreshLikes.setRefreshing(true);
         DolphPireApp.initializeApi().igAccount().posts()
                 .withUserID(DolphPireApp.getInstance().getIGAccount().getIGID())
                 .set()
@@ -271,7 +275,7 @@ public class GetLikesFragment extends Fragment
                 {
 
                     Glide.with(mActivity)
-                            .load(mIGPostsModel.getPosts().get(0).getImg150x150())
+                            .load(mIGPostsModel.getPosts().get(0).getImg240x240())
                             .into(imvPostPreview);
 
                     txtNoLikes.setText(numberFormat(mIGPostsModel.getPosts().get(0).getLikes()));
@@ -281,6 +285,7 @@ public class GetLikesFragment extends Fragment
 
                     DolphPireApp.getInstance()
                             .setPost(mIGPostsModel.getPosts().get(0));
+                    srlRefreshLikes.setRefreshing(false);
 
                 })
                 .execute();
