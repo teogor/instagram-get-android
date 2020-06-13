@@ -182,7 +182,6 @@ public class GetLikesFragment extends Fragment
 
                 }, "IG_POST_LIKES_FRAGMENT");
 
-        Log.d("newPost2", new Gson().toJson(DolphPireApp.getInstance().getUser()));
         if (DolphPireApp.getInstance().getUser().getIGPostModel() != null)
         {
             Glide.with(mActivity)
@@ -191,7 +190,6 @@ public class GetLikesFragment extends Fragment
 
             txtNoLikes.setText(numberFormat(DolphPireApp.getInstance().getUser().getIGPostModel().getLikes()));
             refreshImageData();
-
         } else
         {
             getIGImage();
