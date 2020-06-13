@@ -147,7 +147,7 @@ public class GetLikesFragment extends Fragment
                                 DolphPireApp.getInstance().getIGAccount().getIGID(),
                                 itemChose,
                                 DolphPireApp.getInstance().getUser().getIGPostModel().getId(),
-                                DolphPireApp.getInstance().getUser().getIGPostModel().getImg240x240()
+                                DolphPireApp.getInstance().getUser().getIGPostModel().getImg480x480()
                         )
                         .addOnCompleteListener(new DPireOnCompleteCallback.OnComplete()
                         {

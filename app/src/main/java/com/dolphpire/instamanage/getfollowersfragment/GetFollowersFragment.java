@@ -135,7 +135,8 @@ public class GetFollowersFragment extends Fragment
         llPlaceOrder.setOnClickListener(v ->
         {
             llBottomPlaceOrder.setVisibility(View.GONE);
-            if (DolphPireApp.getInstance().getUser().getCoins() >= mDataList.get(itemChose).getCoins()) {
+            if (DolphPireApp.getInstance().getUser().getCoins() >= mDataList.get(itemChose).getCoins())
+            {
                 DolphPireApp.initializeApi()
                         .user().order()
                         .followers(
@@ -153,7 +154,8 @@ public class GetFollowersFragment extends Fragment
                         .execute();
                 DolphPireApp.getInstance().decreaseCoinsBy(mDataList.get(itemChose).getCoins());
                 Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getFollowers() + " followers", Toast.LENGTH_SHORT).show();
-            } else {
+            } else
+            {
                 Toast.makeText(mContext, "Failed to purchase. You don't have enough coins.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -203,7 +205,6 @@ public class GetFollowersFragment extends Fragment
 
     private void setIGAccountData()
     {
-
         if (DolphPireApp.getInstance().getIGAccount() != null)
         {
             Glide.with(this)
