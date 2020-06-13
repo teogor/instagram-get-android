@@ -40,8 +40,9 @@ public class HomeActivity extends AppCompatActivity
 
     private HomeFragment mHomeFragment = new HomeFragment();
     private int POS_HOME = 0;
-    private int POS_ACCOUNT = 1;
-    private int POS_LOG_OUT = 3;
+    private int POS_ORDERS = 1;
+    private int POS_ACCOUNT = 2;
+    private int POS_LOG_OUT = 4;
     private String[] screenTitles;
     private Drawable[] screenIcons;
     private SlidingRootNav slidingRootNav;
@@ -108,6 +109,7 @@ public class HomeActivity extends AppCompatActivity
 
         adapter = new DrawerAdapter(Arrays.asList(
                 createItemFor(POS_HOME).setChecked(true),
+                createItemFor(POS_ORDERS),
                 createItemFor(POS_ACCOUNT),
                 new SpaceItem(14),
                 createItemFor(POS_LOG_OUT)));
