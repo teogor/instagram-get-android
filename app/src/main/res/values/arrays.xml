@@ -3,6 +3,7 @@
 
     <string-array name="ld_activityScreenTitles">
         <item>Home</item>
+        <item>Orders</item>
         <item>Account</item>
         <item />
         <item>Log Out</item>
@@ -10,6 +11,7 @@
 
     <array name="ld_activityScreenIcons">
         <item>@drawable/ic_nav_home</item>
+        <item>@drawable/ic_nav_orders</item>
         <item>@drawable/ic_nav_account</item>
         <item />
         <item>@drawable/ic_nav_logout</item>
