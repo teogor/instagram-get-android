@@ -27,7 +27,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.bumptech.glide.Glide;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.DPireOnCompleteCallback;
-import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getfollowersfragment.adapter.AdapterGetFollowers;
 import com.dolphpire.instamanage.getfollowersfragment.model.ModelGetFollowers;
