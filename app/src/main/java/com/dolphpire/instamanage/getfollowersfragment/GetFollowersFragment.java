@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,8 @@ public class GetFollowersFragment extends Fragment
     LinearLayout llCancelOrder;
     @BindView(R.id.llPlaceOrder)
     LinearLayout llPlaceOrder;
+    @BindView(R.id.llBottomLoading)
+    RelativeLayout llBottomLoading;
     @BindView(R.id.txtAmountCoins)
     TextView txtAmountCoins;
     @BindView(R.id.txtAmountFollowers)
@@ -125,6 +128,7 @@ public class GetFollowersFragment extends Fragment
         rvGetFollowers.setAdapter(mAdapter);
 
         llBottomPlaceOrder.setVisibility(View.GONE);
+        llBottomLoading.setVisibility(View.GONE);
 
         setAnimation();
 
@@ -135,25 +139,29 @@ public class GetFollowersFragment extends Fragment
         llPlaceOrder.setOnClickListener(v ->
         {
             llBottomPlaceOrder.setVisibility(View.GONE);
-            if (DolphPireApp.getInstance().getUser().getCoins() >= mDataList.get(itemChose).getCoins()) {
+            llBottomLoading.setVisibility(View.VISIBLE);
+            if (DolphPireApp.getInstance().getUser().getCoins() >= mDataList.get(itemChose).getCoins())
+            {
                 DolphPireApp.initializeApi()
                         .user().order()
                         .followers(
                                 DolphPireApp.getInstance().getIGAccount().getIGID(),
                                 itemChose
                         )
-                        .addOnCompleteListener(new DPireOnCompleteCallback.OnComplete()
+                        .addOnCompleteListener(() ->
                         {
-                            @Override
-                            public void onCompleted()
-                            {
-
-                            }
+                            llBottomLoading.setVisibility(View.GONE);
+                            Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getFollowers() + " followers", Toast.LENGTH_SHORT).show();
+                        })
+                        .addOnFailureListener(e ->
+                        {
+                            llBottomPlaceOrder.setVisibility(View.VISIBLE);
+                            llBottomLoading.setVisibility(View.GONE);
                         })
                         .execute();
                 DolphPireApp.getInstance().decreaseCoinsBy(mDataList.get(itemChose).getCoins());
-                Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getFollowers() + " followers", Toast.LENGTH_SHORT).show();
-            } else {
+            } else
+            {
                 Toast.makeText(mContext, "Failed to purchase. You don't have enough coins.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -203,7 +211,6 @@ public class GetFollowersFragment extends Fragment
 
     private void setIGAccountData()
     {
-
         if (DolphPireApp.getInstance().getIGAccount() != null)
         {
             Glide.with(this)
@@ -219,7 +226,8 @@ public class GetFollowersFragment extends Fragment
         final ArgbEvaluator evaluator = new ArgbEvaluator();
         final int start = ContextCompat.getColor(mContext, R.color.colorBgPlaceOrder1);
         final int end = ContextCompat.getColor(mContext, R.color.colorBgPlaceOrder2);
-        final GradientDrawable gradient = (GradientDrawable) llBottomPlaceOrder.getBackground();
+        final GradientDrawable gradientPO = (GradientDrawable) llBottomPlaceOrder.getBackground();
+        final GradientDrawable gradientL = (GradientDrawable) llBottomLoading.getBackground();
 
         ValueAnimator animator = TimeAnimator.ofFloat(0.0f, 1.0f);
         animator.setDuration(1500);
@@ -231,7 +239,8 @@ public class GetFollowersFragment extends Fragment
             int newStrat = (int) evaluator.evaluate(fraction, start, end);
             int newEnd = (int) evaluator.evaluate(fraction, end, start);
             int[] newArray = {newStrat, newEnd};
-            gradient.setColors(newArray);
+            gradientPO.setColors(newArray);
+            gradientL.setColors(newArray);
         });
 
         animator.start();

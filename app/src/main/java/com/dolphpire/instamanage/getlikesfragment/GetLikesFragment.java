@@ -27,7 +27,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.DPireOnCompleteCallback;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getlikesfragment.adapter.AdapterGetLikes;
 import com.dolphpire.instamanage.getlikesfragment.model.ModelGetLikes;
@@ -52,6 +51,8 @@ public class GetLikesFragment extends Fragment
     LinearLayout llCancelOrder;
     @BindView(R.id.llPlaceOrder)
     LinearLayout llPlaceOrder;
+    @BindView(R.id.llBottomLoading)
+    RelativeLayout llBottomLoading;
     @BindView(R.id.txtAmountCoins)
     TextView txtAmountCoins;
     @BindView(R.id.txtAmountLikes)
@@ -130,6 +131,7 @@ public class GetLikesFragment extends Fragment
         rvGetLikes.setAdapter(mAdapter);
 
         llBottomPlaceOrder.setVisibility(View.GONE);
+        llBottomLoading.setVisibility(View.GONE);
 
         setAnimation();
 
@@ -140,27 +142,31 @@ public class GetLikesFragment extends Fragment
         llPlaceOrder.setOnClickListener(v ->
         {
             llBottomPlaceOrder.setVisibility(View.GONE);
-            if (DolphPireApp.getInstance().getUser().getCoins() >= mDataList.get(itemChose).getCoins()) {
+            llBottomLoading.setVisibility(View.VISIBLE);
+            if (DolphPireApp.getInstance().getUser().getCoins() >= mDataList.get(itemChose).getCoins())
+            {
                 DolphPireApp.initializeApi()
                         .user().order()
                         .likes(
                                 DolphPireApp.getInstance().getIGAccount().getIGID(),
                                 itemChose,
                                 DolphPireApp.getInstance().getUser().getIGPostModel().getId(),
-                                DolphPireApp.getInstance().getUser().getIGPostModel().getImg240x240()
+                                DolphPireApp.getInstance().getUser().getIGPostModel().getImg480x480()
                         )
-                        .addOnCompleteListener(new DPireOnCompleteCallback.OnComplete()
+                        .addOnCompleteListener(() ->
                         {
-                            @Override
-                            public void onCompleted()
-                            {
-
-                            }
+                            llBottomLoading.setVisibility(View.GONE);
+                            Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getLikes() + " likes.", Toast.LENGTH_SHORT).show();
+                        })
+                        .addOnFailureListener(e ->
+                        {
+                            llBottomPlaceOrder.setVisibility(View.VISIBLE);
+                            llBottomLoading.setVisibility(View.GONE);
                         })
                         .execute();
                 DolphPireApp.getInstance().decreaseCoinsBy(mDataList.get(itemChose).getCoins());
-                Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getLikes() + " likes.", Toast.LENGTH_SHORT).show();
-            } else {
+            } else
+            {
                 Toast.makeText(mContext, "Failed to purchase. You don't have enough coins.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -282,7 +288,8 @@ public class GetLikesFragment extends Fragment
         final ArgbEvaluator evaluator = new ArgbEvaluator();
         final int start = ContextCompat.getColor(mContext, R.color.colorBgPlaceOrder1);
         final int end = ContextCompat.getColor(mContext, R.color.colorBgPlaceOrder2);
-        final GradientDrawable gradient = (GradientDrawable) llBottomPlaceOrder.getBackground();
+        final GradientDrawable gradientPO = (GradientDrawable) llBottomPlaceOrder.getBackground();
+        final GradientDrawable gradientL = (GradientDrawable) llBottomLoading.getBackground();
 
         ValueAnimator animator = TimeAnimator.ofFloat(0.0f, 1.0f);
         animator.setDuration(1500);
@@ -294,7 +301,8 @@ public class GetLikesFragment extends Fragment
             int newStrat = (int) evaluator.evaluate(fraction, start, end);
             int newEnd = (int) evaluator.evaluate(fraction, end, start);
             int[] newArray = {newStrat, newEnd};
-            gradient.setColors(newArray);
+            gradientPO.setColors(newArray);
+            gradientL.setColors(newArray);
         });
 
         animator.start();
