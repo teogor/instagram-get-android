@@ -278,4 +278,32 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/llBottomLoading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/srlRefreshLikes"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/bg_place_order"
+        android:elevation="20dp"
+        android:orientation="vertical"
+        android:paddingTop="18dp">
+
+        <ProgressBar
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_centerVertical="true"
+            android:indeterminate="true"
+            android:indeterminateTint="#ffffff" />
+
+    </RelativeLayout>
+
 </RelativeLayout>
