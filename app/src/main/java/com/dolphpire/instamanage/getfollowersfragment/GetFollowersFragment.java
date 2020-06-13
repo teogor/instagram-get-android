@@ -163,6 +163,7 @@ public class GetFollowersFragment extends Fragment
             } else
             {
                 Toast.makeText(mContext, "Failed to purchase. You don't have enough coins.", Toast.LENGTH_SHORT).show();
+                llBottomLoading.setVisibility(View.GONE);
             }
         });
 
