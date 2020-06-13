@@ -25,10 +25,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
-import com.dolphpire.insapi.request.InsRequestCallBack;
-import com.dolphpire.insapi.request.api.userinfo.GetUserDetails;
-import com.dolphpire.insapi.request.api.userinfo.UserInfoResponseData;
+import com.dolphpire.api.interfaces.DPireOnCompleteCallback;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getfollowersfragment.adapter.AdapterGetFollowers;
 import com.dolphpire.instamanage.getfollowersfragment.model.ModelGetFollowers;
@@ -141,7 +138,18 @@ public class GetFollowersFragment extends Fragment
             if (DolphPireApp.getInstance().getUser().getCoins() >= mDataList.get(itemChose).getCoins()) {
                 DolphPireApp.initializeApi()
                         .user().order()
-                        .likes(DolphPireApp.getInstance().getIGAccount().getIGID(), itemChose)
+                        .followers(
+                                DolphPireApp.getInstance().getIGAccount().getIGID(),
+                                itemChose
+                        )
+                        .addOnCompleteListener(new DPireOnCompleteCallback.OnComplete()
+                        {
+                            @Override
+                            public void onCompleted()
+                            {
+
+                            }
+                        })
                         .execute();
                 DolphPireApp.getInstance().decreaseCoinsBy(mDataList.get(itemChose).getCoins());
                 Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getFollowers() + " followers", Toast.LENGTH_SHORT).show();
@@ -168,7 +176,7 @@ public class GetFollowersFragment extends Fragment
                 .igAccount().followersCount()
                 .withUsername(DolphPireApp.getInstance().getIGAccount().getUsername())
                 .set()
-                .addOnCompleteListener(new ZFlowOnCompleteCallback.OnComplete()
+                .addOnCompleteListener(new DPireOnCompleteCallback.OnComplete()
                 {
                     @Override
                     public void onCompleted()
