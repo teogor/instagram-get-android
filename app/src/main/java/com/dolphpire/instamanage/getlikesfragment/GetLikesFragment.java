@@ -142,17 +142,17 @@ public class GetLikesFragment extends Fragment
 
         llPlaceOrder.setOnClickListener(v ->
         {
-
-            DolphPireApp.initializeApi().igAccount().posts()
-                    .withUserID(DolphPireApp.getInstance().getIGAccount().getIGID())
-                    .set()
-                    .execute();
             llBottomPlaceOrder.setVisibility(View.GONE);
-            DolphPireApp.initializeApi()
-                    .user().order()
-                    .likes(DolphPireApp.getInstance().getIGAccount().getIGID(), itemChose)
-                    .execute();
-            Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getLikes() + " likes", Toast.LENGTH_SHORT).show();
+            if (DolphPireApp.getInstance().getUser().getCoins() >= mDataList.get(itemChose).getCoins()) {
+                DolphPireApp.initializeApi()
+                        .user().order()
+                        .likes(DolphPireApp.getInstance().getIGAccount().getIGID(), itemChose)
+                        .execute();
+                DolphPireApp.getInstance().decreaseCoinsBy(mDataList.get(itemChose).getCoins());
+                Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getLikes() + " likes", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(mContext, "Failed to purchase. You don't have enough coins.", Toast.LENGTH_SHORT).show();
+            }
         });
 
         rlPostHolder.setOnClickListener(v ->
