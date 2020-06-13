@@ -61,4 +61,8 @@ public class UserModel implements Serializable
         return mIGPostModel;
     }
 
+    public void setCoins(int coins)
+    {
+        this.coins = coins;
+    }
 }

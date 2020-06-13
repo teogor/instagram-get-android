@@ -138,11 +138,16 @@ public class GetFollowersFragment extends Fragment
         llPlaceOrder.setOnClickListener(v ->
         {
             llBottomPlaceOrder.setVisibility(View.GONE);
-            DolphPireApp.initializeApi()
-                    .user().order()
-                    .followers(DolphPireApp.getInstance().getIGAccount().getIGID(), itemChose)
-                    .execute();
-            Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getFollowers() + " followers", Toast.LENGTH_SHORT).show();
+            if (DolphPireApp.getInstance().getUser().getCoins() >= mDataList.get(itemChose).getCoins()) {
+                DolphPireApp.initializeApi()
+                        .user().order()
+                        .likes(DolphPireApp.getInstance().getIGAccount().getIGID(), itemChose)
+                        .execute();
+                DolphPireApp.getInstance().decreaseCoinsBy(mDataList.get(itemChose).getCoins());
+                Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getFollowers() + " followers", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(mContext, "Failed to purchase. You don't have enough coins.", Toast.LENGTH_SHORT).show();
+            }
         });
 
         setIGAccount();
