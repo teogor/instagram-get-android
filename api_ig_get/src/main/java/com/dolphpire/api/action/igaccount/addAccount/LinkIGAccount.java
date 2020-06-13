@@ -1,13 +1,11 @@
 package com.dolphpire.api.action.igaccount.addAccount;
 
-import android.util.Log;
-
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.FailureCallback;
-import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
+import com.dolphpire.api.interfaces.DPireOnCompleteCallback;
 import com.dolphpire.api.links.EndPoints;
 import com.dolphpire.api.models.IGAccountModel;
 
@@ -16,8 +14,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.dolphpire.api.initializer.DolphPireApp.TAG;
 
 public class LinkIGAccount
 {
@@ -28,7 +24,7 @@ public class LinkIGAccount
     private String password = "null";
     private String profile_picture = "null";
     private String is_private = "null";
-    private ZFlowOnCompleteCallback.OnComplete onComplete;
+    private DPireOnCompleteCallback.OnComplete onComplete;
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
 
@@ -140,7 +136,7 @@ public class LinkIGAccount
 
     }
 
-    public LinkIGAccount addOnCompleteListener(ZFlowOnCompleteCallback.OnComplete onComplete)
+    public LinkIGAccount addOnCompleteListener(DPireOnCompleteCallback.OnComplete onComplete)
     {
         this.onComplete = onComplete;
         return this;
