@@ -143,7 +143,7 @@ public class GetLikesFragment extends Fragment
         {
             llBottomPlaceOrder.setVisibility(View.GONE);
             llBottomLoading.setVisibility(View.VISIBLE);
-            if (DolphPireApp.getInstance().getUser().getCoins() >= mDataList.get(itemChose).getCoins())
+            if (DolphPireApp.getInstance().getUser().getCoins() >= mDataList.get(itemChose).getCoins() && DolphPireApp.getInstance().getUser().getIGPostModel() != null)
             {
                 DolphPireApp.initializeApi()
                         .user().order()
@@ -165,9 +165,13 @@ public class GetLikesFragment extends Fragment
                         })
                         .execute();
                 DolphPireApp.getInstance().decreaseCoinsBy(mDataList.get(itemChose).getCoins());
+            } else if (DolphPireApp.getInstance().getUser().getIGPostModel() == null) {
+                Toast.makeText(mContext, "Please select a post", Toast.LENGTH_SHORT).show();
+                llBottomLoading.setVisibility(View.GONE);
             } else
             {
                 Toast.makeText(mContext, "Failed to purchase. You don't have enough coins.", Toast.LENGTH_SHORT).show();
+                llBottomLoading.setVisibility(View.GONE);
             }
         });
 
