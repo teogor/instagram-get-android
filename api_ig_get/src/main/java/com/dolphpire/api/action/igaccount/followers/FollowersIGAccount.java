@@ -7,9 +7,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.FailureCallback;
-import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
+import com.dolphpire.api.interfaces.DPireOnCompleteCallback;
 import com.dolphpire.api.links.EndPoints;
-import com.dolphpire.api.models.IGAccountModel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,7 +23,7 @@ public class FollowersIGAccount
 
     //class model
     private String username = "null";
-    private ZFlowOnCompleteCallback.OnComplete onComplete;
+    private DPireOnCompleteCallback.OnComplete onComplete;
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
 
@@ -101,7 +100,7 @@ public class FollowersIGAccount
 
     }
 
-    public FollowersIGAccount addOnCompleteListener(ZFlowOnCompleteCallback.OnComplete onComplete)
+    public FollowersIGAccount addOnCompleteListener(DPireOnCompleteCallback.OnComplete onComplete)
     {
         this.onComplete = onComplete;
         return this;

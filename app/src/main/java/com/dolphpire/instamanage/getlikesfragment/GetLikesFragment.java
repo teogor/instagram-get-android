@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,14 +27,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.dolphpire.api.initializer.DolphPireApp;
-import com.dolphpire.api.models.IGAccountModel;
-import com.dolphpire.api.models.SyncIGAccount;
+import com.dolphpire.api.interfaces.DPireOnCompleteCallback;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.getlikesfragment.adapter.AdapterGetLikes;
 import com.dolphpire.instamanage.getlikesfragment.model.ModelGetLikes;
 import com.dolphpire.instamanage.igposts.IGPostsActivity;
 import com.dolphpire.instamanage.views.DolphPireIS;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -146,10 +143,23 @@ public class GetLikesFragment extends Fragment
             if (DolphPireApp.getInstance().getUser().getCoins() >= mDataList.get(itemChose).getCoins()) {
                 DolphPireApp.initializeApi()
                         .user().order()
-                        .likes(DolphPireApp.getInstance().getIGAccount().getIGID(), itemChose)
+                        .likes(
+                                DolphPireApp.getInstance().getIGAccount().getIGID(),
+                                itemChose,
+                                DolphPireApp.getInstance().getUser().getIGPostModel().getId(),
+                                DolphPireApp.getInstance().getUser().getIGPostModel().getImg240x240()
+                        )
+                        .addOnCompleteListener(new DPireOnCompleteCallback.OnComplete()
+                        {
+                            @Override
+                            public void onCompleted()
+                            {
+
+                            }
+                        })
                         .execute();
                 DolphPireApp.getInstance().decreaseCoinsBy(mDataList.get(itemChose).getCoins());
-                Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getLikes() + " likes", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Purchased " + mDataList.get(itemChose).getLikes() + " likes.", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(mContext, "Failed to purchase. You don't have enough coins.", Toast.LENGTH_SHORT).show();
             }

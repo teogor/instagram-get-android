@@ -7,7 +7,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.FailureCallback;
-import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
+import com.dolphpire.api.interfaces.DPireOnCompleteCallback;
 import com.dolphpire.api.links.EndPoints;
 
 import org.json.JSONException;
@@ -20,7 +20,7 @@ public class UpdateAction {
 
     //class model
     private String image_id;
-    private ZFlowOnCompleteCallback.OnComplete onComplete;
+    private DPireOnCompleteCallback.OnComplete onComplete;
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
 
@@ -87,7 +87,7 @@ public class UpdateAction {
 
     }
 
-    public UpdateAction addOnCompleteListener(ZFlowOnCompleteCallback.OnComplete onComplete) {
+    public UpdateAction addOnCompleteListener(DPireOnCompleteCallback.OnComplete onComplete) {
         this.onComplete = onComplete;
         return this;
     }

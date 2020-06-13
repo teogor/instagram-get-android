@@ -8,7 +8,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.FailureCallback;
-import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
+import com.dolphpire.api.interfaces.DPireOnCompleteCallback;
 import com.dolphpire.api.links.EndPoints;
 
 import org.json.JSONException;
@@ -26,7 +26,7 @@ public class CreatePostAction {
     private String color_1;
     private String color_2;
     private String images_url;
-    private ZFlowOnCompleteCallback.OnComplete onCompleteListener;
+    private DPireOnCompleteCallback.OnComplete onCompleteListener;
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
 
@@ -114,7 +114,7 @@ public class CreatePostAction {
 
     }
 
-    public CreatePostAction addOnCompleteListener(ZFlowOnCompleteCallback.OnComplete onCompleteListener) {
+    public CreatePostAction addOnCompleteListener(DPireOnCompleteCallback.OnComplete onCompleteListener) {
         this.onCompleteListener = onCompleteListener;
         return this;
     }

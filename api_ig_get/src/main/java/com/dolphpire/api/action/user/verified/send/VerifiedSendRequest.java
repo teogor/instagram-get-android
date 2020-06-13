@@ -7,7 +7,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.FailureCallback;
-import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
+import com.dolphpire.api.interfaces.DPireOnCompleteCallback;
 import com.dolphpire.api.links.EndPoints;
 
 import org.json.JSONException;
@@ -22,7 +22,7 @@ public class VerifiedSendRequest {
     private String documentID = "";
     private String category = "";
     private String fullName = "";
-    private ZFlowOnCompleteCallback.OnComplete onComplete;
+    private DPireOnCompleteCallback.OnComplete onComplete;
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
 
@@ -90,7 +90,7 @@ public class VerifiedSendRequest {
 
     }
 
-    public VerifiedSendRequest addOnCompleteListener(ZFlowOnCompleteCallback.OnComplete onComplete) {
+    public VerifiedSendRequest addOnCompleteListener(DPireOnCompleteCallback.OnComplete onComplete) {
         this.onComplete = onComplete;
         return this;
     }

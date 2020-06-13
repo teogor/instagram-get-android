@@ -7,7 +7,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.FailureCallback;
-import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
+import com.dolphpire.api.interfaces.DPireOnCompleteCallback;
 import com.dolphpire.api.links.EndPoints;
 
 import org.json.JSONException;
@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class SearchHistoryDelete {
 
-    private ZFlowOnCompleteCallback.OnComplete onCompleteListener;
+    private DPireOnCompleteCallback.OnComplete onCompleteListener;
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
 
@@ -81,7 +81,7 @@ public class SearchHistoryDelete {
 
     }
 
-    public SearchHistoryDelete addOnCompleteListener(ZFlowOnCompleteCallback.OnComplete onCompleteListener) {
+    public SearchHistoryDelete addOnCompleteListener(DPireOnCompleteCallback.OnComplete onCompleteListener) {
         this.onCompleteListener = onCompleteListener;
         return this;
     }

@@ -8,7 +8,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.FailureCallback;
-import com.dolphpire.api.interfaces.ZFlowOnCompleteCallback;
+import com.dolphpire.api.interfaces.DPireOnCompleteCallback;
 import com.dolphpire.api.links.EndPoints;
 
 import org.json.JSONException;
@@ -24,7 +24,7 @@ public class UserInteract {
     private String user_id;
     private String action;
     private String interaction_type;
-    private ZFlowOnCompleteCallback.OnComplete onCompleteListener;
+    private DPireOnCompleteCallback.OnComplete onCompleteListener;
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
 
@@ -95,7 +95,7 @@ public class UserInteract {
 
     }
 
-    public UserInteract addOnCompleteListener(ZFlowOnCompleteCallback.OnComplete onCompleteListener) {
+    public UserInteract addOnCompleteListener(DPireOnCompleteCallback.OnComplete onCompleteListener) {
         this.onCompleteListener = onCompleteListener;
         return this;
     }

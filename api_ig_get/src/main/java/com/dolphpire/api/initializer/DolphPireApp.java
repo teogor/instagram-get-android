@@ -389,6 +389,17 @@ public class DolphPireApp
         this.mSyncIGPost.setNewPost(mIGPostModel);
     }
 
+    public void setCoins(int amount)
+    {
+        UserModel mUserModel = this.getUser();
+        mUserModel.setCoins(amount);
+        SharedPreferences mPrefs = getApplicationContext().getSharedPreferences(DPIRE_SP_APP_DATA, MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        prefsEditor.putString(DPIRE_SP_USER_ACCOUNT, new Gson().toJson(mUserModel));
+        prefsEditor.apply();
+        this.mSyncUserModel.setUser(mUserModel);
+    }
+
     public void decreaseCoinsBy(int amount)
     {
         UserModel mUserModel = this.getUser();

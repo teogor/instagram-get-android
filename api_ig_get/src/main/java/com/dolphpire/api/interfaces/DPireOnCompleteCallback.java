@@ -1,6 +1,6 @@
 package com.dolphpire.api.interfaces;
 
-public interface ZFlowOnCompleteCallback<T> {
+public interface DPireOnCompleteCallback<T> {
 
     interface OnComplete {
         void onCompleted();
