@@ -37,12 +37,10 @@ import static com.dolphpire.api.utils.NumberFormat.numberFormat;
 public class OrdersFragment extends Fragment
 {
 
-    @BindView(R.id.btnLikes)
-    TextView btnLikes;
-    @BindView(R.id.btnFollowers)
-    TextView btnFollowers;
-    @BindView(R.id.btnCoins)
-    ImageView btnCoins;
+    @BindView(R.id.btnInProgress)
+    TextView btnInProgress;
+    @BindView(R.id.btnCompleted)
+    TextView btnCompleted;
     @BindView(R.id.title_toolbar)
     TextView title_toolbar;
     @BindView(R.id.txt_coins)
@@ -104,28 +102,20 @@ public class OrdersFragment extends Fragment
         GetLikesFragment getLikesFragment = new GetLikesFragment();
         GetFollowersFragment getFollowersFragment = new GetFollowersFragment();
 
-        btnLikes.setOnClickListener(v ->
+        btnInProgress.setOnClickListener(v ->
         {
             showFragment(getLikesFragment);
-            btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
-            btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
-            title_toolbar.setText("Get Likes");
+            btnInProgress.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
+            btnCompleted.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
+            title_toolbar.setText("In Progress");
         });
 
-        btnFollowers.setOnClickListener(v ->
+        btnCompleted.setOnClickListener(v ->
         {
             showFragment(getFollowersFragment);
-            btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
-            btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
-            title_toolbar.setText("Get Followers");
-        });
-
-        btnCoins.setOnClickListener(v ->
-        {
-            showFragment(getCoinsFragment);
-            btnLikes.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
-            btnFollowers.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
-            title_toolbar.setText("Get Coins");
+            btnInProgress.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
+            btnCompleted.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
+            title_toolbar.setText("Completed");
         });
 
         showFragment(getCoinsFragment);
@@ -161,11 +151,11 @@ public class OrdersFragment extends Fragment
 
         txt_coins.setText(numberFormat(DolphPireApp.getInstance().getUser().getCoins()));
         DolphPireApp.getInstance().syncUser()
-                .setListener(this::onSyncUser, "HOME_FRAGMENT");
+                .setListener(this::onSyncUser, "ORDERS_FRAGMENT");
 
         setIGAccountData();
         DolphPireApp.getInstance().syncIGAccount()
-                .setListener(user -> setIGAccountData(), "HOME_FRAGMENT");
+                .setListener(user -> setIGAccountData(), "ORDERS_FRAGMENT");
 
     }
 

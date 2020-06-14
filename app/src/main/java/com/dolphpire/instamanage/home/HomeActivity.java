@@ -24,6 +24,7 @@ import com.dolphpire.instamanage.home.drawer.SimpleItem;
 import com.dolphpire.instamanage.home.drawer.SpaceItem;
 import com.dolphpire.instamanage.homeFragment.HomeFragment;
 import com.dolphpire.instamanage.login.LoginActivity;
+import com.dolphpire.instamanage.ordersFragment.OrdersFragment;
 import com.yarolegovich.slidingrootnav.SlidingRootNav;
 import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
@@ -39,6 +40,7 @@ public class HomeActivity extends AppCompatActivity
     TextView txt_username;
 
     private HomeFragment mHomeFragment = new HomeFragment();
+    private OrdersFragment mOrdersFragment = new OrdersFragment();
     private int POS_HOME = 0;
     private int POS_ORDERS = 1;
     private int POS_ACCOUNT = 2;
@@ -121,9 +123,10 @@ public class HomeActivity extends AppCompatActivity
 
             if (position == POS_HOME)
             {
-
                 showFragment(mHomeFragment);
-
+            } else if (position == POS_ORDERS)
+            {
+                showFragment(mOrdersFragment);
             } else if (position == POS_ACCOUNT)
             {
 
