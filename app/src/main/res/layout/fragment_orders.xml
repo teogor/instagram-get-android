@@ -38,7 +38,6 @@
             android:clickable="false"
             android:focusable="false"
             android:fontFamily="@font/open_sans_semibold"
-            android:text="Orders"
             android:textAlignment="textStart"
             android:textColor="@color/colorTextLvl1"
             android:textSize="18sp"
