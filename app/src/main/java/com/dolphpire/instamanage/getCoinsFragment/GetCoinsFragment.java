@@ -1,4 +1,4 @@
-package com.dolphpire.instamanage.getcoinsfragment;
+package com.dolphpire.instamanage.getCoinsFragment;
 
 import android.animation.ArgbEvaluator;
 import android.animation.TimeAnimator;
@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

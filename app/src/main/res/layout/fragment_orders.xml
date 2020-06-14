@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/btmMenu"/>
+
+    <RelativeLayout
+        android:id="@+id/rlToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="0dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:background="@drawable/background_toolbar"
+        android:elevation="10dp">
+
+        <TextView
+            android:id="@+id/title_toolbar"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="46dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Orders"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorTextLvl1"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="MissingPrefix"
+            android:layout_toStartOf="@+id/txt_coins"/>
+
+        <TextView
+            android:id="@+id/txt_coins"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/imvIGUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textColor="#fcc62d"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:ignore="MissingPrefix" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imvIGUser"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_circle"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="1dp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/btmMenu"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/colorBackground"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:elevation="20dp">
+
+        <TextView
+            android:id="@+id/btnInProgress"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:focusable="false"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:text="In Progress"
+            android:textColor="@color/colorTextLvl3"
+            android:textSize="16sp"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:id="@+id/btnCompleted"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:focusable="false"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:text="Completed"
+            android:textColor="@color/colorTextLvl3"
+            android:textSize="16sp"
+            tools:ignore="MissingPrefix" />
+
+    </LinearLayout>
+
+</RelativeLayout>

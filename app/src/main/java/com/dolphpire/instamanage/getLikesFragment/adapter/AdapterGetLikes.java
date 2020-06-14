@@ -1,4 +1,4 @@
-package com.dolphpire.instamanage.getlikesfragment.adapter;
+package com.dolphpire.instamanage.getLikesFragment.adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dolphpire.instamanage.R;
-import com.dolphpire.instamanage.getlikesfragment.holder.HolderGetLikes;
-import com.dolphpire.instamanage.getlikesfragment.model.ModelGetLikes;
+import com.dolphpire.instamanage.getLikesFragment.holder.HolderGetLikes;
+import com.dolphpire.instamanage.getLikesFragment.model.ModelGetLikes;
 
 import java.util.ArrayList;
 

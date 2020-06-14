@@ -1,4 +1,4 @@
-package com.dolphpire.instamanage.getfollowersfragment.adapter;
+package com.dolphpire.instamanage.getFollowersFragment.adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dolphpire.instamanage.R;
-import com.dolphpire.instamanage.getfollowersfragment.holder.HolderGetFollowers;
-import com.dolphpire.instamanage.getfollowersfragment.model.ModelGetFollowers;
+import com.dolphpire.instamanage.getFollowersFragment.holder.HolderGetFollowers;
+import com.dolphpire.instamanage.getFollowersFragment.model.ModelGetFollowers;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.dolphpire.instamanage.getfollowersfragment.holder;
+package com.dolphpire.instamanage.getFollowersFragment.holder;
 
 import android.annotation.SuppressLint;
 import android.view.View;
@@ -8,8 +8,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dolphpire.instamanage.R;
-import com.dolphpire.instamanage.getfollowersfragment.adapter.AdapterGetFollowers;
-import com.dolphpire.instamanage.getfollowersfragment.model.ModelGetFollowers;
+import com.dolphpire.instamanage.getFollowersFragment.adapter.AdapterGetFollowers;
+import com.dolphpire.instamanage.getFollowersFragment.model.ModelGetFollowers;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

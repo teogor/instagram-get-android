@@ -1,4 +1,4 @@
-package com.dolphpire.instamanage.getlikesfragment;
+package com.dolphpire.instamanage.getLikesFragment;
 
 import android.animation.ArgbEvaluator;
 import android.animation.TimeAnimator;
@@ -28,8 +28,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.bumptech.glide.Glide;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.instamanage.R;
-import com.dolphpire.instamanage.getlikesfragment.adapter.AdapterGetLikes;
-import com.dolphpire.instamanage.getlikesfragment.model.ModelGetLikes;
+import com.dolphpire.instamanage.getLikesFragment.adapter.AdapterGetLikes;
+import com.dolphpire.instamanage.getLikesFragment.model.ModelGetLikes;
 import com.dolphpire.instamanage.igposts.IGPostsActivity;
 import com.dolphpire.instamanage.views.DolphPireIS;
 
