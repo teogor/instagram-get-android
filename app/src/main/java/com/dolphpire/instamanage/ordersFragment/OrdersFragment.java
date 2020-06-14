@@ -63,7 +63,7 @@ public class OrdersFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        mView = inflater.inflate(R.layout.fragment_home, container, false);
+        mView = inflater.inflate(R.layout.fragment_orders, container, false);
         ButterKnife.bind(this, mView);
 
         mActivity = getActivity();
