@@ -1,6 +1,7 @@
 package com.dolphpire.api.links;
 
-public class EndPoints {
+public class EndPoints
+{
 
     private final static String BASE_URL = "https://iggetpro.000webhostapp.com/v1";
 
