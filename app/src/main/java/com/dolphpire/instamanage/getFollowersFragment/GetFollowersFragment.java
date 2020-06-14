@@ -1,4 +1,4 @@
-package com.dolphpire.instamanage.getfollowersfragment;
+package com.dolphpire.instamanage.getFollowersFragment;
 
 import android.animation.ArgbEvaluator;
 import android.animation.TimeAnimator;
@@ -28,8 +28,8 @@ import com.bumptech.glide.Glide;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.DPireOnCompleteCallback;
 import com.dolphpire.instamanage.R;
-import com.dolphpire.instamanage.getfollowersfragment.adapter.AdapterGetFollowers;
-import com.dolphpire.instamanage.getfollowersfragment.model.ModelGetFollowers;
+import com.dolphpire.instamanage.getFollowersFragment.adapter.AdapterGetFollowers;
+import com.dolphpire.instamanage.getFollowersFragment.model.ModelGetFollowers;
 
 import java.util.ArrayList;
 

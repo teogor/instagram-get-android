@@ -1,4 +1,4 @@
-package com.dolphpire.instamanage.getlikesfragment.model;
+package com.dolphpire.instamanage.getLikesFragment.model;
 
 public class ModelGetLikes {
 

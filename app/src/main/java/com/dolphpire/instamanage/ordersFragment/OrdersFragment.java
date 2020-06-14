@@ -1,4 +1,4 @@
-package com.dolphpire.instamanage.homeFragment;
+package com.dolphpire.instamanage.ordersFragment;
 
 import android.app.Activity;
 import android.content.Context;
@@ -34,7 +34,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.dolphpire.api.utils.NumberFormat.numberFormat;
 
-public class HomeFragment extends Fragment
+public class OrdersFragment extends Fragment
 {
 
     @BindView(R.id.btnLikes)
@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment
     private Context mContext;
     private Activity mActivity;
 
-    public HomeFragment()
+    public OrdersFragment()
     {
 
     }

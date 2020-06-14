@@ -1,4 +1,4 @@
-package com.dolphpire.instamanage.getlikesfragment.holder;
+package com.dolphpire.instamanage.getLikesFragment.holder;
 
 import android.annotation.SuppressLint;
 import android.view.View;
@@ -8,8 +8,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dolphpire.instamanage.R;
-import com.dolphpire.instamanage.getlikesfragment.adapter.AdapterGetLikes;
-import com.dolphpire.instamanage.getlikesfragment.model.ModelGetLikes;
+import com.dolphpire.instamanage.getLikesFragment.adapter.AdapterGetLikes;
+import com.dolphpire.instamanage.getLikesFragment.model.ModelGetLikes;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

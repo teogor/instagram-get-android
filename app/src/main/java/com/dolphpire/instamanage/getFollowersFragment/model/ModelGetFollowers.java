@@ -1,4 +1,4 @@
-package com.dolphpire.instamanage.getfollowersfragment.model;
+package com.dolphpire.instamanage.getFollowersFragment.model;
 
 public class ModelGetFollowers {
 
