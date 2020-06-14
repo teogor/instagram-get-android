@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -27,6 +26,8 @@ import com.dolphpire.instamanage.getCoinsFragment.GetCoinsFragment;
 import com.dolphpire.instamanage.getFollowersFragment.GetFollowersFragment;
 import com.dolphpire.instamanage.getLikesFragment.GetLikesFragment;
 import com.dolphpire.instamanage.igaccounts.IGAccountActivity;
+import com.dolphpire.instamanage.ordersFragment.completed.CompletedFragment;
+import com.dolphpire.instamanage.ordersFragment.inProgress.InProgressFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -98,13 +99,17 @@ public class OrdersFragment extends Fragment
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
 
-        GetCoinsFragment getCoinsFragment = new GetCoinsFragment();
-        GetLikesFragment getLikesFragment = new GetLikesFragment();
-        GetFollowersFragment getFollowersFragment = new GetFollowersFragment();
+        InProgressFragment mInProgressFragment = new InProgressFragment();
+        CompletedFragment mCompletedFragment = new CompletedFragment();
+
+        title_toolbar.setText("In Progress");
+        btnInProgress.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
+        btnCompleted.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
+        showFragment(mInProgressFragment);
 
         btnInProgress.setOnClickListener(v ->
         {
-            showFragment(getLikesFragment);
+            showFragment(mInProgressFragment);
             btnInProgress.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
             btnCompleted.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
             title_toolbar.setText("In Progress");
@@ -112,13 +117,11 @@ public class OrdersFragment extends Fragment
 
         btnCompleted.setOnClickListener(v ->
         {
-            showFragment(getFollowersFragment);
+            showFragment(mCompletedFragment);
             btnInProgress.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
             btnCompleted.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
             title_toolbar.setText("Completed");
         });
-
-        showFragment(getCoinsFragment);
 
         imvIGUser.setOnClickListener(v ->
         {
