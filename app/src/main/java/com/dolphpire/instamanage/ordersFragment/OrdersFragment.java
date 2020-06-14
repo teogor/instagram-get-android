@@ -26,6 +26,7 @@ import com.dolphpire.instamanage.getCoinsFragment.GetCoinsFragment;
 import com.dolphpire.instamanage.getFollowersFragment.GetFollowersFragment;
 import com.dolphpire.instamanage.getLikesFragment.GetLikesFragment;
 import com.dolphpire.instamanage.igaccounts.IGAccountActivity;
+import com.dolphpire.instamanage.ordersFragment.completed.CompletedFragment;
 import com.dolphpire.instamanage.ordersFragment.inProgress.InProgressFragment;
 
 import butterknife.BindView;
@@ -99,10 +100,13 @@ public class OrdersFragment extends Fragment
     {
 
         InProgressFragment mInProgressFragment = new InProgressFragment();
+        CompletedFragment mCompletedFragment = new CompletedFragment();
 
         title_toolbar.setText("In Progress");
         btnInProgress.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
         btnCompleted.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
+        showFragment(mInProgressFragment);
+
         btnInProgress.setOnClickListener(v ->
         {
             showFragment(mInProgressFragment);
@@ -113,13 +117,11 @@ public class OrdersFragment extends Fragment
 
         btnCompleted.setOnClickListener(v ->
         {
-            showFragment(mInProgressFragment);
+            showFragment(mCompletedFragment);
             btnInProgress.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl3));
             btnCompleted.setTextColor(ContextCompat.getColor(mContext, R.color.colorTextLvl1));
             title_toolbar.setText("Completed");
         });
-
-        showFragment(mInProgressFragment);
 
         imvIGUser.setOnClickListener(v ->
         {
