@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dolphpire.api.models.OrderModel;
 import com.dolphpire.instamanage.ordersFragment.itemParser.adapter.AdapterOrders;
 import com.dolphpire.instamanage.ordersFragment.itemParser.model.ModelOrder;
 
@@ -14,9 +15,9 @@ import butterknife.ButterKnife;
 public class HolderOrder extends RecyclerView.ViewHolder
 {
 
-//    @BindView(R.id.txtNoLikes)
+    //    @BindView(R.id.txtNoLikes)
 //    TextView txtNoLikes;
-    private ModelOrder mModelOrder;
+    private OrderModel mOrderModel;
     private AdapterOrders.OnItem listener;
     private int position;
     private Activity activity;
@@ -27,14 +28,21 @@ public class HolderOrder extends RecyclerView.ViewHolder
         ButterKnife.bind(this, itemView);
     }
 
-    @SuppressLint("SetTextI18n")
-    public void setContent(ModelOrder mModelOrder, AdapterOrders.OnItem listener, int position, Activity activity)
+    public void setContent(OrderModel mOrderModel, AdapterOrders.OnItem listener, int position, Activity activity)
     {
 
-        this.mModelOrder = mModelOrder;
+        this.mOrderModel = mOrderModel;
         this.listener = listener;
         this.position = position;
         this.activity = activity;
+
+        if (position % 2 == 0)
+        {
+
+        } else
+        {
+
+        }
 
     }
 

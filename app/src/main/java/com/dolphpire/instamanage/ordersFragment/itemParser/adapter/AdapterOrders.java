@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dolphpire.api.models.IGPostModel;
+import com.dolphpire.api.models.OrderModel;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.ordersFragment.itemParser.holder.HolderOrder;
 import com.dolphpire.instamanage.ordersFragment.itemParser.model.ModelOrder;
@@ -18,10 +19,10 @@ import java.util.ArrayList;
 public class AdapterOrders extends RecyclerView.Adapter<HolderOrder> {
 
     private Activity activity;
-    private ArrayList<ModelOrder> mDataList;
+    private ArrayList<OrderModel> mDataList;
     private OnItem listener;
 
-    public AdapterOrders(ArrayList<ModelOrder> mDataList, Activity activity) {
+    public AdapterOrders(ArrayList<OrderModel> mDataList, Activity activity) {
         this.mDataList = mDataList;
         this.activity = activity;
     }
