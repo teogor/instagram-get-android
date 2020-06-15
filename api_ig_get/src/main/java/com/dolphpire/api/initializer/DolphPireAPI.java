@@ -2,6 +2,7 @@ package com.dolphpire.api.initializer;
 
 import com.dolphpire.api.action.igaccount.IGAccountAction;
 import com.dolphpire.api.action.login.LoginAction;
+import com.dolphpire.api.action.orders.OrdersAction;
 import com.dolphpire.api.action.signup.SignUpAction;
 import com.dolphpire.api.action.user.UserAction;
 
@@ -30,6 +31,12 @@ public class DolphPireAPI
     public IGAccountAction igAccount()
     {
         return new IGAccountAction();
+    }
+
+    @KeepForApi
+    public OrdersAction orders()
+    {
+        return new OrdersAction();
     }
 
 }
