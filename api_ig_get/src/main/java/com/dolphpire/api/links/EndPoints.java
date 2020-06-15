@@ -13,5 +13,6 @@ public class EndPoints
     public final static String LINK_IG_FOLLOWERS_COUNT = BASE_URL + "/mobile/ig/followers/count";
     public final static String LINK_IG_POSTS_DETAILS = BASE_URL + "/mobile/ig/posts/details";
     public final static String LINK_USER_ORDER = BASE_URL + "/mobile/user/order";
+    public final static String LINK_ORDERS_RETRIEVE = BASE_URL + "/mobile/orders/retrieve";
 
 }

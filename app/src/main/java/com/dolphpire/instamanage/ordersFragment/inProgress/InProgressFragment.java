@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dolphpire.api.initializer.DolphPireApp;
+import com.dolphpire.api.interfaces.OnOrdersRetrieved;
+import com.dolphpire.api.models.OrderModel;
 import com.dolphpire.instamanage.R;
-import com.dolphpire.instamanage.igaccounts.adapter.AdapterIGAccount;
-import com.dolphpire.instamanage.igaccounts.model.ModelIGAccount;
 import com.dolphpire.instamanage.ordersFragment.itemParser.adapter.AdapterOrders;
-import com.dolphpire.instamanage.ordersFragment.itemParser.model.ModelOrder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,9 +35,9 @@ public class InProgressFragment extends Fragment
     private Context mContext;
     private Activity mActivity;
     private LinearLayoutManager linearLayoutManager;
-    private ArrayList<ModelOrder> mDataList;
+    private ArrayList<OrderModel> mDataList;
     private AdapterOrders mAdapter;
-    private ModelOrder mModelOrder;
+    private OrderModel mOrderModel;
 
     public InProgressFragment()
     {
@@ -100,25 +101,16 @@ public class InProgressFragment extends Fragment
     private void populateRecyclerView()
     {
 
-        mModelOrder = new ModelOrder(0);
-        mDataList.add(mModelOrder);
-
-        mModelOrder = new ModelOrder(0);
-        mDataList.add(mModelOrder);
-
-        mModelOrder = new ModelOrder(0);
-        mDataList.add(mModelOrder);
-
-        mModelOrder = new ModelOrder(0);
-        mDataList.add(mModelOrder);
-
-        mModelOrder = new ModelOrder(0);
-        mDataList.add(mModelOrder);
-
-        mModelOrder = new ModelOrder(0);
-        mDataList.add(mModelOrder);
-
-        mAdapter.notifyDataSetChanged();
+        DolphPireApp.initializeApi()
+                .orders()
+                .retrieve()
+                .inProgress()
+                .addOnCompleteListener(dataList ->
+                {
+                    mDataList.addAll(dataList);
+                    mAdapter.notifyDataSetChanged();
+                })
+                .execute();
 
     }
 
