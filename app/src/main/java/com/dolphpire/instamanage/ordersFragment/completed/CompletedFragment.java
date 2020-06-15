@@ -10,16 +10,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.dolphpire.instamanage.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CompletedFragment extends Fragment
 {
 
-    //    @BindView(R.id.rlBottomControls)
-//    RelativeLayout rlBottomControls;
+    @BindView(R.id.rvOrders)
+    RecyclerView rvOrders;
     private View mView;
     private Context mContext;
     private Activity mActivity;
