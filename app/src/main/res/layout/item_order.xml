@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rlIGAccount"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:paddingStart="5dp"
+    android:paddingEnd="15dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imvIGUser"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/bg_circle"
+        android:elevation="10dp"
+        app:civ_border_color="@color/colorAccent"
+        app:civ_border_width="1dp" />
+
+    <TextView
+        android:id="@+id/txtIGUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/imvDelete"
+        android:layout_toEndOf="@+id/imvIGUser"
+        android:clickable="false"
+        android:focusable="false"
+        android:fontFamily="@font/open_sans_semibold"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorTextLvl1"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imvDelete"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="3dp"
+        android:background="@drawable/bg_circle"
+        android:backgroundTint="#f44336"
+        android:elevation="2dp"
+        android:padding="10dp"
+        android:src="@drawable/ic_delete_item"
+        android:tint="@color/colorPrimary" />
+
+</RelativeLayout>
