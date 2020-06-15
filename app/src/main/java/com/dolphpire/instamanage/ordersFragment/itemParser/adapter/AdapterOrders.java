@@ -1,4 +1,4 @@
-package com.dolphpire.instamanage.igaccounts.adapter;
+package com.dolphpire.instamanage.ordersFragment.itemParser.adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -8,19 +8,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dolphpire.api.models.IGPostModel;
 import com.dolphpire.instamanage.R;
-import com.dolphpire.instamanage.igaccounts.holder.HolderIGAccount;
-import com.dolphpire.instamanage.igaccounts.model.ModelIGAccount;
+import com.dolphpire.instamanage.ordersFragment.itemParser.holder.HolderOrder;
+import com.dolphpire.instamanage.ordersFragment.itemParser.model.ModelOrder;
 
 import java.util.ArrayList;
 
-public class AdapterIGAccount extends RecyclerView.Adapter<HolderIGAccount> {
+public class AdapterOrders extends RecyclerView.Adapter<HolderOrder> {
 
     private Activity activity;
-    private ArrayList<ModelIGAccount> mDataList;
+    private ArrayList<ModelOrder> mDataList;
     private OnItem listener;
 
-    public AdapterIGAccount(ArrayList<ModelIGAccount> mDataList, Activity activity) {
+    public AdapterOrders(ArrayList<ModelOrder> mDataList, Activity activity) {
         this.mDataList = mDataList;
         this.activity = activity;
     }
@@ -35,15 +36,15 @@ public class AdapterIGAccount extends RecyclerView.Adapter<HolderIGAccount> {
 
     @NonNull
     @Override
-    public HolderIGAccount onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HolderOrder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_ig_account, parent, false);
-        return new HolderIGAccount(v);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order, parent, false);
+        return new HolderOrder(v);
 
     }
 
     @Override
-    public void onBindViewHolder(HolderIGAccount holder, int position) {
+    public void onBindViewHolder(HolderOrder holder, int position) {
         holder.setContent(mDataList.get(position), listener, position, activity);
     }
 
