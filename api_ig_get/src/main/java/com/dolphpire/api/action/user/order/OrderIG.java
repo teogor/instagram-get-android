@@ -1,7 +1,5 @@
 package com.dolphpire.api.action.user.order;
 
-import android.util.Log;
-
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -18,8 +16,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.dolphpire.api.initializer.DolphPireApp.TAG;
 
 public class OrderIG
 {
@@ -55,7 +51,7 @@ public class OrderIG
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 EndPoints.LINK_USER_ORDER, response ->
         {
-            Log.e(TAG, "response: " + response);
+//            Log.e(TAG, "response: " + response);
             try
             {
                 JSONObject responseObj = new JSONObject(response);

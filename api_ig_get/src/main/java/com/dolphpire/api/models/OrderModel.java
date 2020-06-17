@@ -19,6 +19,7 @@ public class OrderModel implements Serializable
     private long post_id;
     private String post_image;
     private String created_at = "";
+    String profile_picture = "";
 
     public OrderModel()
     {
@@ -58,6 +59,11 @@ public class OrderModel implements Serializable
     public String getPostImage()
     {
         return post_image;
+    }
+
+    public String getProfilePicture()
+    {
+        return profile_picture;
     }
 
     public Timestamp getCreatedAt() {
