@@ -3,6 +3,7 @@ package com.dolphpire.instamanage.getFollowersFragment;
 import android.animation.ArgbEvaluator;
 import android.animation.TimeAnimator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
@@ -210,11 +211,12 @@ public class GetFollowersFragment extends Fragment
                 .setListener(user -> setIGAccountData(), "IG_GET_FOLLOWERS_FRAGMENT");
     }
 
+    @SuppressLint("SetTextI18n")
     private void setIGAccountData()
     {
         if (DolphPireApp.getInstance().getIGAccount() != null)
         {
-            Glide.with(this)
+            Glide.with(mActivity)
                     .load(DolphPireApp.getInstance().getIGAccount().getProfilePicture())
                     .into(imvIGUser);
             txt_username.setText("@" + DolphPireApp.getInstance().getIGAccount().getUsername());

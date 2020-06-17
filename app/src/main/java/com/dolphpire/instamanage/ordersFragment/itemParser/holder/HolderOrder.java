@@ -1,12 +1,15 @@
 package com.dolphpire.instamanage.ordersFragment.itemParser.holder;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.models.OrderModel;
 import com.dolphpire.instamanage.R;
 import com.dolphpire.instamanage.ordersFragment.itemParser.adapter.AdapterOrders;
@@ -23,6 +26,14 @@ public class HolderOrder extends RecyclerView.ViewHolder
     CircleImageView imvIGUser;
     @BindView(R.id.imvPostPreview)
     DolphPireIS imvPostPreview;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+    @BindView(R.id.txtCounter)
+    TextView txtCounter;
+    @BindView(R.id.txtOrderType)
+    TextView txtOrderType;
+    @BindView(R.id.imvDelete)
+    ImageView imvDelete;
     private OrderModel mOrderModel;
     private AdapterOrders.OnItem listener;
     private int position;
@@ -34,6 +45,7 @@ public class HolderOrder extends RecyclerView.ViewHolder
         ButterKnife.bind(this, itemView);
     }
 
+    @SuppressLint("SetTextI18n")
     public void setContent(OrderModel mOrderModel, AdapterOrders.OnItem listener, int position, Activity activity)
     {
 
@@ -60,13 +72,29 @@ public class HolderOrder extends RecyclerView.ViewHolder
             Glide.with(activity)
                     .load(mOrderModel.getPostImage())
                     .into(imvPostPreview);
+            txtOrderType.setText("Get Likes");
         } else
         {
             //follow order
             imvIGUser.setVisibility(View.VISIBLE);
             Glide.with(activity)
-                    .load(DolphPireApp.getInstance().getIGAccount().getProfilePicture())
+                    .load(mOrderModel.getProfilePicture())
                     .into(imvIGUser);
+            txtOrderType.setText("Get Followers");
+        }
+
+        progressBar.setMax(mOrderModel.getTarget());
+        progressBar.setProgress(mOrderModel.getInteractionCount());
+
+        int interactionCount = Math.min(mOrderModel.getInteractionCount(), mOrderModel.getTarget());
+        txtCounter.setText(interactionCount + "/" + mOrderModel.getTarget());
+
+        if (interactionCount == mOrderModel.getTarget())
+        {
+            imvDelete.setVisibility(View.GONE);
+        } else
+        {
+            imvDelete.setVisibility(View.VISIBLE);
         }
 
     }

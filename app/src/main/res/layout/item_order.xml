@@ -31,24 +31,59 @@
             android:id="@+id/imvPostPreview"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:background="@color/colorBackground"/>
+            android:background="@color/colorBackground"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/txtIGUsername"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_centerVertical="true"
         android:layout_toStartOf="@+id/imvDelete"
         android:layout_toEndOf="@+id/llPreviewHolder"
-        android:clickable="false"
-        android:focusable="false"
-        android:fontFamily="@font/open_sans_semibold"
-        android:textAlignment="textStart"
-        android:textColor="@color/colorTextLvl1"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_marginEnd="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtOrderType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="@font/open_sans_semibold"
+                android:textColor="@color/colorTextLvl1"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:clickable="false"
+                android:focusable="false"
+                android:fontFamily="@font/open_sans_semibold"
+                android:textColor="@color/colorTextLvl1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:progressTint="#8BC34A"/>
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/imvDelete"
