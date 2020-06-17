@@ -65,7 +65,7 @@ public class HolderOrder extends RecyclerView.ViewHolder
             //follow order
             imvIGUser.setVisibility(View.VISIBLE);
             Glide.with(activity)
-                    .load(DolphPireApp.getInstance().getIGAccount().getProfilePicture())
+                    .load(mOrderModel.getProfilePicture())
                     .into(imvIGUser);
         }
 
