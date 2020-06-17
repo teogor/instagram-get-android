@@ -166,7 +166,7 @@ public class OrdersFragment extends Fragment
     {
         if (DolphPireApp.getInstance().getIGAccount() != null)
         {
-            Glide.with(this)
+            Glide.with(mActivity)
                     .load(DolphPireApp.getInstance().getIGAccount().getProfilePicture())
                     .into(imvIGUser);
         }
