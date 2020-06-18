@@ -7,8 +7,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ApiCallback;
 import com.dolphpire.api.interfaces.FailureCallback;
+import com.dolphpire.api.interfaces.OnFeedRetrieved;
 import com.dolphpire.api.interfaces.OnOrdersRetrieved;
 import com.dolphpire.api.links.EndPoints;
+import com.dolphpire.api.models.FeedModel;
 import com.dolphpire.api.models.OrderModel;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -30,7 +32,7 @@ public class FeedOrders
 
     //class model
     private String type = "null";
-    private OnOrdersRetrieved.OnCompleteListener<OrderModel> onComplete;
+    private OnFeedRetrieved.OnCompleteListener<FeedModel> onComplete;
     private FailureCallback.OnFailureListener onFailureListener;
     private ApiCallback.ApiKeyError mApiKeyError;
 
@@ -57,20 +59,20 @@ public class FeedOrders
                 // check for error flag
                 if (!responseObj.getBoolean("error"))
                 {
-//                    JSONArray ordersJSONArray = responseObj.getJSONArray("data");
-//                    List<OrderModel> mOrdersList = new ArrayList<>();
-//                    JsonParser parser = new JsonParser();
-//                    Gson gson = new Gson();
-//                    gson.newBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss");
-//                    for (int i = 0; i < ordersJSONArray.length(); i++)
-//                    {
-//                        JsonElement mJson = parser.parse(ordersJSONArray.get(i).toString());
-//                        OrderModel mOrderModel = gson.fromJson(mJson, OrderModel.class);
-//                        mOrdersList.add(mOrderModel);
-//                    }
+                    JSONArray ordersJSONArray = responseObj.getJSONArray("feed");
+                    List<FeedModel> mFeedList = new ArrayList<>();
+                    JsonParser parser = new JsonParser();
+                    Gson gson = new Gson();
+                    gson.newBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss");
+                    for (int i = 0; i < ordersJSONArray.length(); i++)
+                    {
+                        JsonElement mJson = parser.parse(ordersJSONArray.get(i).toString());
+                        FeedModel mFeedModel = gson.fromJson(mJson, FeedModel.class);
+                        mFeedList.add(mFeedModel);
+                    }
                     if (onComplete != null)
                     {
-//                        onComplete.onSuccess(mOrdersList);
+                        onComplete.onSuccess(mFeedList);
                     }
                 } else
                 {
@@ -120,7 +122,7 @@ public class FeedOrders
 
     }
 
-    public FeedOrders addOnCompleteListener(OnOrdersRetrieved.OnCompleteListener<OrderModel> onComplete)
+    public FeedOrders addOnCompleteListener(OnFeedRetrieved.OnCompleteListener<FeedModel> onComplete)
     {
         this.onComplete = onComplete;
         return this;
