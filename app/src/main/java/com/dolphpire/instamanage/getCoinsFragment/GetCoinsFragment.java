@@ -184,6 +184,15 @@ public class GetCoinsFragment extends Fragment {
 
         rlFilterMenu.setVisibility(View.GONE);
 
+        getFeed();
+
+    }
+
+    private void getFeed()
+    {
+
+        
+
     }
 
     private void toggleAutoAction() {
