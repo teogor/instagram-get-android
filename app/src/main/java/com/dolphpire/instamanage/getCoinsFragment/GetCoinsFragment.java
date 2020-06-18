@@ -23,7 +23,12 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.dolphpire.api.initializer.DolphPireApp;
+import com.dolphpire.api.interfaces.OnFeedRetrieved;
+import com.dolphpire.api.models.FeedModel;
 import com.dolphpire.instamanage.R;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -134,7 +139,7 @@ public class GetCoinsFragment extends Fragment {
             if (autoActionOn) {
                 Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
             } else {
-
+                getFeed();
             }
         });
 
@@ -191,7 +196,18 @@ public class GetCoinsFragment extends Fragment {
     private void getFeed()
     {
 
-        
+        DolphPireApp.initializeApi()
+                .orders().feed()
+                .all()
+                .addOnCompleteListener(new OnFeedRetrieved.OnCompleteListener<FeedModel>()
+                {
+                    @Override
+                    public void onSuccess(@NonNull List<FeedModel> dataList)
+                    {
+                        Toast.makeText(mContext, String.valueOf(dataList.size()), Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .execute();
 
     }
 
@@ -199,14 +215,8 @@ public class GetCoinsFragment extends Fragment {
 
         autoActionOn = !autoActionOn;
         if (autoActionOn) {
-//            llFilters.setEnabled(false);
-//            llSkip.setEnabled(false);
-//            llActionTask.setEnabled(false);
             txtAutoAction.setTextColor(Color.parseColor("#AC1005"));
         } else {
-//            llFilters.setEnabled(true);
-//            llSkip.setEnabled(true);
-//            llActionTask.setEnabled(true);
             txtAutoAction.setTextColor(Color.parseColor("#000000"));
         }
 
