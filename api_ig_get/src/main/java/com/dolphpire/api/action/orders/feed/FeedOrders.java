@@ -1,5 +1,7 @@
 package com.dolphpire.api.action.orders.feed;
 
+import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
@@ -20,6 +22,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.dolphpire.api.initializer.DolphPireApp.TAG;
 
 public class FeedOrders
 {
@@ -43,9 +47,9 @@ public class FeedOrders
     public void execute()
     {
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                EndPoints.LINK_ORDERS_RETRIEVE, response ->
+                EndPoints.LINK_ORDERS_FEED, response ->
         {
-//            Log.e(TAG, "response: " + response);
+            Log.e(TAG, "response: " + response);
             try
             {
                 JSONObject responseObj = new JSONObject(response);
@@ -53,20 +57,20 @@ public class FeedOrders
                 // check for error flag
                 if (!responseObj.getBoolean("error"))
                 {
-                    JSONArray ordersJSONArray = responseObj.getJSONArray("data");
-                    List<OrderModel> mOrdersList = new ArrayList<>();
-                    JsonParser parser = new JsonParser();
-                    Gson gson = new Gson();
-                    gson.newBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss");
-                    for (int i = 0; i < ordersJSONArray.length(); i++)
-                    {
-                        JsonElement mJson = parser.parse(ordersJSONArray.get(i).toString());
-                        OrderModel mOrderModel = gson.fromJson(mJson, OrderModel.class);
-                        mOrdersList.add(mOrderModel);
-                    }
+//                    JSONArray ordersJSONArray = responseObj.getJSONArray("data");
+//                    List<OrderModel> mOrdersList = new ArrayList<>();
+//                    JsonParser parser = new JsonParser();
+//                    Gson gson = new Gson();
+//                    gson.newBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss");
+//                    for (int i = 0; i < ordersJSONArray.length(); i++)
+//                    {
+//                        JsonElement mJson = parser.parse(ordersJSONArray.get(i).toString());
+//                        OrderModel mOrderModel = gson.fromJson(mJson, OrderModel.class);
+//                        mOrdersList.add(mOrderModel);
+//                    }
                     if (onComplete != null)
                     {
-                        onComplete.onSuccess(mOrdersList);
+//                        onComplete.onSuccess(mOrdersList);
                     }
                 } else
                 {
