@@ -165,7 +165,8 @@ public class GetLikesFragment extends Fragment
                         })
                         .execute();
                 DolphPireApp.getInstance().decreaseCoinsBy(mDataList.get(itemChose).getCoins());
-            } else if (DolphPireApp.getInstance().getUser().getIGPostModel() == null) {
+            } else if (DolphPireApp.getInstance().getUser().getIGPostModel() == null)
+            {
                 Toast.makeText(mContext, "Please select a post", Toast.LENGTH_SHORT).show();
                 llBottomLoading.setVisibility(View.GONE);
             } else

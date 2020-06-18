@@ -26,6 +26,11 @@ public class UserModel implements Serializable
         return coins;
     }
 
+    public void setCoins(int coins)
+    {
+        this.coins = coins;
+    }
+
     public int getUUID()
     {
         return user_id;
@@ -51,18 +56,13 @@ public class UserModel implements Serializable
         return ig_accounts;
     }
 
-    public void setIGPostModel(IGPostModel mIGPostModel)
-    {
-        this.mIGPostModel = mIGPostModel;
-    }
-
     public IGPostModel getIGPostModel()
     {
         return mIGPostModel;
     }
 
-    public void setCoins(int coins)
+    public void setIGPostModel(IGPostModel mIGPostModel)
     {
-        this.coins = coins;
+        this.mIGPostModel = mIGPostModel;
     }
 }

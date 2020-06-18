@@ -32,18 +32,18 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:background="@color/colorBackground"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
         android:layout_toStartOf="@+id/imvDelete"
         android:layout_toEndOf="@+id/llPreviewHolder"
-        android:layout_marginEnd="10dp">
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:indeterminate="false"
-            android:progressTint="#8BC34A"/>
+            android:progressTint="#8BC34A" />
 
     </LinearLayout>
 
