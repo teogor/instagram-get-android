@@ -9,13 +9,8 @@ public class FeedOrdersAction
         this.mFeedOrders = new FeedOrders();
     }
 
-    public FeedOrders inProgress() {
+    public FeedOrders all() {
         this.mFeedOrders.setType(String.valueOf(0));
-        return this.mFeedOrders;
-    }
-
-    public FeedOrders completed() {
-        this.mFeedOrders.setType(String.valueOf(1));
         return this.mFeedOrders;
     }
 

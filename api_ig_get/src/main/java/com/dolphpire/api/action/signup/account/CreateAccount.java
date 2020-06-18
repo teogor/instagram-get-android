@@ -62,7 +62,7 @@ public class CreateAccount
             @Override
             public void onResponse(String response)
             {
-                Log.e(TAG, "response: " + response);
+//                Log.e(TAG, "response: " + response);
                 try
                 {
                     JSONObject responseObj = new JSONObject(response);
