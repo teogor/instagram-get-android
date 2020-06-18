@@ -59,6 +59,9 @@ public class IGPostsActivity extends AppCompatActivity
                     .syncIGPost()
                     .setNewPost(mDataList.get(pos));
 
+            DolphPireApp.getInstance()
+                    .setPost(mDataList.get(pos));
+
             finish();
 
         });
