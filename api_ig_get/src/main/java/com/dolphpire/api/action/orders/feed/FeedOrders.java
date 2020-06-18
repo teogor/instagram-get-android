@@ -108,6 +108,7 @@ public class FeedOrders
                 params.put("api_key", DolphPireApp.getInstance().getApiKey());
                 params.put("secret_key", DolphPireApp.getInstance().getSecretKey());
                 params.put("my_uid", String.valueOf(DolphPireApp.getInstance().getUUID()));
+                params.put("ig_account_id", String.valueOf(DolphPireApp.getInstance().getIGAccount().getIGID()));
 
                 params.put("type", type);
                 return params;

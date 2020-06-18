@@ -1,13 +1,11 @@
 package com.dolphpire.api.action.igaccount.followers;
 
-import android.util.Log;
-
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.ApiCallback;
-import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.interfaces.DPireOnCompleteCallback;
+import com.dolphpire.api.interfaces.FailureCallback;
 import com.dolphpire.api.links.EndPoints;
 
 import org.json.JSONException;
@@ -15,8 +13,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.dolphpire.api.initializer.DolphPireApp.TAG;
 
 public class FollowersIGAccount
 {
@@ -42,7 +38,7 @@ public class FollowersIGAccount
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 EndPoints.LINK_IG_FOLLOWERS_COUNT, response ->
         {
-            Log.e(TAG, "response: " + response);
+//            Log.e(TAG, "response: " + response);
             try
             {
                 JSONObject responseObj = new JSONObject(response);
