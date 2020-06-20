@@ -38,7 +38,8 @@ import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_APP_DATA;
 import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_FILTER_FOLLOW;
 import static com.dolphpire.api.utils.DolphPireUtils.DPIRE_SP_FILTER_LIKE;
 
-public class GetCoinsFragment extends Fragment {
+public class GetCoinsFragment extends Fragment
+{
 
     @BindView(R.id.rlBottomControls)
     RelativeLayout rlBottomControls;
@@ -71,13 +72,15 @@ public class GetCoinsFragment extends Fragment {
     private boolean filterLikeTasks = true;
     private boolean filterFollowTasks = true;
 
-    public GetCoinsFragment() {
+    public GetCoinsFragment()
+    {
 
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    {
         mView = inflater.inflate(R.layout.fragment_get_coins, container, false);
         ButterKnife.bind(this, mView);
 
@@ -87,28 +90,33 @@ public class GetCoinsFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
+    public void onStart()
+    {
         super.onStart();
     }
 
     @Override
-    public void onDestroyView() {
+    public void onDestroyView()
+    {
         super.onDestroyView();
     }
 
     @Override
-    public void onDetach() {
+    public void onDetach()
+    {
         super.onDetach();
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
+    public void onAttach(@NonNull Context context)
+    {
         super.onAttach(context);
         mContext = context;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
 
         setAnimation();
 
@@ -118,53 +126,70 @@ public class GetCoinsFragment extends Fragment {
 
         cbFollow.setChecked(filterFollowTasks);
         cbLike.setChecked(filterLikeTasks);
-        if (filterFollowTasks && filterLikeTasks) {
+        if (filterFollowTasks && filterLikeTasks)
+        {
             txtAutoAction.setText("Auto Follow & Like");
-        } else if (filterLikeTasks) {
+        } else if (filterLikeTasks)
+        {
             txtAutoAction.setText("Auto Like");
-        } else if (filterFollowTasks) {
+        } else if (filterFollowTasks)
+        {
             txtAutoAction.setText("Auto Follow");
         }
 
         // 1 coins / like
         // 4 coins / follow
 
-        llActionTask.setOnClickListener(v -> {
-            if (autoActionOn) {
+        llActionTask.setOnClickListener(v ->
+        {
+            if (autoActionOn)
+            {
                 Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
-            } else {
+            } else
+            {
 
             }
         });
 
-        llSkip.setOnClickListener(v -> {
-            if (autoActionOn) {
+        llSkip.setOnClickListener(v ->
+        {
+            if (autoActionOn)
+            {
                 Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
-            } else {
+            } else
+            {
                 getFeed();
             }
         });
 
         llAuto.setOnClickListener(v -> toggleAutoAction());
 
-        llFilters.setOnClickListener(v -> {
-            if (autoActionOn) {
+        llFilters.setOnClickListener(v ->
+        {
+            if (autoActionOn)
+            {
                 Toast.makeText(mContext, "Disable 'auto' option first", Toast.LENGTH_SHORT).show();
-            } else {
-                if (rlFilterMenu.isShown()) {
+            } else
+            {
+                if (rlFilterMenu.isShown())
+                {
                     rlFilterMenu.setVisibility(View.GONE);
                     rlControlsHolder.setVisibility(View.VISIBLE);
-                } else {
+                } else
+                {
                     rlFilterMenu.setVisibility(View.VISIBLE);
                     rlControlsHolder.setVisibility(View.GONE);
                 }
             }
         });
 
-        txtApplyFilters.setOnClickListener(v -> {
-            if (!cbLike.isChecked() && !cbFollow.isChecked()) {
+        txtApplyFilters.setOnClickListener(v ->
+        {
+            if (!cbLike.isChecked() && !cbFollow.isChecked())
+            {
                 Toast.makeText(mContext, "You can not disable all the filters", Toast.LENGTH_SHORT).show();
-            } else if (rlFilterMenu.isShown()) {
+            } else if (rlFilterMenu.isShown())
+            {
                 rlFilterMenu.setVisibility(View.GONE);
                 rlControlsHolder.setVisibility(View.VISIBLE);
 
@@ -175,14 +200,18 @@ public class GetCoinsFragment extends Fragment {
 
                 filterFollowTasks = cbFollow.isChecked();
                 filterLikeTasks = cbLike.isChecked();
-                if (filterFollowTasks && filterLikeTasks) {
+                if (filterFollowTasks && filterLikeTasks)
+                {
                     txtAutoAction.setText("Auto Follow & Like");
-                } else if (filterLikeTasks) {
+                } else if (filterLikeTasks)
+                {
                     txtAutoAction.setText("Auto Like");
-                } else if (filterFollowTasks) {
+                } else if (filterFollowTasks)
+                {
                     txtAutoAction.setText("Auto Follow");
                 }
-            } else {
+            } else
+            {
                 rlFilterMenu.setVisibility(View.VISIBLE);
                 rlControlsHolder.setVisibility(View.GONE);
             }
@@ -213,18 +242,22 @@ public class GetCoinsFragment extends Fragment {
 
     }
 
-    private void toggleAutoAction() {
+    private void toggleAutoAction()
+    {
 
         autoActionOn = !autoActionOn;
-        if (autoActionOn) {
+        if (autoActionOn)
+        {
             txtAutoAction.setTextColor(Color.parseColor("#AC1005"));
-        } else {
+        } else
+        {
             txtAutoAction.setTextColor(Color.parseColor("#000000"));
         }
 
     }
 
-    private void setAnimation() {
+    private void setAnimation()
+    {
 
         final ArgbEvaluator evaluator = new ArgbEvaluator();
         final int start = ContextCompat.getColor(mContext, R.color.colorBgGetCoins1);
@@ -235,7 +268,8 @@ public class GetCoinsFragment extends Fragment {
         animator.setDuration(1500);
         animator.setRepeatCount(ValueAnimator.INFINITE);
         animator.setRepeatMode(ValueAnimator.REVERSE);
-        animator.addUpdateListener(valueAnimator -> {
+        animator.addUpdateListener(valueAnimator ->
+        {
             float fraction = valueAnimator.getAnimatedFraction();
             int newStrat = (int) evaluator.evaluate(fraction, start, end);
             int newEnd = (int) evaluator.evaluate(fraction, end, start);
