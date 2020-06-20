@@ -37,7 +37,14 @@
                 tools:ignore="NestedWeights"
                 android:layout_margin="2dp">
 
-                
+                <com.dolphpire.instamanage.views.DolphPireIS
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <com.dolphpire.instamanage.views.DolphPireIC
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
             </com.dolphpire.instamanage.views.DolphPireRL>
 
             <com.dolphpire.instamanage.views.DolphPireRL
