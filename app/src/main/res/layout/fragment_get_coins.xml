@@ -7,11 +7,88 @@
     android:background="@color/colorBackground"
     android:paddingTop="60dp">
 
+<!--    <LinearLayout-->
+<!--        android:id="@+id/llTaskHolder"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:weightSum="2"-->
+<!--        android:layout_above="@+id/rlBottomControls"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:orientation="vertical"-->
+<!--        android:gravity="center_vertical">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center_horizontal|bottom"-->
+<!--            android:weightSum="2">-->
+
+<!--            <com.dolphpire.instamanage.views.DolphPireRL-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="#212121"-->
+<!--                android:layout_weight="1"-->
+<!--                tools:ignore="NestedWeights"-->
+<!--                android:layout_margin="2dp">-->
+
+<!--                <com.dolphpire.instamanage.views.DolphPireIS-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"/>-->
+
+<!--                <com.dolphpire.instamanage.views.DolphPireIC-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"/>-->
+
+<!--            </com.dolphpire.instamanage.views.DolphPireRL>-->
+
+<!--            <com.dolphpire.instamanage.views.DolphPireRL-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="#3F51B5"-->
+<!--                android:layout_weight="1"-->
+<!--                tools:ignore="NestedWeights"-->
+<!--                android:layout_margin="2dp"/>-->
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center_horizontal|top"-->
+<!--            android:weightSum="2">-->
+
+<!--            <com.dolphpire.instamanage.views.DolphPireRL-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="#212121"-->
+<!--                android:layout_weight="1"-->
+<!--                tools:ignore="NestedWeights"-->
+<!--                android:layout_margin="2dp"/>-->
+
+<!--            <com.dolphpire.instamanage.views.DolphPireRL-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="#3F51B5"-->
+<!--                android:layout_weight="1"-->
+<!--                tools:ignore="NestedWeights"-->
+<!--                android:layout_margin="2dp"/>-->
+
+<!--        </LinearLayout>-->
+
+<!--    </LinearLayout>-->
+
     <LinearLayout
         android:id="@+id/llTaskHolder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="2"
         android:layout_above="@+id/rlBottomControls"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="10dp"
@@ -20,68 +97,6 @@
         android:layout_marginBottom="10dp"
         android:orientation="vertical"
         android:gravity="center_vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal|bottom"
-            android:weightSum="2">
-
-            <com.dolphpire.instamanage.views.DolphPireRL
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:background="#212121"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights"
-                android:layout_margin="2dp">
-
-                <com.dolphpire.instamanage.views.DolphPireIS
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-                <com.dolphpire.instamanage.views.DolphPireIC
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-            </com.dolphpire.instamanage.views.DolphPireRL>
-
-            <com.dolphpire.instamanage.views.DolphPireRL
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:background="#3F51B5"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights"
-                android:layout_margin="2dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal|top"
-            android:weightSum="2">
-
-            <com.dolphpire.instamanage.views.DolphPireRL
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:background="#212121"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights"
-                android:layout_margin="2dp"/>
-
-            <com.dolphpire.instamanage.views.DolphPireRL
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:background="#3F51B5"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights"
-                android:layout_margin="2dp"/>
-
-        </LinearLayout>
 
     </LinearLayout>
 
