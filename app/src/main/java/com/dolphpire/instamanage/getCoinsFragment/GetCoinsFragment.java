@@ -58,6 +58,8 @@ public class GetCoinsFragment extends Fragment {
     RelativeLayout llFilters;
     @BindView(R.id.txtAutoAction)
     TextView txtAutoAction;
+    @BindView(R.id.txtAmountCoins)
+    TextView txtAmountCoins;
     @BindView(R.id.cbLike)
     CheckBox cbLike;
     @BindView(R.id.cbFollow)
