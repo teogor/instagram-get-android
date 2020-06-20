@@ -51,7 +51,7 @@ public class FeedOrders
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 EndPoints.LINK_ORDERS_FEED, response ->
         {
-            Log.e(TAG, "response: " + response);
+//            Log.e(TAG, "response: " + response);
             try
             {
                 JSONObject responseObj = new JSONObject(response);
