@@ -24,10 +24,13 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.dolphpire.api.initializer.DolphPireApp;
 import com.dolphpire.api.interfaces.OnFeedRetrieved;
 import com.dolphpire.api.models.FeedModel;
 import com.dolphpire.instamanage.R;
+import com.dolphpire.instamanage.views.DolphPireIC;
+import com.dolphpire.instamanage.views.DolphPireIS;
 
 import java.util.List;
 
@@ -66,6 +69,8 @@ public class GetCoinsFragment extends Fragment
     CheckBox cbLike;
     @BindView(R.id.cbFollow)
     CheckBox cbFollow;
+    @BindView(R.id.llTaskHolder)
+    LinearLayout llTaskHolder;
     private View mView;
     private Context mContext;
     private Activity mActivity;
@@ -229,16 +234,33 @@ public class GetCoinsFragment extends Fragment
     private void getFeed()
     {
 
+        llTaskHolder.removeAllViews();
         DolphPireApp.initializeApi()
                 .orders().feed()
                 .all()
-                .addOnCompleteListener(new OnFeedRetrieved.OnCompleteListener<FeedModel>()
+                .addOnCompleteListener(dataList ->
                 {
-                    @Override
-                    public void onSuccess(@NonNull List<FeedModel> dataList)
+                    Toast.makeText(mContext, String.valueOf(dataList.size()), Toast.LENGTH_SHORT).show();
+
+                    @SuppressLint("InflateParams") View inflatedLayout = getLayoutInflater().inflate(R.layout.item_feed_1, null, false);
+                    llTaskHolder.addView(inflatedLayout);
+                    DolphPireIC userIcon = inflatedLayout.findViewById(R.id.dpUserIcon);
+                    DolphPireIS postImage = inflatedLayout.findViewById(R.id.dpPostImage);
+
+                    if (dataList.get(0).getType() == 1)
                     {
-                        Toast.makeText(mContext, String.valueOf(dataList.size()), Toast.LENGTH_SHORT).show();
+                        Glide.with(mActivity)
+                                .load(dataList.get(0).getProfilePicture())
+                                .into(userIcon);
+                        postImage.setVisibility(View.GONE);
+                    } else if (dataList.get(0).getType() == 0)
+                    {
+                        Glide.with(mActivity)
+                                .load(dataList.get(0).getPostImage())
+                                .into(postImage);
+                        userIcon.setVisibility(View.GONE);
                     }
+
                 })
                 .execute();
 
